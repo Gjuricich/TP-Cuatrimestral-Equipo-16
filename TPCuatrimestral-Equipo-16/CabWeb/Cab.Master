@@ -1,0 +1,69 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Cab.master.cs" Inherits="CabWeb.Cab" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>e-Cab</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+ 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+
+         <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+              
+  <div class="container-fluid">
+
+      <a class="navbar-brand" style="font-size: 30px; font-style:oblique;" href="Default.aspx">
+          <img src="logo5.png" width="54" height="50" alt="">
+          e-Cab
+          </a>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+             
+            <ul class="navbar-nav">
+  <li class="nav-item position-relative">
+    <a href="Login.aspx" class="nav-link" style="display: flex; align-items: center;">
+        <asp:Label Text="" ID="Label2" style="color:white;" runat="server" CssClass="badge rounded-pill bg-secondary" />
+        <p style="font-size: 160%;  color:white; margin-left: 5px;"><i class="bi bi-person  bi-3x"></i></p>
+        <span class="visually-hidden">User</span>
+    </a>
+</li>
+
+
+                 <li class="nav-item position-relative">
+              <a href="Message.aspx" class="nav-link">
+               <p style="font-size: 160%; color:white; margin-left:5px; margin-right:20px;"><i class="bi bi-envelope"></i></p>
+                 <asp:Label Text="" ID="Label1" runat="server" CssClass="badge rounded-pill bg-secondary position-absolute start-100 translate-middle" style="top: 15px; margin-left:-20px;" />
+                  <span class="visually-hidden">Items en el carrito</span>
+              </a>
+               </li>
+              
+            </ul>
+ 
+    </div>
+    
+           
+  </div>
+</nav>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

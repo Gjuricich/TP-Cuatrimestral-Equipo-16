@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33920.266
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CabWeb", "CabWeb\CabWeb.csproj", "{2CEE88D5-5D87-4CFA-A2E8-082827F8E515}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CabDomain", "CabDominio\CabDomain.csproj", "{D569FFA7-2EA0-4692-84C1-65C2D9995AB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CabBusiness", "CabBusiness\CabBusiness.csproj", "{3304E228-5935-48AE-A782-6049433C74C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CEE88D5-5D87-4CFA-A2E8-082827F8E515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CEE88D5-5D87-4CFA-A2E8-082827F8E515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CEE88D5-5D87-4CFA-A2E8-082827F8E515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CEE88D5-5D87-4CFA-A2E8-082827F8E515}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D569FFA7-2EA0-4692-84C1-65C2D9995AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D569FFA7-2EA0-4692-84C1-65C2D9995AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D569FFA7-2EA0-4692-84C1-65C2D9995AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D569FFA7-2EA0-4692-84C1-65C2D9995AB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3304E228-5935-48AE-A782-6049433C74C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3304E228-5935-48AE-A782-6049433C74C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3304E228-5935-48AE-A782-6049433C74C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3304E228-5935-48AE-A782-6049433C74C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF0E2615-F8B1-43AE-95C4-9B17DF5C995C}
+	EndGlobalSection
+EndGlobal
