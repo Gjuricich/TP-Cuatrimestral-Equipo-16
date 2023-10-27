@@ -11,7 +11,13 @@ namespace CabWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if ((string)Session["UserName"] != null)
+            {
+                if ((string)Session["UserName"] == "Maxi" && (string)Session["Password"] == "Programa")
+                {
+                    Label2.Text = "Maxi Programa";
+                }
+            }
         }
     }
 }
