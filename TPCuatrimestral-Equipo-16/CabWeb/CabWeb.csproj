@@ -68,6 +68,7 @@
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="SignUp.aspx" />
+    <Content Include="SignUpEmployee.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +103,13 @@
     </Compile>
     <Compile Include="SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignUpEmployee.aspx.cs">
+      <DependentUpon>SignUpEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUpEmployee.aspx.designer.cs">
+      <DependentUpon>SignUpEmployee.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

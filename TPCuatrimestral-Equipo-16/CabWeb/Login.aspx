@@ -17,7 +17,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-     <div class="container">
+     <div class="container" style="margin-bottom:5%;">
        <center>
         <div class="row">
             <div class="col-md-4 offset-md-4">
@@ -40,7 +40,7 @@
                         <a class="btn btn-primary btn-block" href="SignUp.aspx"><strong> Sign Up </strong></a>
                     </div>
                     <div class="text-center mt-2">
-                        <a class="btn btn-primary btn-block" href="SignUpEmployed.aspx"><strong> Sign Up Employed </strong></a>
+                        <a class="btn btn-primary btn-block" href="SignUpEmployee.aspx"><strong> Sign Up Employee </strong></a>
                     </div>
                 </div>
             </div>
