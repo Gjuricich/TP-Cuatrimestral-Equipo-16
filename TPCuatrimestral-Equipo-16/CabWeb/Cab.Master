@@ -36,13 +36,38 @@
           </ul>
              
             <ul class="navbar-nav">
-  <li class="nav-item position-relative">
-    <a href="Login.aspx" class="nav-link" style="display: flex; align-items: center;">
-        <asp:Label Text="" ID="Label2" style="color:white;" runat="server" CssClass="badge rounded-pill bg-secondary" />
-        <p style="font-size: 160%;  color:white; margin-left: 5px;"><i class="bi bi-person  bi-3x"></i></p>
-        <span class="visually-hidden">User</span>
-    </a>
+
+               <% if (Session["UserLogged"] == null) { %>
+                <a href="Login.aspx" class="nav-link" style="color:white; display: flex; align-items: center; margin-right: 20px;">Log in</a>
+                <li class="nav-item ">
+                <div class="dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"style="color:white; display: flex; align-items: center; margin-right: 30px;">Sign Up</a>
+                    <div class="dropdown-menu" style="margin-right: 30px; width:max-content;">
+            <a class="dropdown-item" href="SignUp.aspx" style="color:white;">Client</a>
+            <a class="dropdown-item" href="SignUpEmployed.aspx"  style="color:white;">Employee</a>
+            <a class="dropdown-item" href="SignUpManager.aspx"  style="color:white;">Manager</a>     
+        </div>
+                    </div>
+                    </li>
+                  <% } else { %>
+             <li class="nav-item position-relative">
+
+          <div class="dropdown">
+
+        <a href="Login.aspx" class="nav-link" style="display: flex; align-items: center;" id="userDropdown" data-toggle="dropdown">
+            <asp:Label Text="" ID="Label2" style="color:white;" runat="server" CssClass="badge rounded-pill bg-secondary" />
+            <p style="font-size: 160%; color:white; margin-left: 5px;"><i class="bi bi-person bi-3x"></i></p>
+            <span class="visually-hidden">User</span>
+        </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#" style="color:white;">Profile</a>
+            <a class="dropdown-item" href="#" style="color:white;">Setting</a>
+            <div class="dropdown-divider"></div>
+            <asp:LinkButton ID="Logout" runat="server" OnClick="Logout_Click" CssClass="dropdown-item" style="color:white;">Log out</asp:LinkButton>
+        </div>
+                </div>
 </li>
+
 
 
                  <li class="nav-item position-relative">
@@ -54,6 +79,8 @@
                </li>
               
             </ul>
+            <% } %>
+  
  
     </div>
     
@@ -65,5 +92,8 @@
             </asp:ContentPlaceHolder>
         </div>
     </form>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

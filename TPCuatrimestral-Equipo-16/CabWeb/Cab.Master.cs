@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CabDominio;
 
 namespace CabWeb
 {
@@ -11,13 +12,20 @@ namespace CabWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((string)Session["UserName"] != null)
+            if ((Client)Session["UserLogged"] != null)
             {
-                if ((string)Session["UserName"] == "Maxi" && (string)Session["Password"] == "Programa")
-                {
-                    Label2.Text = "Maxi Programa";
-                }
+
+                Client client = (Client)Session["UserLogged"];
+                Label2.Text = client.Name + " " + client.LastName;
+  
             }
+        }
+      
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+            Session.Remove("UserLogged");
+            Label2.Text = "";
+
         }
     }
 }

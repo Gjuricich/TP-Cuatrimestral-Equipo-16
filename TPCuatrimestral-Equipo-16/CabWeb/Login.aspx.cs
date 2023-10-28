@@ -26,10 +26,10 @@ namespace CabWeb
             if (cManager.VerificarCredenciales(email, password))
             {
                 Client client = cManager.GetUserByEmail(email);
-                Session.Add("UserLoged", client);
-                var masterPage = this.Master;
-                var lblHeader = masterPage.FindControl("Label2") as Label;
-                lblHeader.Text = client.Name+" "+client.LastName;
+                Session.Add("UserLogged", client);
+                //var masterPage = this.Master;
+                //var lblHeader = masterPage.FindControl("Label2") as Label;
+                //lblHeader.Text = client.Name+" "+client.LastName;
                 Response.Redirect("Default.aspx");
             }
             else
@@ -42,15 +42,7 @@ namespace CabWeb
 
             Response.Redirect("Default.aspx");
         }
-        protected void retryLogtBtn_Click(object sender, EventArgs e)
-        {
-            Session.Remove("UserName");
-            Session.Remove("Password");
-            var masterPage = this.Master;
-            var lblHeader = masterPage.FindControl("Label2") as Label;
-            lblHeader.Text = "";
-
-        }
+      
 
     }
 }
