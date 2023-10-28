@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CabDominio;
+using CabBusiness;
 
 namespace CabWeb
 {
@@ -15,12 +17,25 @@ namespace CabWeb
         }
         protected void liveAlertBtn_Click(object sender, EventArgs e)
         {
-            string userName = Username.Text;
-            string password = Password.Text;
-            Session["UserName"] = userName;
-            Session["Password"] = password;
-            Response.Redirect("Login.aspx");
 
+            string email = txtMail.Text;
+            string password = txtPassword.Text;
+            ClientManager cManager = new ClientManager();
+
+
+            if (cManager.VerificarCredenciales(email, password))
+            {
+                Client client = cManager.GetUserByEmail(email);
+                Session.Add("UserLoged", client);
+                var masterPage = this.Master;
+                var lblHeader = masterPage.FindControl("Label2") as Label;
+                lblHeader.Text = client.Name+" "+client.LastName;
+                Response.Redirect("Default.aspx");
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
         protected void btnRedirect_Click(object sender, EventArgs e)
         {

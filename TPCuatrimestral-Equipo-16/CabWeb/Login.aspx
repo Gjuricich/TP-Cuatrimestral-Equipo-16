@@ -24,13 +24,13 @@
                 <div class="loginBox">
                     <h2 class="text-center"> e-Cab </h2>               
                         <div class="form-group">
-                            <label for="Username"></label>
-                            <asp:TextBox runat="server" ID="Username" CssClass="form-control" placeholder="User" required></asp:TextBox>
+                            <label for="Mail"></label>
+                            <asp:TextBox runat="server" ID="txtMail" CssClass="form-control" placeholder="User" required></asp:TextBox>
                          
                         </div>
                         <div class="form-group">
                             <label for="Password"></label>
-                            <asp:TextBox runat="server" ID="Password"  TextMode="Password" CssClass="form-control" placeholder="Password" required></asp:TextBox>     
+                            <asp:TextBox runat="server" ID="txtPassword"  TextMode="Password" CssClass="form-control" placeholder="Password" required></asp:TextBox>     
                         </div>  
                         <div>
                         <asp:Button Text="Log in" runat="server" OnClick="liveAlertBtn_Click" CssClass="btn btn-primary btn-block" ID="liveAlertBtn" style="margin-bottom: 50px; margin-top: 20px" />
