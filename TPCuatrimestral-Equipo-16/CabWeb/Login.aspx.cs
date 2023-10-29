@@ -30,7 +30,7 @@ namespace CabWeb
                 //var masterPage = this.Master;
                 //var lblHeader = masterPage.FindControl("Label2") as Label;
                 //lblHeader.Text = client.Name+" "+client.LastName;
-                Response.Redirect("Default.aspx");
+                Response.Redirect("ClientView.aspx");
             }
             else
             {

@@ -68,6 +68,7 @@
     <Content Include="CancelReservation.aspx" />
     <Content Include="ClientReservation.aspx" />
     <Content Include="Company.aspx" />
+    <Content Include="ClientView.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
@@ -115,6 +116,12 @@
     </Compile>
     <Compile Include="Company.aspx.designer.cs">
       <DependentUpon>Company.aspx</DependentUpon>
+    <Compile Include="ClientView.aspx.cs">
+      <DependentUpon>ClientView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientView.aspx.designer.cs">
+      <DependentUpon>ClientView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
