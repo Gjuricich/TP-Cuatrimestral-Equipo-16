@@ -25,6 +25,7 @@ namespace CabWeb
         {
             Session.Remove("UserLogged");
             Label2.Text = "";
+            Response.Redirect("~/Default.aspx");
 
         }
     }
