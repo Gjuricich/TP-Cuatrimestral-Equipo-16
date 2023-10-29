@@ -8,6 +8,8 @@
     <title>e-Cab</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <%--favicon--%>
+     <link rel="icon" href="airPlane.ico" />
  
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
@@ -45,14 +47,14 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"style="color:white; display: flex; align-items: center; margin-right: 30px;">Sign Up</a>
                     <div class="dropdown-menu" style="margin-right: 30px; width:max-content;">
             <a class="dropdown-item" href="SignUp.aspx" style="color:white;">Client</a>
-            <a class="dropdown-item" href="SignUpEmployed.aspx"  style="color:white;">Employee</a>
+            <a class="dropdown-item" href="SignUpEmployee.aspx"  style="color:white;">Employee</a>
             <a class="dropdown-item" href="SignUpManager.aspx"  style="color:white;">Manager</a>     
         </div>
                     </div>
                     </li>
                   <% }
-                           else
-                           { %>
+                      else
+                      { %>
              <li class="nav-item position-relative">
 
           <div class="dropdown">
@@ -95,57 +97,67 @@
             </asp:ContentPlaceHolder>
         </div>
     </form>
-
-    <footer style="background-color: #191212;   margin-top:10%;" >
-
-
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <footer style="background-color: #191212;  padding-top:20px"; margin-top:10%;" >
         <div class="container-fluid text-center">
             <div class="row">
-            
-                 <div class="col-xs-12 col-md-6 col-lg-3">
+                
+                <div class="col-xs-12 col-md-6 col-lg-2  mx-4">
+                    <p style="color: azure;" class="h5 mb-3">Institutional</p>
+                   
+                      <div class="mb-2">
+                        <a class="text-secondary text-decoration-none" href="Company.aspx">Our company</a>
+                    </div>
+                      <div class="mb-2">
+                        <a class="text-secondary text-decoration-none" href="WorkUs.aspx">Work with us</a>
+                    </div>
+                </div>
+                 <div class="col-xs-12 col-md-6 col-lg-2 mx-4">
                     <p style="color: azure;" class="h5 mb-3">Services</p>
                    
                       <div class="mb-2">
-                        <a class="text-secondary text-decoration-none" href="#">Means of payment</a>
+                        <a class="text-secondary text-decoration-none" href="PaymentMethods.aspx">Means of payment</a>
                     </div>
                       <div class="mb-2">
-                        <a class="text-secondary text-decoration-none" href="#">Promotions</a>
+                        <a class="text-secondary text-decoration-none" href="Promotions.aspx">Promotions week</a>
                     </div>
                 </div>
-                 <div class="col-xs-12 col-md-6 col-lg-3">
+                 <div class="col-xs-12 col-md-6 col-lg-2  mx-4">
                     <p style="color: azure;" class="h5 mb-3">Shop Online</p>
                     <div class="mb-2">
-                        <a class="text-secondary text-decoration-none" href="#">My orders</a>
+                        <a class="text-secondary text-decoration-none" href="ClientReservation.aspx">My Reservation</a>
                     </div>                
                 </div>
-                 <div class="col-xs-12 col-md-6 col-lg-3">
+                 <div class="col-xs-12 col-md-6 col-lg-2 mx-4">
                     <p style="color: azure;" class="h5 mb-3">Customer Service</p>
                     <div class="mb-2">
                         <a class="text-secondary text-decoration-none" href="AskedQuestions.aspx">Help Center</a>
                     </div>
                      <div class="mb-2">
-                        <a class="text-secondary text-decoration-none" href="#">Terms and Conditions</a>
+                        <a class="text-secondary text-decoration-none" href="TermCondition.aspx">Terms and Conditions</a>
                     </div>
                      <div class="mb-2">
-                        <a class="text-secondary text-decoration-none" href="#">Privacy Policy</a>
+                        <a class="text-secondary text-decoration-none" href="Policy.aspx">Privacy Policy</a>
                     </div>
 
                 </div>
-                 <div class="col-xs-12 col-md-6 col-lg-3">
+                 <div class="col-xs-12 col-md-6 col-lg-2 mx-4">
                     <p style="color: azure;" class="h5 mb-3">Need Help?</p>
                     <div class="mb-2">
-                        <a class="text-secondary text-decoration-none" href="#"><i class="bi bi-whatsapp"></i></a>
+                        <a class="text-secondary text-decoration-none" href="mailto:airplaneproyect@gmail.com"><i class="bi bi-envelope"></i></a>
                     </div>
                      <div class="mb-2">
-                        <a class="btn btn-warning text-light text-decoration-none"  href="CancelOrder.aspx"><strong>Repentance</strong></a>
+                        <a class="btn btn-warning text-light text-decoration-none"  href="CancelReservation.aspx"><strong>Repentance</strong></a>
                     </div>
                 </div>
-                <div class="col-xs-12">
+                <div class="">
                     <p style="color: azure; padding-top:20px"; class="text-white text-center">&copy; 2023 - MyCabWeb</p>
                 </div>
 
             </div>
-        </div>
+    
+            </div>
             
     </footer>
 

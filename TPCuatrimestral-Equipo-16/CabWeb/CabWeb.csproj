@@ -64,20 +64,57 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AskedQuestions.aspx" />
+    <Content Include="CancelReservation.aspx" />
+    <Content Include="ClientReservation.aspx" />
+    <Content Include="Company.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
+    <Content Include="PaymentMethods.aspx" />
+    <Content Include="Policy.aspx" />
+    <Content Include="Promotions.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="SignUpEmployee.aspx" />
+    <Content Include="TermCondition.aspx" />
     <Content Include="Web.config" />
+    <Content Include="WorkUs.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AskedQuestions.aspx.cs">
+      <DependentUpon>AskedQuestions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AskedQuestions.aspx.designer.cs">
+      <DependentUpon>AskedQuestions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cab.Master.cs">
       <DependentUpon>Cab.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Cab.Master.designer.cs">
       <DependentUpon>Cab.Master</DependentUpon>
+    </Compile>
+    <Compile Include="CancelReservation.aspx.cs">
+      <DependentUpon>CancelReservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CancelReservation.aspx.designer.cs">
+      <DependentUpon>CancelReservation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientReservation.aspx.cs">
+      <DependentUpon>ClientReservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientReservation.aspx.designer.cs">
+      <DependentUpon>ClientReservation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company.aspx.cs">
+      <DependentUpon>Company.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company.aspx.designer.cs">
+      <DependentUpon>Company.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -96,6 +133,27 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentMethods.aspx.cs">
+      <DependentUpon>PaymentMethods.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentMethods.aspx.designer.cs">
+      <DependentUpon>PaymentMethods.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Policy.aspx.cs">
+      <DependentUpon>Policy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Policy.aspx.designer.cs">
+      <DependentUpon>Policy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Promotions.aspx.cs">
+      <DependentUpon>Promotions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Promotions.aspx.designer.cs">
+      <DependentUpon>Promotions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
@@ -110,6 +168,20 @@
     </Compile>
     <Compile Include="SignUpEmployee.aspx.designer.cs">
       <DependentUpon>SignUpEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TermCondition.aspx.cs">
+      <DependentUpon>TermCondition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TermCondition.aspx.designer.cs">
+      <DependentUpon>TermCondition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkUs.aspx.cs">
+      <DependentUpon>WorkUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkUs.aspx.designer.cs">
+      <DependentUpon>WorkUs.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
