@@ -114,8 +114,9 @@
       <DependentUpon>Company.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Company.aspx.designer.cs">
-      <DependentUpon>Company.aspx</DependentUpon>
+	  <Compile Include="Company.aspx.designer.cs">
+		  <DependentUpon>Company.aspx</DependentUpon>
+	  </Compile>
     <Compile Include="ClientView.aspx.cs">
       <DependentUpon>ClientView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
