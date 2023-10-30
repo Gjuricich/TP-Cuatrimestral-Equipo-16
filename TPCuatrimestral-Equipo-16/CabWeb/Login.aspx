@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-md-4 offset-md-4">
                 <div class="loginBox">
-                    <h2 class="text-center"> e-Cab </h2>               
+                    <h2 class="text-center"> AirJets </h2>               
                         <div class="form-group">
                             <label for="Mail"></label>
                             <asp:TextBox runat="server" ID="txtMail" CssClass="form-control" placeholder="User" required></asp:TextBox>
@@ -35,13 +35,15 @@
                         <div>
                         <asp:Button Text="Log in" runat="server" OnClick="liveAlertBtn_Click" CssClass="btn btn-primary btn-block" ID="liveAlertBtn" style="margin-bottom: 50px; margin-top: 20px" />
                         <a class="btn btn-secondary text-light text-decoration-none" href="Default.aspx" style="margin-bottom: 50px; margin-top: 20px"><strong>Back</strong></a>                 
-                        </div>
+                       <%--
+                          </div>
                             <div class="text-center mt-2">
                         <a class="btn btn-primary btn-block" href="SignUp.aspx"><strong> Sign Up </strong></a>
                     </div>
                     <div class="text-center mt-2">
                         <a class="btn btn-primary btn-block" href="SignUpEmployee.aspx"><strong> Sign Up Employee </strong></a>
                     </div>
+                    --%>
                 </div>
             </div>
         </div>

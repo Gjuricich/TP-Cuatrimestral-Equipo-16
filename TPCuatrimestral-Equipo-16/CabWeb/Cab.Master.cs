@@ -16,7 +16,7 @@ namespace CabWeb
             {
 
                 Client client = (Client)Session["UserLogged"];
-                Label2.Text = client.Name + " " + client.LastName;
+                Label2.Text = client.Name + " " + client.Surname;
   
             }
         }

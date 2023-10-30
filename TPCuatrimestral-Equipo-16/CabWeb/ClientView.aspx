@@ -1,15 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Cab.Master" AutoEventWireup="true" CodeBehind="ClientView.aspx.cs" Inherits="CabWeb.ClientView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <%if (Session["UserLogged"]== null)
+        {
+            Response.Redirect("Default.aspx");
+        }%>
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row">
-                <div class="col-1">
-                    <div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;">
-                        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+                <div class="col-1" style="width: 9rem">
+                    <div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 9rem;">
+                        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center justify-content-center ">
                             <li>
                                 <br />
                                 <asp:LinkButton ID="linkButtonUser" runat="server" OnClick="linkButtonUser_Click" class="nav-link py-3 border-bottom">
@@ -45,13 +49,13 @@
 
                 </div>
 
-                <div class="col-11" id="menuContent" style="background-color: grey; height:800px; overflow:auto;">
+                <div class="col-11" id="menuContent" style="background-color: grey; width: 70%; height:800px; overflow:auto;">
 
                     <%if (CurrentContent == 0)
                         {%>
                     <center>
                         <h1>Profile</h1>
-                        <h2><%:CurrentClient.Name + " " + CurrentClient.LastName%></h2>
+                        <h2><%:CurrentClient.Name + " " + CurrentClient.Surname%></h2>
                         <
                     </center>
                     <%} %>

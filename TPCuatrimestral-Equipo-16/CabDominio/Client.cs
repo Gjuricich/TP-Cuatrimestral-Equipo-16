@@ -7,15 +7,12 @@ using System.Linq;
 
 namespace CabDominio
 {
-    public class Client
+    public class Client : Person
     {
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public char Gender { get; set; }
         public DateTime DateOfRegister { get; set; }
         public DateTime DateOfBirth { get; set; }
         public UrlImage ProfilePhoto { get; set; }
+        public List<Flight> FlightHistory { get; set; }
 
         private int Id;
 
@@ -53,7 +50,7 @@ namespace CabDominio
         public Client(string name, string lastName, string email, DateTime dateOfRegister, DateTime dateOfBirth, char gender)
         {
             Name = name;
-            LastName = lastName;
+            Surname = lastName;
             Email = email;
             DateOfRegister = dateOfRegister;
             DateOfBirth = dateOfBirth;
@@ -63,7 +60,7 @@ namespace CabDominio
         {
             Id = id;
             Name = name;
-            LastName = lastName;
+            Surname = lastName;
             Email = email;
             DateOfRegister = dateOfRegister;
             DateOfBirth = dateOfBirth;

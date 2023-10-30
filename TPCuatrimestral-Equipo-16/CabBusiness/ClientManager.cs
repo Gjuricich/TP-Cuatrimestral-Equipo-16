@@ -28,7 +28,7 @@ namespace CabBusiness
                 Client client = new Client();
                 client.setIdUser((int)dataManager.Lector["Id"]);
                 client.Name = (string)dataManager.Lector["Nombre"];
-                client.LastName = (string)dataManager.Lector["Apellido"];
+                client.Surname = (string)dataManager.Lector["Apellido"];
                 client.DateOfBirth = (DateTime)dataManager.Lector["FechaNacimiento"];
                 client.DateOfRegister = (DateTime)dataManager.Lector["FechaRegistro"];
                 client.Email = (string)dataManager.Lector["CorreoElectronico"];
@@ -57,7 +57,7 @@ namespace CabBusiness
                 Client client = new Client();
                 client.setIdUser((int)dataManager.Lector["Id"]);
                 client.Name = (string)dataManager.Lector["Nombre"];
-                client.LastName = (string)dataManager.Lector["Apellido"];
+                client.Surname = (string)dataManager.Lector["Apellido"];
                 client.DateOfBirth = (DateTime)dataManager.Lector["FechaNacimiento"];
                 client.DateOfRegister = (DateTime)dataManager.Lector["FechaRegistro"];
                 client.Email = (string)dataManager.Lector["CorreoElectronico"];
@@ -87,7 +87,7 @@ namespace CabBusiness
             dataManager.ClearCommand();
             dataManager.setQuery("INSERT INTO Credenciales(Nombre, Apellido, FechaNacimiento, CorreoElectronico, Sexo, HashContraseña, Sal, FechaRegistro) VALUES (@Nombre, @Apellido, @FechaNacimiento, @CorreoElectronico, @Sexo, @HashContraseña, @Sal, @FechaRegistro)");
             dataManager.setParameter("@Nombre", client.Name);
-            dataManager.setParameter("@Apellido", client.LastName);
+            dataManager.setParameter("@Apellido", client.Surname);
             dataManager.setParameter("@FechaNacimiento", client.DateOfBirth);
             dataManager.setParameter("@CorreoElectronico", client.Email);
             dataManager.setParameter("@Sexo", client.Gender);
@@ -112,7 +112,7 @@ namespace CabBusiness
                 Client client = new Client();
                 client.setIdUser((int)dataManager.Lector["Id"]);
                 client.Name = (string)dataManager.Lector["Nombre"];
-                client.LastName = (string)dataManager.Lector["Apellido"];
+                client.Surname = (string)dataManager.Lector["Apellido"];
                 client.DateOfBirth = (DateTime)dataManager.Lector["FechaNacimiento"];
                 client.DateOfRegister = (DateTime)dataManager.Lector["FechaRegistro"];
                 client.Email = (string)dataManager.Lector["CorreoElectronico"];
