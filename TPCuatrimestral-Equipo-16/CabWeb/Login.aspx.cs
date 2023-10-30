@@ -20,7 +20,7 @@ namespace CabWeb
 
             string email = txtMail.Text;
             string password = txtPassword.Text;
-            ClientManager cManager = new ClientManager();
+            ClientBusiness cManager = new ClientBusiness();
 
 
             if (cManager.VerificarCredenciales(email, password))

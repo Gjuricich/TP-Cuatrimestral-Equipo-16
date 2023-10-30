@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Aircraft.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="Credentials.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Flight.cs" />
     <Compile Include="FlightAttendant.cs" />
