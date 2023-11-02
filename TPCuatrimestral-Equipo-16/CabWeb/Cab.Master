@@ -79,7 +79,7 @@
 
                <p style="font-size: 160%; color:white; margin-left:5px; margin-right:20px;"><i class="bi bi-envelope"></i></p>
                  <asp:Label Text="" ID="Label1" runat="server" CssClass="badge rounded-pill bg-secondary position-absolute start-100 translate-middle" style="top: 15px; margin-left:-20px;" />
-                  <span class="visually-hidden">Items en el carrito</span>
+                  <span class="visually-hidden">Items</span>
               </a>
                </li>
               

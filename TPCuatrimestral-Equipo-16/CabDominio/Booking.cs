@@ -9,10 +9,10 @@ namespace CabDominio
     public class Booking
     {
         public string Origin { get; set; }
-        public string destination { get; set; }
-        public DateTime dateBooking { get; set; }
-        public int passengers { get; set; }
-        public string  tripType { get; set; }
+        public string Destination { get; set; }
+        public DateTime DateBooking { get; set; }
+        public int Passengers { get; set; }
+        public string  TripType { get; set; }
 
     }
 }

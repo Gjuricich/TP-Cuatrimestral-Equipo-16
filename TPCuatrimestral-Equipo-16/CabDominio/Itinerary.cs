@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace CabDominio
 {
-
     class Itinerary
     {
-        public DateTime flightArrival { get; set; }
-        public DateTime flightDeparture { get; set; }
-        public string airportArrival { get; set; }
-        public string airportDeparture { get; set; }
+        public DateTime FlightArrival { get; set; }
+        public DateTime FlightDeparture { get; set; }
+        public string AirportArrival { get; set; }
+        public string AirportDeparture { get; set; }
 
         public Aircraft aircraft { get; set; }
         public Flight flight { get; set; }
@@ -27,7 +26,6 @@ namespace CabDominio
             crew = new List<Employee>();
             flightHour  = new TimeSpan(2, 30, 0);
             flight = new Flight();
-
 
         }
     }

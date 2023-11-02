@@ -18,6 +18,8 @@ namespace CabDominio
         public Client()
         {
             credentials = new Credentials();
+            FlightHistory = new List<Flight>();
+            ProfilePhoto = new UrlImage();
         }
         public Client(string name, string lastName, string email, DateTime dateOfRegister, DateTime dateOfBirth, char gender)
         {
@@ -28,6 +30,8 @@ namespace CabDominio
             DateOfBirth = dateOfBirth;
             Gender = gender;
             credentials = new Credentials();
+            FlightHistory = new List<Flight>();
+            ProfilePhoto = new UrlImage();
         }
     
         
