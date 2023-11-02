@@ -47,11 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aircraft.cs" />
+    <Compile Include="Booking.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Credentials.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Flight.cs" />
     <Compile Include="FlightAttendant.cs" />
+    <Compile Include="Itinerary.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Pilot.cs" />

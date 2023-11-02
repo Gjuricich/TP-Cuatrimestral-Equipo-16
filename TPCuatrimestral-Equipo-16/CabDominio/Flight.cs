@@ -12,9 +12,11 @@ namespace CabDominio
         public string Origin { get; set; } 
         public string Destiny { get; set; }
         public DateTime FlightDateTime { get; set; }
-        public int Capacity { get; set; }
-        public int Passengers { get; set; }
+        public int amuntPassengers { get; set; }
         public string FlightState { get; set; }
+
+        public List<Person> Passengers { get; set; } 
+        public Flight() {Passengers = new List<Person> (); }
 
     }
 }
