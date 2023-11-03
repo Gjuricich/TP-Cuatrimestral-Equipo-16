@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Cab.Master" AutoEventWireup="true" CodeBehind="ClientView.aspx.cs" Inherits="CabWeb.ClientView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%if (Session["UserLogged"]== null)
+    <%if (Session["UserLogged"] == null)
         {
             Response.Redirect("Default.aspx");
         }%>
@@ -49,7 +49,7 @@
 
                 </div>
 
-                <div class="col-11" id="menuContent" style="background-color: grey; width: 70%; height:800px; overflow:auto;">
+                <div class="col-11" id="menuContent" style="background-color: grey; width: 70%; height: 800px; overflow: auto;">
 
                     <%if (CurrentContent == 0)
                         {%>
@@ -68,7 +68,7 @@
                     <%else if (CurrentContent == 2)
                         {%>
                     <center>
-                        <h1>Historial</h1>
+                        <h1>Historical</h1>
                         <script>new DataTable('#example');</script>
                         <table id="example" class="table table-striped" style="width: 100%">
                             <thead>
@@ -173,7 +173,7 @@
                                     <td>4 horas</td>
                                     <td>$800.00</td>
                                 </tr>
-                         
+
 
                             </tbody>
                         </table>
@@ -185,7 +185,7 @@
                         <h1>Petition</h1>
 
                         <div class="form-group">
-                            <asp:Label ID="Label1" runat="server"  Text="Ciudad de Origen:"></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text="Ciudad de Origen:"></asp:Label>
                             <asp:DropDownList ID="ddlCiudadOrigen" runat="server">
                                 <asp:ListItem Text="Selecciona una ciudad de origen" Value="" />
                                 <asp:ListItem Text="Ciudad 1" Value="Ciudad1" />
@@ -196,7 +196,7 @@
 
                         <div class="form-group">
                             <asp:Label ID="lblEjemplo" runat="server" Text="Ciudad de Destino:"></asp:Label>
-                            <asp:DropDownList ID="ddlCiudadDestino" runat="server" >
+                            <asp:DropDownList ID="ddlCiudadDestino" runat="server">
                                 <asp:ListItem Text="Selecciona una ciudad de destino" Value="" />
                                 <asp:ListItem Text="Ciudad 1" Value="Destino1" />
                                 <asp:ListItem Text="Ciudad 2" Value="Destino2" />
@@ -204,12 +204,12 @@
                         </div>
 
                         <div class="form-group">
-                            <asp:Label ID="Label2" runat="server" Text="Fecha y Hora del Viaje:" ></asp:Label>
-                           <asp:Calendar ID="calFecha" runat="server" ></asp:Calendar>
+                            <asp:Label ID="Label2" runat="server" Text="Fecha y Hora del Viaje:"></asp:Label>
+                            <asp:Calendar ID="calFecha" runat="server"></asp:Calendar>
                         </div>
 
                         <div class="form-group">
-                            <asp:Label ID="Label3" runat="server"  Text="Tipo de Avión Privado:"></asp:Label>
+                            <asp:Label ID="Label3" runat="server" Text="Tipo de Avión Privado:"></asp:Label>
                             <asp:DropDownList ID="ddlTipoAvion" runat="server">
                                 <asp:ListItem Text="Selecciona un tipo de avión" Value="" />
                                 <asp:ListItem Text="Avión 1" Value="Avion1" />
@@ -218,7 +218,7 @@
                             </asp:DropDownList>
                         </div>
                         <div class="form-group">
-                            <asp:Button ID="btnReservar" runat="server" Text="Reservar Vuelo"  />
+                            <asp:Button ID="btnReservar" runat="server" Text="Reservar Vuelo" />
                         </div>
                     </center>
                     <%} %>
@@ -234,5 +234,123 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 
+    <%--DataTable--%>
+    <center>
+        <h1>Historical</h1>
+    </center>
+    <div class="p-5">
+        <table id="example" class="table table-striped" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011-04-25</td>
+                    <td>$320,800</td>
+                </tr>
+                <tr>
+                    <td>Garrett Winters</td>
+                    <td>Accountant</td>
+                    <td>Tokyo</td>
+                    <td>63</td>
+                    <td>2011-07-25</td>
+                    <td>$170,750</td>
+                </tr>
+                <tr>
+                    <td>Ashton Cox</td>
+                    <td>Junior Technical Author</td>
+                    <td>San Francisco</td>
+                    <td>66</td>
+                    <td>2009-01-12</td>
+                    <td>$86,000</td>
+                </tr>
+                <tr>
+                    <td>Cedric Kelly</td>
+                    <td>Senior Javascript Developer</td>
+                    <td>Edinburgh</td>
+                    <td>22</td>
+                    <td>2012-03-29</td>
+                    <td>$433,060</td>
+                </tr>
+                <tr>
+                    <td>Airi Satou</td>
+                    <td>Accountant</td>
+                    <td>Tokyo</td>
+                    <td>33</td>
+                    <td>2008-11-28</td>
+                    <td>$162,700</td>
+                </tr>
+                <tr>
+                    <td>Brielle Williamson</td>
+                    <td>Integration Specialist</td>
+                    <td>New York</td>
+                    <td>61</td>
+                    <td>2012-12-02</td>
+                    <td>$372,000</td>
+                </tr>
+                <tr>
+                    <td>Herrod Chandler</td>
+                    <td>Sales Assistant</td>
+                    <td>San Francisco</td>
+                    <td>59</td>
+                    <td>2012-08-06</td>
+                    <td>$137,500</td>
+                </tr>
 
+                <tr>
+                    <td>Jonas Alexander</td>
+                    <td>Developer</td>
+                    <td>San Francisco</td>
+                    <td>30</td>
+                    <td>2010-07-14</td>
+                    <td>$86,500</td>
+                </tr>
+                <tr>
+                    <td>Shad Decker</td>
+                    <td>Regional Director</td>
+                    <td>Edinburgh</td>
+                    <td>51</td>
+                    <td>2008-11-13</td>
+                    <td>$183,000</td>
+                </tr>
+                <tr>
+                    <td>Michael Bruce</td>
+                    <td>Javascript Developer</td>
+                    <td>Singapore</td>
+                    <td>29</td>
+                    <td>2011-06-27</td>
+                    <td>$183,000</td>
+                </tr>
+                <tr>
+                    <td>Donna Snider</td>
+                    <td>Customer Support</td>
+                    <td>New York</td>
+                    <td>27</td>
+                    <td>2011-01-25</td>
+                    <td>$112,000</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </asp:Content>
