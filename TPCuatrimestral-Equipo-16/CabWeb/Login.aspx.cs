@@ -20,17 +20,48 @@ namespace CabWeb
 
             string email = txtMail.Text;
             string password = txtPassword.Text;
+            CredentialBusiness credBusiness = new CredentialBusiness();
             ClientBusiness cManager = new ClientBusiness();
+            PersonBusiness pBusiness = new PersonBusiness();
+            Person person;
 
 
-            if (cManager.VerificarCredenciales(email, password))
+            if (credBusiness.VerificarCredenciales(email, password))
             {
-                Client client = cManager.GetUserByEmail(email);
-                Session.Add("UserLogged", client);
+                Credential credential = credBusiness.GetUserByEmail(email);
+
+                if (credential.Rol == "Client")
+                {                          
+                    person = pBusiness.GetPersonById(credential.IdCredential);
+                    Client aux = cManager.GetClientById(credential.IdCredential);
+                    Client client = new Client
+                    {
+                        Name = person.Name,
+                        Surname = person.Surname,
+                        Gender = person.Gender,
+                        Dni = person.Dni,
+                        Email = person.Email,
+                        Address = person.Address,
+                        DateOfBirth = person.DateOfBirth,
+                        IdClient = aux.IdClient,
+                        DateOfRegister = aux.DateOfRegister,
+                        State = aux.State,
+                        credentials = credential,
+                     };
+                    
+                    Session.Add("UserLogged", client);
+                    Response.Redirect("ClientView.aspx");
+                }
+                else if (credential.Rol == "Employee")
+                {
+                    Employee employee = new Employee();
+                    Session.Add("UserLogged", credential);
+                    Response.Redirect("EmployeeView.aspx");
+                }
                 //var masterPage = this.Master;
                 //var lblHeader = masterPage.FindControl("Label2") as Label;
                 //lblHeader.Text = client.Name+" "+client.LastName;
-                Response.Redirect("ClientView.aspx");
+
             }
             else
             {
@@ -42,7 +73,15 @@ namespace CabWeb
 
             Response.Redirect("Default.aspx");
         }
-      
 
+
+        /*
+        public Client loadCliente(Credential credential)
+        {
+
+
+        }
+
+        */
     }
 }

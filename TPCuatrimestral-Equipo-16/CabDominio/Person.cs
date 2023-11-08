@@ -16,6 +16,7 @@ namespace CabDominio
         public string Address {get; set;}
         public string Postcode {get; set;}
         public string Cellphone {get; set;}
+        public DateTime DateOfBirth { get; set; }
 
     }
 }

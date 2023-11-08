@@ -9,15 +9,16 @@ namespace CabDominio
 {
     public class Client : Person
     {
-        public Credentials credentials { get; set; }
+        public int IdClient { get; set; }
+        public bool State { get; set; }
+        public Credential credentials { get; set; }
         public DateTime DateOfRegister { get; set; }
-        public DateTime DateOfBirth { get; set; }
         public UrlImage ProfilePhoto { get; set; }
         public List<Flight> FlightHistory { get; set; }
 
         public Client()
         {
-            credentials = new Credentials();
+            credentials = new Credential();
             FlightHistory = new List<Flight>();
             ProfilePhoto = new UrlImage();
         }
@@ -29,7 +30,7 @@ namespace CabDominio
             DateOfRegister = dateOfRegister;
             DateOfBirth = dateOfBirth;
             Gender = gender;
-            credentials = new Credentials();
+            credentials = new Credential();
             FlightHistory = new List<Flight>();
             ProfilePhoto = new UrlImage();
         }

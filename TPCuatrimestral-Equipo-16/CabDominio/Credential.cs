@@ -7,10 +7,12 @@ using System.Security.Cryptography;
 
 namespace CabDominio
 {
-    public class Credentials
+    public class Credential
     {
         public int IdPerson { get; set; }
-        public int IdRol { get; set; }
+
+        public int IdCredential{ get; set; }
+        public string Rol { get; set; }
         public string Email { get; set; }
         private string hashPass;
         private string saltPass;

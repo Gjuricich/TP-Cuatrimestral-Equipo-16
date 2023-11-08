@@ -16,32 +16,39 @@ namespace CabBusiness
             dataManager = new DataManager();
         }
 
-        public Client GetUserById(int id)
+        public Client GetClientById(int id)
         {
-            dataManager.setQuery("SELECT * FROM Credenciales WHERE Id = @Id");
-            dataManager.setParameter("@Id", id);
-            dataManager.executeRead();
-
-            if (dataManager.Lector.HasRows)
+            //PersonBusiness pBusiness = new PersonBusiness();
+            Client client = new Client();
+            try
             {
-                dataManager.Lector.Read();
-                Client client = new Client();               
-                client.credentials.IdPerson = (int)dataManager.Lector["Id"];
-                client.Name = (string)dataManager.Lector["Nombre"];
-                client.Surname = (string)dataManager.Lector["Apellido"];
-                client.DateOfBirth = (DateTime)dataManager.Lector["FechaNacimiento"];
-                client.DateOfRegister = (DateTime)dataManager.Lector["FechaRegistro"];
-                client.Email = (string)dataManager.Lector["CorreoElectronico"];
-                client.credentials.sethashPass((string)dataManager.Lector["HashContraseña"]);
-                client.credentials.setsaltPass((string)dataManager.Lector["Sal"]);
-                string g = (string)dataManager.Lector["Sexo"];
-                client.Gender = g[0];
-                DateTime birth = (DateTime)dataManager.Lector["FechaNacimiento"];
+                dataManager.setQuery("SELECT C.IdClient ,C.JoinDate, C.Estado FROM Credentials Cre INNER JOIN Client C ON Cre.Id = C.IdCredencial WHERE Cre.Id = @Id");
+                dataManager.setParameter("@Id", id);
+                dataManager.executeRead();
+
+                if (dataManager.Lector.HasRows)
+                {
+                    dataManager.Lector.Read();
+                    client.IdClient = (int)(long)dataManager.Lector["IdClient"];
+                    client.DateOfRegister = (DateTime)dataManager.Lector["JoinDate"];
+                    client.State = (bool)dataManager.Lector["Estado"];
+                    dataManager.closeConection();
+                    return client;
+                }
                 dataManager.closeConection();
-                return client;
+
+                return null;
+
             }
-            dataManager.closeConection();
-            return null;
+            catch (Exception ex)
+            {
+                dataManager.closeConection();
+                throw ex;
+            }
+           
+           
+
+           
         }
 
         public List<Client> GetAllUsers()
@@ -97,6 +104,36 @@ namespace CabBusiness
             dataManager.executeRead();
             dataManager.closeConection();
         }
+
+        /*
+           public Client GetUserById(int id)
+        {
+            dataManager.setQuery("SELECT * FROM Credenciales WHERE Id = @Id");
+            dataManager.setParameter("@Id", id);
+            dataManager.executeRead();
+
+            if (dataManager.Lector.HasRows)
+            {
+                dataManager.Lector.Read();
+                Client client = new Client();               
+                client.credentials.IdPerson = (int)dataManager.Lector["Id"];
+                client.Name = (string)dataManager.Lector["Nombre"];
+                client.Surname = (string)dataManager.Lector["Apellido"];
+                client.DateOfBirth = (DateTime)dataManager.Lector["FechaNacimiento"];
+                client.DateOfRegister = (DateTime)dataManager.Lector["FechaRegistro"];
+                client.Email = (string)dataManager.Lector["CorreoElectronico"];
+                client.credentials.sethashPass((string)dataManager.Lector["HashContraseña"]);
+                client.credentials.setsaltPass((string)dataManager.Lector["Sal"]);
+                string g = (string)dataManager.Lector["Sexo"];
+                client.Gender = g[0];
+                DateTime birth = (DateTime)dataManager.Lector["FechaNacimiento"];
+                dataManager.closeConection();
+                return client;
+            }
+            dataManager.closeConection();
+            return null;
+        }
+
         public Client GetUserByEmail(string email)
         {
 
@@ -137,5 +174,6 @@ namespace CabBusiness
             }
             return false;
         }
+        */
     }
 }

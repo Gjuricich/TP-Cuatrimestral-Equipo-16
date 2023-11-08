@@ -15,9 +15,16 @@ namespace CabWeb
             if ((Client)Session["UserLogged"] != null)
             {
 
-                Client client = (Client)Session["UserLogged"];
+                //Credential credential = (Credential)Session["UserLogged"];
+                //Label2.Text = credential.Rol;
+                Client client= (Client)Session["UserLogged"];
                 Label2.Text = client.Name + " " + client.Surname;
-  
+
+            }
+            else if ((Employee)Session["UserLogged"] != null)
+            {
+                Employee employee = (Employee)Session["UserLogged"];
+                Label2.Text = employee.Name + " " + employee.Surname;
             }
         }
       

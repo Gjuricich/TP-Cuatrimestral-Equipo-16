@@ -70,6 +70,7 @@
     <Content Include="Company.aspx" />
     <Content Include="ClientView.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="EmployeeView.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Message.aspx" />
@@ -134,6 +135,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeView.aspx.cs">
+      <DependentUpon>EmployeeView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeeView.aspx.designer.cs">
+      <DependentUpon>EmployeeView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
