@@ -15,7 +15,7 @@ namespace CabWeb
         public int CurrentContent = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            CurrentClient = (Client)Session["UserLogged"];
+            CurrentClient = (Client)Session["ClientLogged"];
 
         }
         protected void linkButtonUser_Click(object sender, EventArgs e)

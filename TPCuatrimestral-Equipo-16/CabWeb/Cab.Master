@@ -43,7 +43,7 @@
              
             <ul class="navbar-nav">
 
-               <% if (Session["UserLogged"] == null)
+               <% if (Session["ClientLogged"] == null && Session["EmployeeLogged"] == null )
                    { %>
                 <a href="Login.aspx" class="nav-link" style="color:white; display: flex; align-items: center; margin-right: 20px;">Log in</a>
                 <li class="nav-item ">

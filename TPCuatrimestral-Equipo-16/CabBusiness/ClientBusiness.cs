@@ -18,7 +18,7 @@ namespace CabBusiness
 
         public Client GetClientById(int id)
         {
-            //PersonBusiness pBusiness = new PersonBusiness();
+     
             Client client = new Client();
             try
             {
@@ -46,11 +46,11 @@ namespace CabBusiness
                 throw ex;
             }
            
-           
 
            
         }
 
+        /*
         public List<Client> GetAllUsers()
         {
             List<Client> clients = new List<Client>();
@@ -105,7 +105,7 @@ namespace CabBusiness
             dataManager.closeConection();
         }
 
-        /*
+      
            public Client GetUserById(int id)
         {
             dataManager.setQuery("SELECT * FROM Credenciales WHERE Id = @Id");

@@ -23,6 +23,7 @@ namespace CabWeb
             CredentialBusiness credBusiness = new CredentialBusiness();
             ClientBusiness cManager = new ClientBusiness();
             PersonBusiness pBusiness = new PersonBusiness();
+            EmployeeBusiness eBusiness = new EmployeeBusiness();
             Person person;
 
 
@@ -49,13 +50,28 @@ namespace CabWeb
                         credentials = credential,
                      };
                     
-                    Session.Add("UserLogged", client);
+                    Session.Add("ClientLogged", client);
                     Response.Redirect("ClientView.aspx");
                 }
                 else if (credential.Rol == "Employee")
-                {
-                    Employee employee = new Employee();
-                    Session.Add("UserLogged", credential);
+                {                  
+                    person = pBusiness.GetPersonById(credential.IdCredential);
+                    Employee aux = eBusiness.GetEmployeeById(credential.IdCredential);
+                    Employee employee = new Employee
+                    {
+                        Name = person.Name,
+                        Surname = person.Surname,
+                        Gender = person.Gender,
+                        Dni = person.Dni,
+                        Email = person.Email,
+                        Address = person.Address,
+                        DateOfBirth = person.DateOfBirth,
+                        IdEmployee = aux.IdEmployee,
+                        JoinDate = aux.JoinDate,
+                        State = aux.State,
+                        credentials = credential,
+                    };
+                    Session.Add("EmployeeLogged", employee);
                     Response.Redirect("EmployeeView.aspx");
                 }
                 //var masterPage = this.Master;

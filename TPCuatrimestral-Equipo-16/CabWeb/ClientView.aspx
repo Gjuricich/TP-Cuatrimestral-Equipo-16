@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Cab.Master" AutoEventWireup="true" CodeBehind="ClientView.aspx.cs" Inherits="CabWeb.ClientView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%if (Session["UserLogged"] == null)
+    <%if (Session["ClientLogged"] == null)
         {
             Response.Redirect("Default.aspx");
         }%>

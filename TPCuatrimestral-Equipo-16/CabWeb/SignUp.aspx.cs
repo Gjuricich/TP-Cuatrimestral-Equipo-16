@@ -17,7 +17,8 @@ namespace CabWeb
 
         }
         protected void btnSignUp_Click(object sender, EventArgs e)
-        {
+        {   
+            /*
             string name = txtName.Text;
             string lastname = txtLastName.Text;
             string email = txtEmail.Text;
@@ -36,6 +37,7 @@ namespace CabWeb
             string filePath = Path.Combine(uploadFolder, fileName);
             fileUploadProfilePicture.SaveAs(filePath);
             Response.Redirect("Login.aspx");
+            */
         }
 
     }

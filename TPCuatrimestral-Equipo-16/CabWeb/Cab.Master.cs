@@ -12,25 +12,33 @@ namespace CabWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((Client)Session["UserLogged"] != null)
+            if ((Client)Session["ClientLogged"] != null)
             {
 
                 //Credential credential = (Credential)Session["UserLogged"];
                 //Label2.Text = credential.Rol;
-                Client client= (Client)Session["UserLogged"];
+                Client client= (Client)Session["ClientLogged"];
                 Label2.Text = client.Name + " " + client.Surname;
 
             }
-            else if ((Employee)Session["UserLogged"] != null)
+            else if ((Employee)Session["EmployeeLogged"] != null)
             {
-                Employee employee = (Employee)Session["UserLogged"];
+                Employee employee = (Employee)Session["EmployeeLogged"];
                 Label2.Text = employee.Name + " " + employee.Surname;
             }
         }
       
         protected void Logout_Click(object sender, EventArgs e)
         {
-            Session.Remove("UserLogged");
+
+            if ((Client)Session["ClientLogged"] != null)
+            {
+                Session.Remove("ClientLogged");
+            }
+            else if ((Employee)Session["EmployeeLogged"] != null)
+            {
+                Session.Remove("EmployeeLogged");
+            }
             Label2.Text = "";
             Response.Redirect("~/Default.aspx");
 
