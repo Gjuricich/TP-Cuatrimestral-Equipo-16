@@ -80,7 +80,6 @@
     <Content Include="SettingUser.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="SignUpEmployee.aspx" />
-    <Content Include="SignUpManager.aspx" />
     <Content Include="TermCondition.aspx" />
     <Content Include="UserProfile.aspx" />
     <Content Include="Web.config" />
@@ -202,13 +201,6 @@
     </Compile>
     <Compile Include="SignUpEmployee.aspx.designer.cs">
       <DependentUpon>SignUpEmployee.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SignUpManager.aspx.cs">
-      <DependentUpon>SignUpManager.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SignUpManager.aspx.designer.cs">
-      <DependentUpon>SignUpManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="TermCondition.aspx.cs">
       <DependentUpon>TermCondition.aspx</DependentUpon>

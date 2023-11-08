@@ -14,12 +14,8 @@ namespace CabWeb
         {
             if ((Client)Session["ClientLogged"] != null)
             {
-
-                //Credential credential = (Credential)Session["UserLogged"];
-                //Label2.Text = credential.Rol;
                 Client client= (Client)Session["ClientLogged"];
                 Label2.Text = client.Name + " " + client.Surname;
-
             }
             else if ((Employee)Session["EmployeeLogged"] != null)
             {
@@ -30,7 +26,6 @@ namespace CabWeb
       
         protected void Logout_Click(object sender, EventArgs e)
         {
-
             if ((Client)Session["ClientLogged"] != null)
             {
                 Session.Remove("ClientLogged");
@@ -41,7 +36,6 @@ namespace CabWeb
             }
             Label2.Text = "";
             Response.Redirect("~/Default.aspx");
-
         }
     }
 }

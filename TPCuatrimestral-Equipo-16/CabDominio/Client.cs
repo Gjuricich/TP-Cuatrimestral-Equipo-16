@@ -26,7 +26,6 @@ namespace CabDominio
         {
             Name = name;
             Surname = lastName;
-            Email = email;
             DateOfRegister = dateOfRegister;
             DateOfBirth = dateOfBirth;
             Gender = gender;

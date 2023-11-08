@@ -29,15 +29,19 @@
                         <asp:TextBox class="form-control form-control-sm rounded" placeholder="Name" ID="txtName" runat="server"></asp:TextBox><br />
                         <asp:Label class="text-secondary" ID="lblLastName" runat="server"></asp:Label>
                         <asp:TextBox class="form-control form-control-sm rounded" placeholder="Surname" ID="txtLastName" runat="server"></asp:TextBox><br />
+                        <asp:Label class="text-secondary" ID="LblDni" runat="server"></asp:Label>
+                        <asp:TextBox class="form-control form-control-sm rounded" placeholder="DNI" ID="txtDni" runat="server"></asp:TextBox><br />
                         <asp:Label class="text-secondary" ID="lblEmail" runat="server"></asp:Label>
                         <asp:TextBox class="form-control form-control-sm rounded" placeholder="Email" ID="txtEmail" runat="server"></asp:TextBox><br />
+                        <asp:Label class="text-secondary" ID="lblCel" runat="server"></asp:Label>
+                        <asp:TextBox class="form-control form-control-sm rounded" placeholder="Cellphone" ID="txtCel" runat="server"></asp:TextBox><br />
                         <asp:Label class="text-secondary" ID="lblPassword" runat="server" ></asp:Label>
                         <asp:TextBox class="form-control form-control-sm rounded" placeholder="Password"  ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox><br />
-                        <asp:Label class="text-secondary" ID="lblDateOfBirth" runat="server" style="color:black;" Text="Date of Birth:"></asp:Label>
+                        <asp:Label class="text-dark" ID="lblDateOfBirth" runat="server" Text="Date of Birth:" ></asp:Label>
                         <asp:TextBox class="form-control form-control-sm rounded" placeholder="Date of Birth"  ID="txtDateOfBirth" type="date"  data-date-format="dd/mm/yyyy" runat="server"></asp:TextBox><br />
                         <asp:Label class="text-secondary" ID="lblGender" runat="server"></asp:Label>
                         <asp:TextBox class="form-control form-control-sm rounded" ID="txtGender" placeholder="Gender (M/F/X):" runat="server" MaxLength="1"></asp:TextBox><br />
-                        <asp:Label class="text-secondary" ID="Label4" runat="server" style="color:black;" Text="Add profile picture"></asp:Label><br />
+                        <asp:Label class="text-dark" ID="Label4" runat="server" style="color:black;" Text="Add profile picture"></asp:Label><br />
                         <asp:FileUpload ID="fileUploadProfilePicture" runat="server" /><br />
                         <br />
                         <asp:Button class="btn btn-primary" ID="btnSignUp" runat="server" Text="Register" OnClick="btnSignUp_Click" OnClientClick="return confirm('¿Do you want to submit ?')" />

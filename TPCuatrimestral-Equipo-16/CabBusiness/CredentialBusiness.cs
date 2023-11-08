@@ -8,17 +8,10 @@ using CabDominio;
 namespace CabBusiness
 {
     public class CredentialBusiness
-    {
-        private DataManager dataManager;
-
-        public CredentialBusiness()
-        {
-            dataManager = new DataManager();
-        }
-
-
+    {     
         public Credential GetUserByEmail(string email)
         {
+            DataManager dataManager = new DataManager();
             Credential credential = new Credential();
             try
             {
@@ -59,6 +52,62 @@ namespace CabBusiness
                 return hashContraseñaProporcionada == credential.gethashPass();
             }
             return false;
+        }
+
+        public int findIdCredential(int idPerson)
+        {
+            DataManager dataManager = new DataManager();
+            int aux;
+            try
+            {
+                dataManager.setQuery("SELECT C.Id FROM Credentials C WHERE C.IdPerson = @IDPERSON");
+                dataManager.setParameter("@IDPERSON", idPerson);
+                dataManager.executeRead();
+                dataManager.Lector.Read();
+                aux = (int)(long)dataManager.Lector["Id"];
+                dataManager.closeConection();
+                return aux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
+
+
+        public void addCredential(Client client, string password, int idPerson)
+        {
+            DataManager dataManager = new DataManager();
+            client.credentials.GenerateHashAndSalt(password);
+
+            try
+            {
+                dataManager.ClearCommand();
+                dataManager.setQuery("INSERT INTO Credentials(IdPerson, IdRol, Email, HashContraseña, Sal) VALUES (@ID, @IDROL, @Email, @HashContraseña, @Sal)");
+                dataManager.setParameter("@ID", idPerson);
+                //MEGA HARDCODIADO
+                dataManager.setParameter("@IDROL", 1);
+                dataManager.setParameter("@Email", client.credentials.Email);
+                dataManager.setParameter("@HashContraseña", client.credentials.gethashPass());
+                dataManager.setParameter("@Sal", client.credentials.getsaltPass());
+                dataManager.executeRead();
+                dataManager.closeConection();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
         }
     }
 
