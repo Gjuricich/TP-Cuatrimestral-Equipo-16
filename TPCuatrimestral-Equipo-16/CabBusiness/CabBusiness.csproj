@@ -52,6 +52,7 @@
     <Compile Include="DataManager.cs" />
     <Compile Include="PersonBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvinceBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
