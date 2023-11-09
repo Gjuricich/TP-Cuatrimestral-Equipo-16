@@ -134,5 +134,6 @@ CREATE TABLE Booking(
     DateBooking DATETIME NOT NULL CHECK(DateBooking > DATEADD(day, 5, GETDATE())),
     Passengers SMALLINT NOT NULL CHECK(Passengers BETWEEN 1 AND 12),
     StateBooking VARCHAR(12) NOT NULL DEFAULT('En proceso') CHECK(StateBooking IN('En proceso','Aprobada ','Cancelada')),
-    Estado BIT NOT NULL DEFAULT(1)
+    Estado BIT NOT NULL DEFAULT(1),
+    CHECK(IdOrigen <> IdDestino)
 )

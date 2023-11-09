@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirportBusiness.cs" />
+    <Compile Include="BookingBusiness.cs" />
     <Compile Include="CityBusiness.cs" />
     <Compile Include="EmployeeBusiness.cs" />
     <Compile Include="ClientBusiness.cs" />
