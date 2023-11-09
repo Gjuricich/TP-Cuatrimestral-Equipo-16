@@ -76,3 +76,63 @@ INSERT INTO Client(IdCredencial, JoinDate)
 VALUES 
 (1, GETDATE()),
 (2, GETDATE())
+GO
+CREATE TABLE Provincias(
+   IdProvincia BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
+   NombreProvincia varchar(250),
+   Estado BIT NOT NULL DEFAULT(1)
+)
+GO
+INSERT INTO Provincias(NombreProvincia)
+VALUES 
+('Buenos Aires'),
+('Córdoba'),
+('Mendoza'),
+('Río Negro'),
+('Salta')
+GO
+CREATE TABLE Ciudades(
+   IdCiudad BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
+   IdProvincia Bigint NOT NULL FOREIGN KEY REFERENCES Provincias(IdProvincia),
+   NombreCiudad varchar(250) NOT NULL,
+   Estado BIT NOT NULL DEFAULT(1)
+)
+GO
+INSERT INTO Ciudades(IdProvincia, NombreCiudad)
+VALUES 
+(1, 'Ciudad de Buenos Aires'),
+(1, 'Ezeiza'),
+(2, 'Ciudad de Córdoba'),
+(3, 'Ciudad de Mendoza'),
+(4, 'San Carlos de Bariloche'),
+(5, 'Ciudad de Salta')
+GO
+CREATE TABLE Aeropuertos(
+   CodigoIATA VARCHAR(6) NOT NULL PRIMARY KEY,
+   IdCiudad Bigint NOT NULL FOREIGN KEY REFERENCES Ciudades(IdCiudad),
+   NombreAeropuerto varchar(250) NOT NULL,
+   Direccion varchar(250) NOT NULL,
+   --Terminal CHAR NOT NULL,
+   Estado BIT NOT NULL DEFAULT(1)
+)
+GO
+INSERT INTO Aeropuertos(CodigoIATA,IdCiudad,NombreAeropuerto,Direccion)
+VALUES 
+('AEP', 1, 'Aeroparque Jorge Newbery','Av. Costanera Rafael Obligado s/n'),
+('EZE', 1, 'Aeropuerto Internacional Ministro Pistarini','AU Tte. Gral. Pablo Riccheri Km 33'),
+('COR', 2, 'Aeropuerto Internacional Ingeniero Aeronáutico Ambrosio Taravella','Av. La Voz del Interior 8500'),
+('MDZ', 3, 'Aeropuerto Internacional Gobernador Francisco Gabrielli','Acceso A Aeropuerto Internacional Gabrielli F. J., Las Heras'),
+('BRC', 4, 'Aeropuerto Internacional Teniente Luis Candelaria','RP80 S/N'),
+('SLA', 5, 'Aeropuerto Internacional de Salta Martín Miguel de Güemes','RN51 5')
+GO
+CREATE TABLE Booking(
+    IdBooking BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    IdClient  BIGINT NOT NULL FOREIGN KEY REFERENCES Client(IdClient),
+    IdOrigen  BIGINT NOT NULL FOREIGN KEY REFERENCES Ciudades(IdCiudad),
+    IdDestino  BIGINT NOT NULL FOREIGN KEY REFERENCES Ciudades(IdCiudad),
+    SolicitudDate DATETIME NOT NULL DEFAULT(GETDATE()),
+    DateBooking DATETIME NOT NULL CHECK(DateBooking > DATEADD(day, 5, GETDATE())),
+    Passengers SMALLINT NOT NULL CHECK(Passengers BETWEEN 1 AND 12),
+    StateBooking VARCHAR(12) NOT NULL DEFAULT('En proceso') CHECK(StateBooking IN('En proceso','Aprobada ','Cancelada')),
+    Estado BIT NOT NULL DEFAULT(1)
+)
