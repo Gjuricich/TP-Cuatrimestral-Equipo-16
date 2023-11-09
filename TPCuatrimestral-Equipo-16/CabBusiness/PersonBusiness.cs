@@ -65,6 +65,8 @@ namespace CabBusiness
             }
         }
 
+
+
         public void addPerson(Client client)
         {
             DataManager dataManager = new DataManager();
@@ -92,6 +94,50 @@ namespace CabBusiness
             finally
             {
                 dataManager.closeConection();
+            }
+        }
+
+        public void editPerson(Client client)
+        {
+            DataManager dataManager = new DataManager();
+
+            try
+            {
+                dataManager.setQuery("UPDATE Persons SET Domicilio = @Domicilio, Celular = @Celular WHERE IdPerson = @IDPERSON");
+                dataManager.setParameter("@Domicilio", client.Address);
+                dataManager.setParameter("@Celular", client.Cellphone);
+                dataManager.executeRead();              
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
+
+        public void deletePerson(string DNI)
+        {
+            DataManager data = new DataManager();
+            try
+            {
+
+                data.setQuery("DELETE from Persons WHERE DNI = @DNI");
+                data.setParameter("@DNI", DNI);
+                data.executeRead();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.closeConection();
             }
         }
 

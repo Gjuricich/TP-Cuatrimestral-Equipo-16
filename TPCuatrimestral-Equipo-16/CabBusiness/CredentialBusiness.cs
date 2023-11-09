@@ -109,6 +109,51 @@ namespace CabBusiness
                 dataManager.closeConection();
             }
         }
+
+        public void editCredential(Client client)
+        {
+            DataManager dataManager = new DataManager();
+
+            try
+            {   /* aca deberiamos actualizar la contraseña
+                dataManager.setQuery("UPDATE Credentials SET Domicilio = @Domicilio, Celular = @Celular WHERE IdPerson = @IDPERSON");
+                dataManager.setParameter("@Domicilio", client.Address);
+                dataManager.setParameter("@Celular", client.Cellphone);
+                dataManager.executeRead();
+                */
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
+
+
+        public void deleteCredential(int idPerson)
+        {
+            DataManager data = new DataManager();
+            try
+            {
+
+                data.setQuery("DELETE from Credentials WHERE IdPerson = @IDPERSON");     
+                data.setParameter("@IDPERSON", idPerson);
+                data.executeRead();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.closeConection();
+            }
+        }
     }
 
 }
