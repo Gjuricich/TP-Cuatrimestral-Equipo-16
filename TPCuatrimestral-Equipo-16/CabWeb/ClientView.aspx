@@ -186,10 +186,12 @@
 
 
 
-                         <div class="centered-inputs BookingBox" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%);">
+
+                    
+                           <div class="centered-inputs DefaultBox" style="position: absolute; top: 90%; left: 50%; transform: translate(-50%, -50%);">
                             <div class="container text-center" style="display: flex; justify-content: center; align-items: center;">
-                                <div class="row">
-                                <div class="col">
+                                <div class="row " display="flex" >
+                                <div class="col"  >
                                     <h4><strong>FORM</strong></h4>
                                     <input type="text" list="fromOptions" id="fromInput" style="background-color: transparent;">
                                     <datalist id="fromOptions">
@@ -198,9 +200,9 @@
                                     <option value="Usuahia">
                                     </datalist>
                                 </div>
-                                <div class="col">
+                                <div class="col"   >
                                     <h4><strong>TO</strong></h4>
-                                    <input type="text" list="toOptions" id="toInput"  style=" background-color: transparent;">
+                                    <input type="text" list="toOptions" id="toInput"  style=" background-color: transparent;  max-width: 600%;">
                                     <datalist id="toOptions">
                                     <option value="Miami">
                                     <option value="España">
@@ -213,15 +215,18 @@
                                 </div>
                                 <div class="col" >
                                     <h4><strong>PASSENGER</strong></h4>
-                                    <input type="number" id="passengerInput" min="1" max="10" style=" background-color: transparent;">
+                                    <input type="number" id="passengerInput" min="1" max="10" style=" background-color: transparent; max-width: 600%;">
                                 </div>
-                                <div class="col"  >
-                                    <button type="button" class="btn btn-primary" style="margin-top:3%;">Book flight</button>
-          
-                                </div>
+                                <%-- <div class="col"  >
+                                    <%--<asp:button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top:4%;" runat="server"> Search </asp:button>--%>
+                
+                                    <%-- </div>--%>
+                                    <button type="button" class="btn btn-outline-secondary" style="font-weight: bold; border-color: dimgrey; margin-top:4%;">Book flight</button>
+
                                 </div>
                             </div>
-                            </div>
+                           </div>
+                          
                     </center>
                     <%} %>
                     <%else if (CurrentContent == 4)

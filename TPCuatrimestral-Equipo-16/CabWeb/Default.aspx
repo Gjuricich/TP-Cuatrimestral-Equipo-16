@@ -58,11 +58,11 @@
                 <h4><strong>PASSENGER</strong></h4>
                 <input type="number" id="passengerInput" min="1" max="10" style=" background-color: transparent; max-width: 600%;">
             </div>
-            <div class="col"  >
+           <%-- <div class="col"  >
                 <%--<asp:button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top:4%;" runat="server"> Search </asp:button>--%>
-                <asp:button ID="BtnSearch" type="button" class="btn btn-primary" Text="Search" style="margin-top:4%;" OnClick="BtnSearch_Click" runat="server"></asp:button>
                 
-            </div>
+             <%-- </div>--%>
+                <asp:button ID="BtnSearch" class="btn btn-outline-secondary" style="font-weight: bold; border-color: dimgrey; margin-top:4%;" type="button" Text="Search" OnClick="BtnSearch_Click" runat="server"></asp:button>
 
             </div>
         </div>
