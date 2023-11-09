@@ -5,6 +5,30 @@
         {
             Response.Redirect("Default.aspx");
         }%>
+
+    <style>
+        body {
+            background: url('montain.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .ClientBox {
+            background-color: rgba(169, 169, 169, 0.7);
+            width: 85%;
+            height: 800px;
+            overflow: auto;
+        }
+
+          .BookingBox {
+            background-color: rgba(169, 169, 169, 0.2);
+            padding:1%;
+         
+        }
+
+        
+    </style>
+
+
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
 
 
@@ -27,9 +51,13 @@
                                 </asp:LinkButton>
                             </li>
                             <li>
-                                <asp:LinkButton ID="linkButton2" runat="server" OnClick="linkButton2_Click" class="nav-link py-3 border-bottom">
+                              <%--  <asp:LinkButton ID="linkButton2" runat="server" OnClick="linkButton2_Click" class="nav-link py-3 border-bottom">
     <img src="/IconSidebar/svg1 (2).svg"" alt="Descripción de la imagen"style="height:40px;width:40px;" />
-                                </asp:LinkButton>
+                                </asp:LinkButton>--%>
+                                <a href="#historical">
+                                     <img src="/IconSidebar/svg1 (2).svg"" alt="Descripción de la imagen"style="height:40px;width:40px; margin-top:15%;" />
+                                    <hr />
+                                </a>
                             </li>
                             <li>
                                 <asp:LinkButton ID="linkButton3" runat="server" OnClick="linkButton3_Click" class="nav-link py-3 border-bottom">
@@ -49,14 +77,55 @@
 
                 </div>
 
-                <div class="col-11" id="menuContent" style="background-color: grey; width: 70%; height: 800px; overflow: auto;">
+                <div class="col-11 ClientBox" id="menuContent">
+       
 
                     <%if (CurrentContent == 0)
                         {%>
                     <center>
                         <h1>Profile</h1>
-                        <h2><%:CurrentClient.Name + " " + CurrentClient.Surname%></h2>
-                        <
+                        <h2 style="margin-bottom:2%;"><%:CurrentClient.Name + " " + CurrentClient.Surname%></h2>
+           
+                          <asp:Label class="text-secondary" ID="lblName" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Name" ID="txtName" runat="server" ReadOnly="true"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblLastName" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Surname" ID="txtLastName" runat="server" ReadOnly="true"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblEmail" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Email" ID="txtEmail" runat="server"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblPassword" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Password" ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblRepetPassword" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Repeat Password" ID="RepetPassword" runat="server" TextMode="Password"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblDateOfBirth" runat="server" style="color: black;" Text="Date of Birth:"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Date of Birth" ID="txtDateOfBirth" type="date" data-date-format="dd/mm/yyyy" runat="server"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblGender" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Gender (M/F/X):" ID="txtGender" runat="server" MaxLength="1"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="Label4" runat="server" style="color: black;" Text="Add profile picture"></asp:Label><br />
+                            <asp:FileUpload ID="fileUploadProfilePicture" runat="server" /><br />
+
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top:2%;">
+                             Edit
+                            </button>
+
+                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                               <%--     <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>--%>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                   You want to modify the fields?
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Ok</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <a href="Default.aspx" class="btn btn-primary" style="margin-top:2%;">Back</a>
+
                     </center>
                     <%} %>
                     <%if (CurrentContent == 1)
@@ -64,120 +133,14 @@
                     <center>
                         <h1>Home</h1>
                     </center>
+
+ 
+
                     <%} %>
                     <%else if (CurrentContent == 2)
                         {%>
                     <center>
-                        <h1>Historical</h1>
-                        <script>new DataTable('#example');</script>
-                        <table id="example" class="table table-striped" style="width: 100%">
-                            <thead>
-                                <tr>
-                                    <th>Nombre del Vuelo</th>
-                                    <th>Avión</th>
-                                    <th>Piloto</th>
-                                    <th>Lugar de Origen</th>
-                                    <th>Lugar de Destino</th>
-                                    <th>Duración</th>
-                                    <th>Precio</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Vuelo 1A2B</td>
-                                    <td>Gulfstream G650</td>
-                                    <td>John Smith</td>
-                                    <td>New York</td>
-                                    <td>Los Angeles</td>
-                                    <td>4 horas</td>
-                                    <td>$800.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Vuelo 3C4D</td>
-                                    <td>Cessna Citation XLS</td>
-                                    <td>Mary Johnson</td>
-                                    <td>Los Angeles</td>
-                                    <td>Miami</td>
-                                    <td>5 horas</td>
-                                    <td>$950.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Vuelo 5E6F</td>
-                                    <td>Embraer Phenom 300</td>
-                                    <td>Robert Williams</td>
-                                    <td>Miami</td>
-                                    <td>Chicago</td>
-                                    <td>3.5 horas</td>
-                                    <td>$700.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Vuelo 7G8H</td>
-                                    <td>Hawker 800XP</td>
-                                    <td>Patricia Brown</td>
-                                    <td>Chicago</td>
-                                    <td>Las Vegas</td>
-                                    <td>4 horas</td>
-                                    <td>$800.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Vuelo 9I0J</td>
-                                    <td>Learjet 45XR</td>
-                                    <td>Michael Davis</td>
-                                    <td>Las Vegas</td>
-                                    <td>San Francisco</td>
-                                    <td>2.5 horas</td>
-                                    <td>$500.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Vuelo 1K2L</td>
-                                    <td>Gulfstream G550</td>
-                                    <td>Linda Wilson</td>
-                                    <td>New York</td>
-                                    <td>Chicago</td>
-                                    <td>3 horas</td>
-                                    <td>$600.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Vuelo 3M4N</td>
-                                    <td>Cessna Citation CJ3+</td>
-                                    <td>William Lee</td>
-                                    <td>Miami</td>
-                                    <td>San Francisco</td>
-                                    <td>5 horas</td>
-                                    <td>$950.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Vuelo 5O6P</td>
-                                    <td>Embraer Legacy 650</td>
-                                    <td>Cynthia Harris</td>
-                                    <td>San Francisco</td>
-                                    <td>Los Angeles</td>
-                                    <td>2.5 horas</td>
-                                    <td>$500.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Vuelo 7Q8R</td>
-                                    <td>Hawker 400XP</td>
-                                    <td>John Clark</td>
-                                    <td>Chicago</td>
-                                    <td>New York</td>
-                                    <td>3 horas</td>
-                                    <td>$600.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Vuelo 9S0T</td>
-                                    <td>Learjet 35A</td>
-                                    <td>Mary Martin</td>
-                                    <td>Las Vegas</td>
-                                    <td>Chicago</td>
-                                    <td>4 horas</td>
-                                    <td>$800.00</td>
-                                </tr>
-
-
-                            </tbody>
-                        </table>
-                    </center>
+                       
                     <%} %>
                     <%else if (CurrentContent == 3)
                         {%>
@@ -220,6 +183,45 @@
                         <div class="form-group">
                             <asp:Button ID="btnReservar" runat="server" Text="Reservar Vuelo" />
                         </div>
+
+
+
+                         <div class="centered-inputs BookingBox" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%);">
+                            <div class="container text-center" style="display: flex; justify-content: center; align-items: center;">
+                                <div class="row">
+                                <div class="col">
+                                    <h4><strong>FORM</strong></h4>
+                                    <input type="text" list="fromOptions" id="fromInput" style="background-color: transparent;">
+                                    <datalist id="fromOptions">
+                                    <option value="Buenos Aires">
+                                    <option value="Bariloche">
+                                    <option value="Usuahia">
+                                    </datalist>
+                                </div>
+                                <div class="col">
+                                    <h4><strong>TO</strong></h4>
+                                    <input type="text" list="toOptions" id="toInput"  style=" background-color: transparent;">
+                                    <datalist id="toOptions">
+                                    <option value="Miami">
+                                    <option value="España">
+                                    <option value="Costa Rica">
+                                    </datalist>
+                                </div>
+                                <div class="col" >
+                                    <h4><strong>DATE</strong></h4>
+                                    <input type="date" data-date-format="dd/mm/yyyy" style=" background-color: transparent;">
+                                </div>
+                                <div class="col" >
+                                    <h4><strong>PASSENGER</strong></h4>
+                                    <input type="number" id="passengerInput" min="1" max="10" style=" background-color: transparent;">
+                                </div>
+                                <div class="col"  >
+                                    <button type="button" class="btn btn-primary" style="margin-top:3%;">Book flight</button>
+          
+                                </div>
+                                </div>
+                            </div>
+                            </div>
                     </center>
                     <%} %>
                     <%else if (CurrentContent == 4)
@@ -228,18 +230,21 @@
                         <h1>Flyes</h1>
                     </center>
                     <%} %>
-                </div>
+              
+            </div>
+              
             </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 
     <%--DataTable--%>
+     <section id="historical">
     <center>
-        <h1>Historical</h1>
+        <h1 style="margin-top:2%;">Historical</h1>
     </center>
     <div class="p-5">
-        <table id="example" class="table table-striped" style="width: 100%">
+        <table id="example" class="table table-striped" style="width: 100%; ">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -353,4 +358,5 @@
             </tfoot>
         </table>
     </div>
+  </section>
 </asp:Content>

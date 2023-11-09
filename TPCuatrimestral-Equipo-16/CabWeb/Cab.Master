@@ -23,6 +23,26 @@
 </head>
 
 <body>
+
+
+     <style>
+          .scroll-to-top-button {
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 24px;
+                width: 50px;
+                height: 50px;
+                text-align: center;
+          }
+    </style>
+
     <form id="form1" runat="server">
 
          <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" >
@@ -69,7 +89,7 @@
             <span class="visually-hidden">User</span>
         </a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="UserProfile.aspx" style="color:white;"><i class="bi bi-person-lines-fill"></i> Profile</a>
+            <a class="dropdown-item" href="ClientView.aspx" style="color:white;"><i class="bi bi-person-lines-fill"></i> Profile</a>
             <a class="dropdown-item" href="SettingUser.aspx" style="color:white;"> <i class="bi bi-gear"></i> Setting</a>
             <div class="dropdown-divider"></div>
             <asp:LinkButton ID="Logout" runat="server" OnClick="Logout_Click" CssClass="dropdown-item" style="color:white;" OnClientClick="return confirm('¿Are you sure that do you want log out?')"><i class="bi bi-box-arrow-left"></i> Log out</asp:LinkButton>
@@ -165,6 +185,29 @@
             </div>
             
     </footer>
+
+    <button id="scrollToTopButton" class="scroll-to-top-button" title="Scroll to Top">↑</button>
+    <script>
+
+        window.onscroll = function () {
+            var scrollToTopButton = document.getElementById("scrollToTopButton");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopButton.style.display = "block";
+            } else {
+                scrollToTopButton.style.display = "none";
+            }
+        };
+
+        document.getElementById("scrollToTopButton").addEventListener("click", function () {
+            scrollToTop();
+        });
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
