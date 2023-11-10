@@ -50,6 +50,12 @@
     <img src="/IconSidebar/svg1 (1).svg"g" alt="Descripción de la imagen"style="height:40px;width:40px;" />
                                 </asp:LinkButton>
                             </li>
+
+                               <li class="nav-item">
+                                <asp:LinkButton ID="Bookings" runat="server" OnClick="Bookings_Click" class="nav-link py-3 border-bottom">
+    <img src="/IconSidebar/Travels.svg" alt="Descripción de la imagen"style="height:40px;width:40px;" />
+                                </asp:LinkButton>
+                            </li>
                             <li>
                               <%--  <asp:LinkButton ID="linkButton2" runat="server" OnClick="linkButton2_Click" class="nav-link py-3 border-bottom">
     <img src="/IconSidebar/svg1 (2).svg"" alt="Descripción de la imagen"style="height:40px;width:40px;" />
@@ -189,6 +195,36 @@
                         {%>
                     <center>
                         <h1>Flyes</h1>
+                    </center>
+                    <%} %>
+
+                          <%else if (CurrentContent == 5)
+                        {%>
+                        <center>
+                            <h1>Your Reservations</h1>
+
+                            <div class="row" style="margin-top: 50px; margin-left: 25px; margin-right: 25px; margin-bottom: 50px;overflow:auto">
+                                <asp:Repeater ID="rptActiveBokings" runat="server">
+                                    <ItemTemplate>
+                                        <div class="col-12 col-md-6 col-lg-4 mb-2" style="background-color: rgba(0, 0, 0, 0.5);">
+                                            <center>
+                                                <div style="max-width: 18rem;">
+                                                    <center>
+                                                        <img src="https://th.bing.com/th/id/R.5980a84df020a575b1e6b9e4d24c265e?rik=phr7zp%2fsNPdVWA&pid=ImgRaw&r=0" alt="Foto" style="width: 100px; height: 100px; border-radius: 50%;" />
+                                                    </center>
+                                                    <p>Origin: <%# Eval("Origin.NameCity") %></p>
+                                                    <p>Destiny: <%# Eval("Destination.NameCity") %></p>
+                                                    <p>Date of booking: <%# Eval("DateBooking") %></p>
+                                                    <p>Date of petition: <%# Eval("SolicitudDate") %></p>
+                                                    <p>State of reservation: <%# Eval("StateBooking") %></p>
+                                                </div>
+                                            </center>
+                                        </div>
+
+                                    </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+       
                     </center>
                     <%} %>
               

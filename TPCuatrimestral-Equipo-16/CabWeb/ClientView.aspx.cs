@@ -14,10 +14,13 @@ namespace CabWeb
     {
         public Client CurrentClient;
         public int CurrentContent = 0;
-        public List<Province> provincesAvaible;
+        public List<Booking> ActiveBookingsOfClient;
+        public BookingBusiness bkBusiness = new BookingBusiness();
         protected void Page_Load(object sender, EventArgs e)
         {
+            bkBusiness = new BookingBusiness();
             CurrentClient = (Client)Session["ClientLogged"];
+            ActiveBookingsOfClient = new List<Booking>();
             CityBusiness ctBusiness = new CityBusiness();
             List<string> cities = new List<string>();
             for (int x = 0; x < ctBusiness.List().Count();x++)
@@ -31,6 +34,9 @@ namespace CabWeb
                 ddlcityDestiny.DataSource = cities;
                 ddlcityDestiny.DataBind();
             }
+            ActiveBookingsOfClient = bkBusiness.ListByClient(CurrentClient);
+            rptActiveBokings.DataSource = ActiveBookingsOfClient;
+            rptActiveBokings.DataBind();
         }
         protected void linkButtonUser_Click(object sender, EventArgs e)
         {
@@ -51,6 +57,10 @@ namespace CabWeb
         protected void linkButton4_Click(object sender, EventArgs e)
         {
             CurrentContent = 4;
+        }
+        protected void Bookings_Click(object sender, EventArgs e)
+        {
+            CurrentContent = 5;
         }
         protected void ddlcityOrigin_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -84,5 +94,7 @@ namespace CabWeb
             booking.State = true;
             bkBusiness.addBooking(booking);
         }
+
+       
     }
 }

@@ -29,6 +29,25 @@ namespace CabBusiness
             }
             return city;
         }
+        public City GetCityByID(int ID)
+        {
+            City city = new City(); ;
+            DataManager dataManager = new DataManager();
+            dataManager.setQuery("SELECT IdCiudad, IdProvincia, NombreCiudad, Estado FROM CIUDADES WHERE IdCiudad = '" + ID + "'");
+
+            dataManager.executeRead();
+            while (dataManager.Lector.Read())
+            {
+
+                city.IdCity = (int)(long)dataManager.Lector["IdCiudad"];
+                city.IdProvince = (int)(long)dataManager.Lector["IdProvincia"];
+                city.NameCity = (string)dataManager.Lector["NombreCiudad"];
+                city.State = (bool)dataManager.Lector["Estado"];
+
+
+            }
+            return city;
+        }
         public List<City> List()
         {
             List<City> list = new List<City>();

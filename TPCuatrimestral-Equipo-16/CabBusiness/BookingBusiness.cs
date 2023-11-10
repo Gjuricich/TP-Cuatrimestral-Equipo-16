@@ -48,6 +48,50 @@ namespace CabBusiness
             }
         }
 
+        public List<Booking> ListByClient(Client client)
+        {
+            int idClient = client.IdClient;
+            List<Booking> list = new List<Booking>();
+            DataManager dataManager = new DataManager();
+            CityBusiness ctBusines = new CityBusiness();
+
+            try
+            {
+
+                dataManager.setQuery("SELECT * FROM Booking WHERE IdClient = '" + idClient + "'");
+                dataManager.executeRead();
+                while (dataManager.Lector.Read())
+                {
+                    Booking booking = new Booking();
+                    booking.IdBooking = (int)(long)dataManager.Lector["IdBooking"];
+                    booking.IdClient = (int)(long)dataManager.Lector["IdClient"];
+                    int Origin = (int)(long)dataManager.Lector["IdOrigen"];
+                    int Destination = (int)(long)dataManager.Lector["IdDestino"];
+                    booking.SolicitudDate = (DateTime)dataManager.Lector["SolicitudDate"];
+                    booking.DateBooking = (DateTime)dataManager.Lector["DateBooking"];
+                    booking.Passengers = (short)dataManager.Lector["Passengers"];
+                    booking.StateBooking = (string)dataManager.Lector["StateBooking"];
+                    booking.State = (bool)dataManager.Lector["Estado"];
+                    booking.Origin = ctBusines.GetCityByID(Origin);
+                    booking.Destination = ctBusines.GetCityByID(Destination);
+                    list.Add(booking);
+                }
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
+
+      
+
         public void addBooking(Booking booking)
         {
             DataManager dataManager = new DataManager();

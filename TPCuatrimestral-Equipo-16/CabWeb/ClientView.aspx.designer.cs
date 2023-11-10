@@ -51,6 +51,15 @@ namespace CabWeb
         protected global::System.Web.UI.WebControls.LinkButton linkButton1;
 
         /// <summary>
+        /// Control Bookings.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Bookings;
+
+        /// <summary>
         /// Control linkButton3.
         /// </summary>
         /// <remarks>
@@ -265,5 +274,14 @@ namespace CabWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bookflight;
+
+        /// <summary>
+        /// Control rptActiveBokings.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptActiveBokings;
     }
 }
