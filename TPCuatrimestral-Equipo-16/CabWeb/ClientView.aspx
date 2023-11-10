@@ -145,88 +145,44 @@
                     <%else if (CurrentContent == 3)
                         {%>
                     <center>
-                        <h1>Petition</h1>
-
-                        <div class="form-group">
-                            <asp:Label ID="Label1" runat="server" Text="Ciudad de Origen:"></asp:Label>
-                            <asp:DropDownList ID="ddlCiudadOrigen" runat="server">
-                                <asp:ListItem Text="Selecciona una ciudad de origen" Value="" />
-                                <asp:ListItem Text="Ciudad 1" Value="Ciudad1" />
-                                <asp:ListItem Text="Ciudad 2" Value="Ciudad2" />
-
-                            </asp:DropDownList>
-                        </div>
-
-                        <div class="form-group">
-                            <asp:Label ID="lblEjemplo" runat="server" Text="Ciudad de Destino:"></asp:Label>
-                            <asp:DropDownList ID="ddlCiudadDestino" runat="server">
-                                <asp:ListItem Text="Selecciona una ciudad de destino" Value="" />
-                                <asp:ListItem Text="Ciudad 1" Value="Destino1" />
-                                <asp:ListItem Text="Ciudad 2" Value="Destino2" />
-                            </asp:DropDownList>
-                        </div>
-
-                        <div class="form-group">
-                            <asp:Label ID="Label2" runat="server" Text="Fecha y Hora del Viaje:"></asp:Label>
-                            <asp:Calendar ID="calFecha" runat="server"></asp:Calendar>
-                        </div>
-
-                        <div class="form-group">
-                            <asp:Label ID="Label3" runat="server" Text="Tipo de Avión Privado:"></asp:Label>
-                            <asp:DropDownList ID="ddlTipoAvion" runat="server">
-                                <asp:ListItem Text="Selecciona un tipo de avión" Value="" />
-                                <asp:ListItem Text="Avión 1" Value="Avion1" />
-                                <asp:ListItem Text="Avión 2" Value="Avion2" />
-
-                            </asp:DropDownList>
-                        </div>
-                        <div class="form-group">
-                            <asp:Button ID="btnReservar" runat="server" Text="Reservar Vuelo" />
-                        </div>
-
-
-
-
-                    
-                           <div class="centered-inputs DefaultBox" style="position: absolute; top: 90%; left: 50%; transform: translate(-50%, -50%);">
+               
+                           <div class="centered-inputs DefaultBox" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                             <div class="container text-center" style="display: flex; justify-content: center; align-items: center;">
                                 <div class="row " display="flex" >
                                 <div class="col"  >
-                                    <h4><strong>FORM</strong></h4>
-                                    <input type="text" list="fromOptions" id="fromInput" style="background-color: transparent;">
-                                    <datalist id="fromOptions">
-                                    <option value="Buenos Aires">
-                                    <option value="Bariloche">
-                                    <option value="Usuahia">
-                                    </datalist>
+                                    <h4><strong>FROM</strong></h4>
+                                    <asp:DropDownList ID="ddlcityOrigin" runat="server" AutoPostBack="false" style="background-color: transparent;  max-width: 600%;">
+                                        </asp:DropDownList>
+                                 
                                 </div>
                                 <div class="col"   >
                                     <h4><strong>TO</strong></h4>
-                                    <input type="text" list="toOptions" id="toInput"  style=" background-color: transparent;  max-width: 600%;">
-                                    <datalist id="toOptions">
-                                    <option value="Miami">
-                                    <option value="España">
-                                    <option value="Costa Rica">
-                                    </datalist>
+                                    <asp:DropDownList  ID="ddlcityDestiny" runat="server" AutoPostBack="false" style="background-color: transparent;  max-width: 600%;">
+                                       </asp:DropDownList>
+                                   
                                 </div>
                                 <div class="col" >
                                     <h4><strong>DATE</strong></h4>
-                                    <input type="date" data-date-format="dd/mm/yyyy" style=" background-color: transparent;">
+                                    <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="TxbDatePicked" type="date" data-date-format="dd/MM/yyyy" runat="server"></asp:TextBox>
                                 </div>
-                                <div class="col" >
-                                    <h4><strong>PASSENGER</strong></h4>
-                                    <input type="number" id="passengerInput" min="1" max="10" style=" background-color: transparent; max-width: 600%;">
-                                </div>
-                                <%-- <div class="col"  >
+                                    <div class="col">
+                                        <h4><strong>TIME</strong></h4>
+                                        <asp:TextBox ID="TxbTimePicked" class="form-control form-control-sm rounded" style="max-width: 500px;" type="time" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="col">
+                                        <h4><strong>PASSENGER</strong></h4>
+                                        <input type="number" id="passengerInput" runat="server" min="1" max="10" style="background-color: transparent; max-width: 600%;">
+                                      </div>
+                                    <%-- <div class="col"  >
                                     <%--<asp:button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top:4%;" runat="server"> Search </asp:button>--%>
-                
+
                                     <%-- </div>--%>
-                                    <button type="button" class="btn btn-outline-secondary" style="font-weight: bold; border-color: dimgrey; margin-top:4%;">Book flight</button>
+                                    <asp:Button ID="Bookflight" runat="server" class="btn btn-outline-secondary" OnClick="Bookflight_Click" Text="Book flight" Style="font-weight: bold; border-color: dimgrey; margin-top: 4%;" />
 
                                 </div>
                             </div>
                            </div>
-                          
+               
                     </center>
                     <%} %>
                     <%else if (CurrentContent == 4)

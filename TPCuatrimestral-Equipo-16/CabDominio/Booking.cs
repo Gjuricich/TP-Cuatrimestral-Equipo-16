@@ -15,7 +15,7 @@ namespace CabDominio
         public City Destination { get; set; } //Composición de ciudad
         public DateTime SolicitudDate { get; set; }
         public DateTime DateBooking { get; set; }
-        public int Passengers { get; set; }
+        public short Passengers { get; set; }
         public string StateBooking { get; set; } 
         public bool State { get; set; }
 

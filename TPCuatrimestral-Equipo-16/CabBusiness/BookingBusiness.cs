@@ -28,7 +28,7 @@ namespace CabBusiness
                     booking.Destination.IdCity = (int)(long)dataManager.Lector["IdDestino"];
                     booking.SolicitudDate = (DateTime)dataManager.Lector["SolicitudDate"];
                     booking.DateBooking = (DateTime)dataManager.Lector["DateBooking"];
-                    booking.Passengers = (int)dataManager.Lector["Passengers"];
+                    booking.Passengers = (short)dataManager.Lector["Passengers"];
                     booking.StateBooking = (string)dataManager.Lector["StateBooking"];
                     booking.State = (bool)dataManager.Lector["Estado"];
 
@@ -55,7 +55,7 @@ namespace CabBusiness
             try
             {
 
-                dataManager.setQuery("INSERT INTO Booking(IdClient,IdOrigen,IdDestino,DateBooking,Passengers) VALUES (@IDCLIENT, @IDORIGEN,@IDDESTINO,  @PASAJEROS, @FECHARESERVA)");
+                dataManager.setQuery("INSERT INTO Booking(IdClient,IdOrigen,IdDestino,DateBooking,Passengers) VALUES (@IDCLIENT, @IDORIGEN,@IDDESTINO, @FECHARESERVA, @PASAJEROS)");
                 dataManager.setParameter("@IDCLIENT", booking.IdClient );
                 dataManager.setParameter("@IDORIGEN", booking.Origin.IdCity);
                 dataManager.setParameter("@IDDESTINO", booking.Destination.IdCity);
