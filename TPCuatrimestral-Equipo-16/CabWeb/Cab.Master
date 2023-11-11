@@ -71,8 +71,8 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"style="color:white; display: flex; align-items: center; margin-right: 30px;">Sign Up</a>
                     <div class="dropdown-menu" style="margin-right: 30px; width:max-content;">
             <a class="dropdown-item" href="SignUp.aspx" style="color:white;">Client</a>
-            <a class="dropdown-item" href="SignUpEmployee.aspx"  style="color:white;">Employee</a>
-            <a class="dropdown-item" href="SignUpManager.aspx"  style="color:white;">Manager</a>     
+          <%--  <a class="dropdown-item" href="SignUpEmployee.aspx"  style="color:white;">Employee</a>
+            <a class="dropdown-item" href="SignUpManager.aspx"  style="color:white;">Manager</a>     --%>
         </div>
                     </div>
                     </li>

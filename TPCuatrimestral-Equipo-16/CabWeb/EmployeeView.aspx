@@ -11,7 +11,7 @@
     
     <style>
         body {
-            background: url('montain.jpg') no-repeat center center fixed;
+            background: url('images/JeteditEmployee.jpg') no-repeat center center fixed;
             background-size: cover;
         }
 
@@ -38,13 +38,15 @@
         <ContentTemplate>
     
             <div class="row">
-                <div class="col-1" style="width: 9rem">
-                    <div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 9rem;">
+              <div class="ol-sm-auto bg-light " style="width: 9rem">
+
+                    <%--Si se elimina sticky-top saca el scroll de los iconos--%>
+                    <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center " style="width: 8.2rem;">
                         <ul class="nav nav-pills nav-flush flex-column mb-auto text-center justify-content-center ">
                             <li>
                                 <br />
                                 <asp:LinkButton ID="linkButtonUser" runat="server" OnClick="linkButtonUser_Click" class="nav-link py-3 border-bottom">
-    <img src="/IconSidebar/svg1 (5).svg"" alt="Descripción de la imagen"style="height:40px;width:40px;"/>
+    <img src="/IconSidebar/svg1 (5).svg"" alt="Descripción de la imagen"style="margin-top:250%; height:40px;width:40px;"/>
                                 </asp:LinkButton>
 
                             </li>
@@ -92,47 +94,11 @@
                     <center>
                         <h1>Profile</h1>
                         <h2 style="margin-bottom:2%;"><%:CurrentEmployee.Name + " " + CurrentEmployee.Surname%></h2>
+                        <%--Agregar imagen perfil--%> 
+
+                        <a href="EditEmployee.aspx" class="btn btn-primary" style="margin-top:5%;">Edit Profile</a>
            
-                          <asp:Label class="text-secondary" ID="lblName" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Name" ID="txtName" runat="server" ReadOnly="true"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="lblLastName" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Surname" ID="txtLastName" runat="server" ReadOnly="true"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="lblEmail" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Email" ID="txtEmail" runat="server"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="lblPassword" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Password" ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="lblRepetPassword" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Repeat Password" ID="RepetPassword" runat="server" TextMode="Password"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="lblDateOfBirth" runat="server" style="color: black;" Text="Date of Birth:"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Date of Birth" ID="txtDateOfBirth" type="date" data-date-format="dd/mm/yyyy" runat="server"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="lblGender" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Gender (M/F/X):" ID="txtGender" runat="server" MaxLength="1"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="Label4" runat="server" style="color: black;" Text="Add profile picture"></asp:Label><br />
-                            <asp:FileUpload ID="fileUploadProfilePicture" runat="server" /><br />
-
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top:2%;">
-                             Edit
-                            </button>
-
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                               <%--     <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>--%>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                   You want to modify the fields?
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Ok</button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <a href="Default.aspx" class="btn btn-primary" style="margin-top:2%;">Back</a>
-
+                         
                     </center>
                     <%} %>
                     <%if (CurrentContent == 1)

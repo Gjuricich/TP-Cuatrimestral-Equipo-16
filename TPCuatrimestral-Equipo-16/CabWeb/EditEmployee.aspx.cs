@@ -4,14 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CabDominio;
 
 namespace CabWeb
 {
-    public partial class UserProfile : System.Web.UI.Page
+    public partial class SignUpEmployee : System.Web.UI.Page
     {
+        public Employee CurrentEmployee;
+        public int CurrentContent = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            CurrentEmployee = (Employee)Session["EmployeeLogged"];
         }
+
+     
     }
 }

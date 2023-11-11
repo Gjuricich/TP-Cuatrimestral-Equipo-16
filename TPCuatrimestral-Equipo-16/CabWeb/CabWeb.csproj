@@ -79,9 +79,9 @@
     <Content Include="Promotions.aspx" />
     <Content Include="SettingUser.aspx" />
     <Content Include="SignUp.aspx" />
-    <Content Include="SignUpEmployee.aspx" />
+    <Content Include="EditEmployee.aspx" />
     <Content Include="TermCondition.aspx" />
-    <Content Include="UserProfile.aspx" />
+    <Content Include="EditClient.aspx" />
     <Content Include="Web.config" />
     <Content Include="WorkUs.aspx" />
   </ItemGroup>
@@ -195,12 +195,12 @@
     <Compile Include="SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SignUpEmployee.aspx.cs">
-      <DependentUpon>SignUpEmployee.aspx</DependentUpon>
+    <Compile Include="EditEmployee.aspx.cs">
+      <DependentUpon>EditEmployee.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SignUpEmployee.aspx.designer.cs">
-      <DependentUpon>SignUpEmployee.aspx</DependentUpon>
+    <Compile Include="EditEmployee.aspx.designer.cs">
+      <DependentUpon>EditEmployee.aspx</DependentUpon>
     </Compile>
     <Compile Include="TermCondition.aspx.cs">
       <DependentUpon>TermCondition.aspx</DependentUpon>
@@ -209,12 +209,12 @@
     <Compile Include="TermCondition.aspx.designer.cs">
       <DependentUpon>TermCondition.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserProfile.aspx.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
+    <Compile Include="EditClient.aspx.cs">
+      <DependentUpon>EditClient.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserProfile.aspx.designer.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
+    <Compile Include="EditClient.aspx.designer.cs">
+      <DependentUpon>EditClient.aspx</DependentUpon>
     </Compile>
     <Compile Include="WorkUs.aspx.cs">
       <DependentUpon>WorkUs.aspx</DependentUpon>
