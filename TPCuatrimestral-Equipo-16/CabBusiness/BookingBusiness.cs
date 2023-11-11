@@ -119,5 +119,27 @@ namespace CabBusiness
             }
         }
 
+        public void ChangeStateBooking(int bookingId)
+        {
+            DataManager dataManager = new DataManager();
+
+            try
+            {
+                dataManager.setQuery("UPDATE Booking SET StateBooking = 'Aprobada' WHERE IdBooking = @IDBOOKING");
+                dataManager.setParameter("@IDBOOKING", bookingId);
+                dataManager.executeRead();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
+
     }
+
 }
+
