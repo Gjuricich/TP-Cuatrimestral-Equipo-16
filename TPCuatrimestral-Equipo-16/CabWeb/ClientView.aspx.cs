@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Globalization;
@@ -16,8 +17,10 @@ namespace CabWeb
         public int CurrentContent = 0;
         public List<Booking> ActiveBookingsOfClient;
         public BookingBusiness bkBusiness = new BookingBusiness();
+        public string ProfilePhoto;
         protected void Page_Load(object sender, EventArgs e)
         {
+            CredentialBusiness crBusiness = new CredentialBusiness();
             bkBusiness = new BookingBusiness();
             CurrentClient = (Client)Session["ClientLogged"];
             ActiveBookingsOfClient = new List<Booking>();
@@ -37,6 +40,17 @@ namespace CabWeb
             ActiveBookingsOfClient = bkBusiness.ListByClient(CurrentClient);
             rptActiveBokings.DataSource = ActiveBookingsOfClient;
             rptActiveBokings.DataBind();
+            if (crBusiness.getPhoto(CurrentClient.credentials.IdCredential) != null)
+            {
+                ProfilePhoto = crBusiness.getPhoto(CurrentClient.credentials.IdCredential);
+            }
+
+            else
+            {
+                ProfilePhoto = "/pp.jpg";
+
+            }
+
         }
         protected void linkButtonUser_Click(object sender, EventArgs e)
         {
@@ -94,7 +108,37 @@ namespace CabWeb
             booking.State = true;
             bkBusiness.addBooking(booking);
         }
+        protected void ChangePhoto2_Click(object sender, EventArgs e)
+        {
+            if (fileUpload1.HasFile)
+            {
+                CredentialBusiness crBusiness = new CredentialBusiness();
+                string extension = ObtenerExtension(fileUpload1);
+                string fileName = Guid.NewGuid().ToString() + CurrentClient.Dni + "." + extension;
+                string rutaCarpetaRaiz = Server.MapPath("~");
+                string Folder = "/images/ProfileImagesClients/";
+                string uploadFolder = rutaCarpetaRaiz + Folder;
+                string filePath = Path.Combine(uploadFolder, fileName);
+                fileUpload1.SaveAs(filePath);
+                crBusiness.ChangePhoto(Folder + fileName, CurrentClient.credentials.IdCredential);
+                ProfilePhoto= Folder + fileName;
+            }
 
-       
+        }
+        public string ObtenerExtension(FileUpload fileUploadControl)
+        {
+            if (fileUploadControl.HasFile)
+            {
+                string fileName = fileUploadControl.FileName;
+                string extension = Path.GetExtension(fileName);
+                return extension.TrimStart('.').ToLower(); 
+            }
+            else
+            {
+                return string.Empty; 
+            }
+        }
+
+
     }
 }

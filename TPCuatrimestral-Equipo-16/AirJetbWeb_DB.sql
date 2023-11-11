@@ -40,7 +40,8 @@ CREATE TABLE Credentials
     Email NVARCHAR(255) UNIQUE NOT NULL,
     --Usuario NVARCHAR(255), vemos....
     HashContraseña NVARCHAR(255),
-    Sal NVARCHAR(255)
+    Sal NVARCHAR(255),
+    ImageProfile  NVARCHAR(500)
 )
 GO
 INSERT INTO Credentials (IdPerson, IdRol, Email, HashContraseña, Sal)

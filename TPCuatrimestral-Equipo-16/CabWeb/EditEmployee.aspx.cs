@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.IO;
 using System.Web.UI.WebControls;
 using CabDominio;
 
@@ -17,6 +18,11 @@ namespace CabWeb
             CurrentEmployee = (Employee)Session["EmployeeLogged"];
         }
 
-     
+
+        protected void btnSignUpEmployee_Click(object sender, EventArgs e)
+        {
+   
+        }
+
     }
 }

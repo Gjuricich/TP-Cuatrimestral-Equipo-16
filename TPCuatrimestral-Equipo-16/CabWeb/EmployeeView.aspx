@@ -31,8 +31,8 @@
         
     </style>
 
-
-
+     <asp:FileUpload ID="fileUploadProfilePicture" runat="server" enctype="multipart/form-data"/><br />
+    <asp:Button ID = "ChangePhoto2" class="btn btn-primary" runat="server" Text="Change photo" Onclick="ChangePhoto2_Click"/>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server"  UpdateMode="Conditional"  ChildrenAsTriggers="true">
  
         <ContentTemplate>
@@ -86,14 +86,47 @@
 
                 </div>
 
-                <div class="col-11 ClientBox" id="menuContent">
+                <div class="col-11 ClientBox" id="menuContent" runat="server">
        
 
                     <%if (CurrentContent == 0)
                         {%>
                     <center>
+                  
                         <h1>Profile</h1>
                         <h2 style="margin-bottom:2%;"><%:CurrentEmployee.Name + " " + CurrentEmployee.Surname%></h2>
+           
+                         
+                             <img src='<%:ProfilePhoto%>' alt="Foto" style="width: 200px; height: 200px; border-radius: 50%;" />
+                        <br />
+                            <asp:Label  ID="lblEmail" runat="server" style="color: black;"><%:CurrentEmployee.credentials.Email%></asp:Label>
+                        <br />
+                            <asp:Label ID="lblDateOfBirth" runat="server" style="color: black;" Text="Date of Birth:"><%:CurrentEmployee.DateOfBirth%></asp:Label>
+                        <br />
+                            <asp:Label ID="Label4" runat="server" style="color: black;" Text="Add profile picture"></asp:Label><br />
+                           <br />
+                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                               <%--     <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>--%>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                   You want to modify the fields?
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Ok</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <a href="Default.aspx" class="btn btn-primary" style="margin-top:2%;">Back</a>
+
+             </center>
+                     
                         <%--Agregar imagen perfil--%> 
 
                         <a href="EditEmployee.aspx" class="btn btn-primary" style="margin-top:5%;">Edit Profile</a>

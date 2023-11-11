@@ -34,7 +34,15 @@ namespace CabWeb
                 string password = txtPassword.Text;
                 cBusiness.AddNewUserDB(newClient, password);
 
-                
+                string extension = Path.GetExtension(fileUploadProfilePicture.FileName);
+                string fileName = Guid.NewGuid().ToString() + newClient.Dni + extension;
+                string rutaCarpetaRaiz = Server.MapPath("~");
+                string Folder = "/images/ProfileImagesClients/";
+                string uploadFolder = rutaCarpetaRaiz + Folder;
+                string filePath = Path.Combine(uploadFolder, fileName);
+                fileUploadProfilePicture.SaveAs(filePath);
+
+
                 Response.Redirect("Login.aspx");
             }
             catch (Exception ex)

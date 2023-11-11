@@ -54,6 +54,8 @@ namespace CabBusiness
             return false;
         }
 
+
+
         public int findIdCredential(int idPerson)
         {
             DataManager dataManager = new DataManager();
@@ -154,6 +156,50 @@ namespace CabBusiness
                 data.closeConection();
             }
         }
+        public void ChangePhoto(string route, int IdCredential)
+        {
+            DataManager data = new DataManager();
+            try
+            {
+                data.setQuery("UPDATE Credentials SET ImageProfile = @Route WHERE Id = @ID");
+                data.setParameter("@Route", route);
+                data.setParameter("@ID", IdCredential);
+                data.executeRead();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.closeConection();
+            }
+        }
+        public string getPhoto(int IdCredential)
+        {
+
+            string photo;
+            DataManager data = new DataManager();
+            try
+            {
+                data.setQuery("Select ImageProfile from Credentials  WHERE Id = @ID");
+                data.setParameter("@ID", IdCredential);
+                data.executeRead();
+                data.Lector.Read();
+                photo= (string)data.Lector["ImageProfile"];
+                return photo;
+                
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+            finally
+            {
+                data.closeConection();
+            }
+        }
+
     }
 
 }

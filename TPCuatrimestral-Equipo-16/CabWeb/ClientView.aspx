@@ -30,7 +30,8 @@
 
 
    
-
+        <asp:FileUpload ID="fileUpload1" runat="server" enctype="multipart/form-data"/><br />
+    <asp:Button ID = "ChangePhoto" class="btn btn-primary" runat="server" Text="Change photo" Onclick="ChangePhoto2_Click"/>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -91,11 +92,15 @@
                     <center>
                         <h1>Profile</h1>
                         <h2 style="margin-bottom:2%;"><%:CurrentClient.Name + " " + CurrentClient.Surname%></h2>
-                          <%--Agregar imagen perfil--%> 
+
 
                            <a href="EditClient.aspx" class="btn btn-primary" style="margin-top:5%;">Edit Profile</a>
            
-                        
+
+                           <img src='<%:ProfilePhoto%>' alt="Foto" style="width: 200px; height: 200px; border-radius: 50%;" />
+           
+                            <a href="Default.aspx" class="btn btn-primary" style="margin-top:2%;">Back</a>
+
 
                     </center>
                     <%} %>
