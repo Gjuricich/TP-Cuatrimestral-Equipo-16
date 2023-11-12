@@ -30,8 +30,7 @@
 
 
    
-        <asp:FileUpload ID="fileUpload1" runat="server" enctype="multipart/form-data"/><br />
-    <asp:Button ID = "ChangePhoto" class="btn btn-primary" runat="server" Text="Change photo" Onclick="ChangePhoto2_Click"/>
+   
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -94,12 +93,43 @@
                         <h2 style="margin-bottom:2%;"><%:CurrentClient.Name + " " + CurrentClient.Surname%></h2>
 
 
-                           <a href="EditClient.aspx" class="btn btn-primary" style="margin-top:5%;">Edit Profile</a>
-           
+                          <img src='<%:ProfilePhoto%>' alt="Foto" style="width: 200px; height: 200px; border-radius: 50%; margin-bottom:2%;" />
+                      
+                        <br />
+                            <asp:Label ID="lblDateOfBirth" runat="server" style="color: black;" Text="Date of Birth:"><%:CurrentClient.DateOfBirth%></asp:Label>
+                        <br />
+                            <asp:Label ID="Label4" runat="server" style="color: black;" Text="Add profile picture"></asp:Label><br />
 
-                           <img src='<%:ProfilePhoto%>' alt="Foto" style="width: 200px; height: 200px; border-radius: 50%;" />
-           
-                            <a href="Default.aspx" class="btn btn-primary" style="margin-top:2%;">Back</a>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" style="margin-top:2%; margin-bottom:2%;">
+                              <i class="bi bi-pencil-fill"></i>
+                            </button>
+                   
+                            
+                             <asp:Label class="text-secondary" ID="lblName" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  ID="txtName" runat="server" ReadOnly="true"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblLastName" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtLastName" runat="server" ReadOnly="true"></asp:TextBox><br />
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtEmail" runat="server"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblPassword" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="New Password" ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblRepetPassword" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Repeat Password" ID="RepetPassword" runat="server" TextMode="Password"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblCel" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded"  style="max-width: 500px;" ID="txtCel" runat="server"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblAdress" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded"  style="max-width: 500px;"  ID="txtAdress" runat="server"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblGender" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGender" runat="server" MaxLength="1"></asp:TextBox><br />
+                          
+
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top:2%; margin-bottom:2%;">
+                                Edit
+                            </button>
+
+                            
+                          
+                            <a href="Default.aspx" class="btn btn-secondary" style="margin-top:2%; margin-bottom:2%;">Back</a>
+
 
 
                     </center>
@@ -204,6 +234,13 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
+
+
+
+  <%--  Pasarme los dos modales de EmployeeView.aspx aca y ver el problema de cambiar foto en client!--%>
+
+
+
 
     <%--DataTable--%>
      <section id="historical">

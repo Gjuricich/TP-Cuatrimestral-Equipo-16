@@ -25,7 +25,7 @@ namespace CabBusiness
                 person.Gender = Convert.ToChar(dataManager.Lector["Sexo"]);
                 person.Dni = (string)dataManager.Lector["DNI"];
                 person.DateOfBirth = (DateTime)dataManager.Lector["FechaNacimiento"];
-                if (person.Address==null) {
+                if ((string)dataManager.Lector["Domicilio"] == null) {
                     person.Address = "";
                 }
                 else

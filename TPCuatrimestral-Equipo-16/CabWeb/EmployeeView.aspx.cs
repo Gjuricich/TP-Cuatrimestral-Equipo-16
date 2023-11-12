@@ -36,8 +36,16 @@ namespace CabWeb
                 ProfilePhoto = "/pp.jpg";
 
             }
-       
-            
+
+            txtName.Text = CurrentEmployee.Name;
+            txtLastName.Text = CurrentEmployee.Surname;
+            txtEmail.Text = CurrentEmployee.credentials.Email;
+            txtCel.Text = CurrentEmployee.Cellphone.ToString();
+            txtAdress.Text = CurrentEmployee.Address;
+           txtGender.Text = CurrentEmployee.Gender.ToString();
+
+
+
 
         }
         protected void linkButtonUser_Click(object sender, EventArgs e)
