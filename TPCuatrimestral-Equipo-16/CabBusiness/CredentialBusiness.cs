@@ -16,7 +16,7 @@ namespace CabBusiness
             try
             {
                 dataManager.ClearCommand();
-                string consulta = "SELECT C.Id, C.IdPerson, R.Rol, C.Email, C.Sal, C.HashContraseña FROM Credentials C  INNER JOIN Roles R ON C.IdRol = R.IdRol WHERE Email = @Email";
+                string consulta = "SELECT C.Id, C.IdPerson, R.Rol, C.Email, C.Sal, C.HashContraseña,C.ImageProfile FROM Credentials C  INNER JOIN Roles R ON C.IdRol = R.IdRol WHERE Email = @Email";
                 dataManager.setQuery(consulta);
                 dataManager.setParameter("Email", email);
                 dataManager.executeRead();
@@ -28,6 +28,7 @@ namespace CabBusiness
                     credential.IdPerson = (int)(long)dataManager.Lector["IdPerson"];
                     credential.Rol = (string)dataManager.Lector["Rol"];
                     credential.Email = (string)dataManager.Lector["Email"];
+                    credential.Photo = (string)dataManager.Lector["ImageProfile"];
                     credential.sethashPass((string)dataManager.Lector["HashContraseña"]);
                     credential.setsaltPass((string)dataManager.Lector["Sal"]);
                     dataManager.closeConection();
@@ -90,13 +91,43 @@ namespace CabBusiness
             try
             {
                 dataManager.ClearCommand();
-                dataManager.setQuery("INSERT INTO Credentials(IdPerson, IdRol, Email, HashContraseña, Sal) VALUES (@ID, @IDROL, @Email, @HashContraseña, @Sal)");
+                dataManager.setQuery("INSERT INTO Credentials(IdPerson, IdRol, Email, HashContraseña, Sal) VALUES (@ID, @IDROL, @Email, @HashContraseña,@Sal)");
                 dataManager.setParameter("@ID", idPerson);
                 //MEGA HARDCODIADO
                 dataManager.setParameter("@IDROL", 1);
                 dataManager.setParameter("@Email", client.credentials.Email);
                 dataManager.setParameter("@HashContraseña", client.credentials.gethashPass());
                 dataManager.setParameter("@Sal", client.credentials.getsaltPass());
+                dataManager.executeRead();
+                dataManager.closeConection();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
+        public void addCredential(Client client, string password, int idPerson,string photo)
+        {
+            DataManager dataManager = new DataManager();
+            client.credentials.GenerateHashAndSalt(password);
+
+            try
+            {
+                dataManager.ClearCommand();
+                dataManager.setQuery("INSERT INTO Credentials(IdPerson, IdRol, Email, HashContraseña, Sal,ImageProfile) VALUES (@ID, @IDROL, @Email, @HashContraseña,@Sal,@Photo)");
+                dataManager.setParameter("@ID", idPerson);
+                //MEGA HARDCODIADO
+                dataManager.setParameter("@IDROL", 1);
+                dataManager.setParameter("@Email", client.credentials.Email);
+                dataManager.setParameter("@HashContraseña", client.credentials.gethashPass());
+                dataManager.setParameter("@Sal", client.credentials.getsaltPass());
+                dataManager.setParameter("@Photo", photo);
                 dataManager.executeRead();
                 dataManager.closeConection();
 

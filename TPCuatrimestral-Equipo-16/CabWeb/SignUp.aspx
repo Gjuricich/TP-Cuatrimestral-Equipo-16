@@ -37,6 +37,8 @@
                         <asp:TextBox class="form-control form-control-sm rounded" placeholder="Cellphone" ID="txtCel" runat="server"></asp:TextBox><br />
                         <asp:Label class="text-secondary" ID="lblPassword" runat="server" ></asp:Label>
                         <asp:TextBox class="form-control form-control-sm rounded" placeholder="Password"  ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox><br />
+                        <asp:TextBox class="form-control form-control-sm rounded" placeholder="Address" ID="txtAddress" runat="server"></asp:TextBox><br />
+                        <asp:Label class="text-secondary" ID="lblAdress" runat="server"></asp:Label>
                         <asp:Label class="text-dark" ID="lblDateOfBirth" runat="server" Text="Date of Birth:" ></asp:Label>
                         <asp:TextBox class="form-control form-control-sm rounded" placeholder="Date of Birth"  ID="txtDateOfBirth" type="date"  data-date-format="dd/mm/yyyy" runat="server"></asp:TextBox><br />
                         <asp:Label class="text-secondary" ID="lblGender" runat="server"></asp:Label>

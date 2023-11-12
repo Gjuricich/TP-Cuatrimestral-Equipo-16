@@ -40,9 +40,9 @@ namespace CabWeb
             ActiveBookingsOfClient = bkBusiness.ListByClient(CurrentClient);
             rptActiveBokings.DataSource = ActiveBookingsOfClient;
             rptActiveBokings.DataBind();
-            if (crBusiness.getPhoto(CurrentClient.credentials.IdCredential) != null)
+            if (CurrentClient.credentials.Photo!= null)
             {
-                ProfilePhoto = crBusiness.getPhoto(CurrentClient.credentials.IdCredential);
+                ProfilePhoto = CurrentClient.credentials.Photo;
             }
 
             else
@@ -50,6 +50,11 @@ namespace CabWeb
                 ProfilePhoto = "/pp.jpg";
 
             }
+
+            lblAntiguedad.Text = "Antiguedad de la cuenta : " + AntiguedadDeLaCuenta();
+            lblVuelos.Text = "Cantidad de vuelos : " + CurrentClient.FlightHistory.Count().ToString();
+            llblAceptadas.Text = "Reservas Aceptadas : " + CantidadDeReservasAceptadas().ToString();
+            lblEnProceso.Text = "Reservas En Proceso : " + CantidadDeReservasEnProceso().ToString();
 
         }
         protected void linkButtonUser_Click(object sender, EventArgs e)
@@ -107,7 +112,10 @@ namespace CabWeb
             booking.StateBooking = "En proceso";
             booking.State = true;
             bkBusiness.addBooking(booking);
+            Response.Redirect("~/ClientView.aspx");
         }
+        /*
+         *
         protected void ChangePhoto2_Click(object sender, EventArgs e)
         {
             if (fileUpload1.HasFile)
@@ -125,6 +133,7 @@ namespace CabWeb
             }
 
         }
+        */
         public string ObtenerExtension(FileUpload fileUploadControl)
         {
             if (fileUploadControl.HasFile)
@@ -138,7 +147,46 @@ namespace CabWeb
                 return string.Empty; 
             }
         }
+        public int  CantidadDeReservasEnProceso()
+        {
 
+            int countEnProceso = ActiveBookingsOfClient.Count(booking => booking.StateBooking == "En proceso");
+            return countEnProceso;
+        }
+        public int CantidadDeReservasAceptadas()
+        {
+            int Aceptadas = ActiveBookingsOfClient.Count(booking => booking.StateBooking == "Aceptada");
+            return Aceptadas;
+        }
+
+        public string AntiguedadDeLaCuenta()
+        {
+            DateTime fechaInicial = CurrentClient.DateOfRegister;
+            DateTime fechaFinal = DateTime.Now;
+
+            TimeSpan diferencia = fechaFinal - fechaInicial;
+
+            int diferenciaEnAnios = (int)(diferencia.TotalDays / 365.25);
+            int diferenciaEnMeses = (int)(diferencia.TotalDays / 30.44); // Aproximadamente 30.44 días por mes
+            int diferenciaEnDias = (int)diferencia.TotalDays;
+
+            if (diferenciaEnAnios > 0)
+            {
+                return diferenciaEnAnios + "años";
+            }
+            else if (diferenciaEnMeses > 0 && diferenciaEnAnios == 0)
+            {
+                return diferenciaEnMeses + "Meses";
+            }
+            else if (diferenciaEnDias > 0 && diferenciaEnMeses == 0 && diferenciaEnAnios == 0)
+            {
+                return diferenciaEnDias + "Dias";
+            }
+            else
+            {
+                return " 1 Dia";
+            }
+        }
 
     }
 }

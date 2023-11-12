@@ -13,6 +13,7 @@ namespace CabDominio
 
         public int IdCredential{ get; set; }
         public string Rol { get; set; }
+        public string Photo { get; set; }
         public string Email { get; set; }
         private string hashPass;
         private string saltPass;

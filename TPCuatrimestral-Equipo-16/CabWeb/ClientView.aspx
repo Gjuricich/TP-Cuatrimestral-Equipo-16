@@ -88,23 +88,39 @@
 
                     <%if (CurrentContent == 0)
                         {%>
-                    <center>
-                        <h1>Profile</h1>
-                        <h2 style="margin-bottom:2%;"><%:CurrentClient.Name + " " + CurrentClient.Surname%></h2>
-
-
+                    
+              
+                            
+                            
+                            <div class="col-3 bg-secondary  rounded shadow p-3" style ="margin-top : 5px;margin-left:37.5%;">
+                                <br />
+                                <center>
                           <img src='<%:ProfilePhoto%>' alt="Foto" style="width: 200px; height: 200px; border-radius: 50%; margin-bottom:2%;" />
-                      
+                                <br />
+                           <h1><%:CurrentClient.Name + " " + CurrentClient.Surname%></h1>
                         <br />
-                            <asp:Label ID="lblDateOfBirth" runat="server" style="color: black;" Text="Date of Birth:"><%:CurrentClient.DateOfBirth%></asp:Label>
-                        <br />
+                   </center>
+                            <img src="/IconSidebar/antg.svg" alt="Antigüedad" style="width: 25px; height: 25px;" />
+                            <asp:Label ID="lblAntiguedad" runat="server"  />
+                             <br />
+                            <img src="/IconSidebar/famount.svg" alt="cant" style="width: 25px; height: 25px;"  />
+                            <asp:Label ID="lblVuelos" runat="server" />
+                             <br />
+                            <img src="/IconSidebar/ok.svg" alt="ok" style="width: 25px; height: 25px;"  />
+                            <asp:Label ID="llblAceptadas" runat="server" />
+                             <br />
+                            <img src="/IconSidebar/pross.svg" alt="pross" style="width: 25px; height: 25px;"  />
+                            <asp:Label ID="lblEnProceso" runat="server"/>
+                             <br />
+                                </div>
+                            <center>
                             <asp:Label ID="Label4" runat="server" style="color: black;" Text="Add profile picture"></asp:Label><br />
 
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" style="margin-top:2%; margin-bottom:2%;">
                               <i class="bi bi-pencil-fill"></i>
                             </button>
                    
-                            
+                                <div>
                              <asp:Label class="text-secondary" ID="lblName" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  ID="txtName" runat="server" ReadOnly="true"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblLastName" runat="server"></asp:Label>
@@ -130,7 +146,12 @@
                           
                             <a href="Default.aspx" class="btn btn-secondary" style="margin-top:2%; margin-bottom:2%;">Back</a>
 
-
+                        
+                        
+                           
+                        </div>
+     
+</div>
 
                     </center>
                     <%} %>

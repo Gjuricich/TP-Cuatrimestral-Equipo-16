@@ -74,11 +74,12 @@ namespace CabBusiness
             try
             {
                 dataManager.ClearCommand();
-                dataManager.setQuery("INSERT INTO Persons (Nombre, Apellido, Sexo, DNI, FechaNacimiento, Celular) VALUES (@Nombre, @Apellido,@Sexo,  @DNI, @FechaNacimiento, @Celular)");
+                dataManager.setQuery("INSERT INTO Persons (Nombre, Apellido, Sexo, DNI, FechaNacimiento,Celular, Domicilio ) VALUES (@Nombre, @Apellido,@Sexo,  @DNI, @FechaNacimiento, @Celular, @Domicilio)");
                 dataManager.setParameter("@Nombre", client.Name);
                 dataManager.setParameter("@Apellido", client.Surname);
                 dataManager.setParameter("@Sexo", client.Gender);
                 dataManager.setParameter("@DNI", client.Dni);
+                dataManager.setParameter("@Domicilio", client.Address);
                 dataManager.setParameter("@FechaNacimiento", client.DateOfBirth);
                 dataManager.setParameter("@Celular", client.Cellphone);
                 dataManager.executeRead();

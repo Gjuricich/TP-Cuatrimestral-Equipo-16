@@ -38,7 +38,7 @@ namespace CabBusiness
                 dataManager.closeConection();
                 throw ex;
             }
-                  
+
         }
 
         public void AddNewUserDB(Client client, string password)
@@ -49,9 +49,9 @@ namespace CabBusiness
             int idPerson;
             int idCredencial;
 
-            
+
             try
-            {   
+            {
                 //inserto una cliente(persona) en la tabla personas
                 pBusiness.addPerson(client);
                 //hallo el id que se generó en la tabla personas con DNI del cliente
@@ -65,7 +65,46 @@ namespace CabBusiness
                 //Ahora si, inserto el cliente           
                 dataManager.setQuery("INSERT INTO Client(IdCredencial, JoinDate) VALUES (@ID, @Joindate)");
                 dataManager.setParameter("@ID", idCredencial);
-                dataManager.setParameter("@Joindate", client.DateOfRegister);             
+                dataManager.setParameter("@Joindate", client.DateOfRegister);
+                dataManager.executeRead();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+
+        }
+
+        public void AddNewUserDB(Client client, string password,string photo)
+        {
+            DataManager dataManager = new DataManager();
+            CredentialBusiness cBusiness = new CredentialBusiness();
+            PersonBusiness pBusiness = new PersonBusiness();
+            int idPerson;
+            int idCredencial;
+
+
+            try
+            {
+                //inserto una cliente(persona) en la tabla personas
+                pBusiness.addPerson(client);
+                //hallo el id que se generó en la tabla personas con DNI del cliente
+                idPerson = pBusiness.findIdPerson(client.Dni);
+                //Inserto las credenciales en la tabla de credenciales
+                cBusiness.addCredential(client, password, idPerson,photo);
+                // hallo id de credencial creada para insertar el cliente
+                idCredencial = cBusiness.findIdCredential(idPerson);
+
+
+                //Ahora si, inserto el cliente           
+                dataManager.setQuery("INSERT INTO Client(IdCredencial, JoinDate) VALUES (@ID, @Joindate)");
+                dataManager.setParameter("@ID", idCredencial);
+                dataManager.setParameter("@Joindate", client.DateOfRegister);
                 dataManager.executeRead();
 
             }

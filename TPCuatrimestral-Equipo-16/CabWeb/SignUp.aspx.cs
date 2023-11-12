@@ -31,19 +31,29 @@ namespace CabWeb
                 newClient.Cellphone = txtCel.Text;
                 newClient.DateOfRegister = DateTime.Now;
                 newClient.DateOfBirth = Convert.ToDateTime(txtDateOfBirth.Text);
+                newClient.Address = txtAddress.Text;
                 string password = txtPassword.Text;
-                cBusiness.AddNewUserDB(newClient, password);
+                if (fileUploadProfilePicture.HasFile)
+                {
+                    string extension = Path.GetExtension(fileUploadProfilePicture.FileName);
+                    string fileName = Guid.NewGuid().ToString() + newClient.Dni + extension;
+                    string rutaCarpetaRaiz = Server.MapPath("~");
+                    string Folder = "/images/ProfileImagesClients/";
+                    string uploadFolder = rutaCarpetaRaiz + Folder;
+                    string filePath = Path.Combine(uploadFolder, fileName);
+                    fileUploadProfilePicture.SaveAs(filePath);
+                    newClient.credentials.Photo = Folder + fileName;
+                    cBusiness.AddNewUserDB(newClient, password,newClient.credentials.Photo);
+                }
+                else
+                {
+                    newClient.credentials.Photo = "/pp.jpg";
+                    cBusiness.AddNewUserDB(newClient, password, newClient.credentials.Photo);
+                }
+              
+                Session.Add("ClientLogged", newClient);
 
-                string extension = Path.GetExtension(fileUploadProfilePicture.FileName);
-                string fileName = Guid.NewGuid().ToString() + newClient.Dni + extension;
-                string rutaCarpetaRaiz = Server.MapPath("~");
-                string Folder = "/images/ProfileImagesClients/";
-                string uploadFolder = rutaCarpetaRaiz + Folder;
-                string filePath = Path.Combine(uploadFolder, fileName);
-                fileUploadProfilePicture.SaveAs(filePath);
-
-
-                Response.Redirect("Login.aspx");
+                Response.Redirect("ClientView.aspx");
             }
             catch (Exception ex)
             {
