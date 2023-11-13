@@ -114,8 +114,7 @@ namespace CabWeb
             bkBusiness.addBooking(booking);
             Response.Redirect("~/ClientView.aspx");
         }
-        /*
-         *
+       
         protected void ChangePhoto2_Click(object sender, EventArgs e)
         {
             if (fileUpload1.HasFile)
@@ -133,7 +132,7 @@ namespace CabWeb
             }
 
         }
-        */
+       
         public string ObtenerExtension(FileUpload fileUploadControl)
         {
             if (fileUploadControl.HasFile)
