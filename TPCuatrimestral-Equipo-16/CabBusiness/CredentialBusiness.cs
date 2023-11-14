@@ -28,7 +28,13 @@ namespace CabBusiness
                     credential.IdPerson = (int)(long)dataManager.Lector["IdPerson"];
                     credential.Rol = (string)dataManager.Lector["Rol"];
                     credential.Email = (string)dataManager.Lector["Email"];
-                    credential.Photo = (string)dataManager.Lector["ImageProfile"];
+                    if (dataManager.Lector["ImageProfile"]==null)
+                    {
+                        credential.Photo = (string)dataManager.Lector["ImageProfile"];
+                    }
+                    else{
+                        credential.Photo = "/pp.jpg";
+                    }                  
                     credential.sethashPass((string)dataManager.Lector["HashContraseña"]);
                     credential.setsaltPass((string)dataManager.Lector["Sal"]);
                     dataManager.closeConection();
