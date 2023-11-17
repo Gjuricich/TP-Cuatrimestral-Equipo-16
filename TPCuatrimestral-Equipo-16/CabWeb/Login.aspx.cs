@@ -32,7 +32,7 @@ namespace CabWeb
                 Credential credential = credBusiness.GetUserByEmail(email);
 
                 if (credential.Rol == "Client")
-                {                          
+                {
                     person = pBusiness.GetPersonById(credential.IdCredential);
                     Client aux = cManager.GetClientById(credential.IdCredential);
                     Client client = new Client
@@ -40,7 +40,7 @@ namespace CabWeb
                         Name = person.Name,
                         Surname = person.Surname,
                         Gender = person.Gender,
-                        Dni = person.Dni,                 
+                        Dni = person.Dni,
                         Address = person.Address,
                         Cellphone = person.Cellphone,
                         DateOfBirth = person.DateOfBirth,
@@ -48,13 +48,14 @@ namespace CabWeb
                         DateOfRegister = aux.DateOfRegister,
                         State = aux.State,
                         credentials = credential,
-                     };
-                    
+                    };
+
+                 
                     Session.Add("ClientLogged", client);
                     Response.Redirect("ClientView.aspx");
                 }
                 else if (credential.Rol == "Employee")
-                {                  
+                {
                     person = pBusiness.GetPersonById(credential.IdCredential);
                     Employee aux = eBusiness.GetEmployeeById(credential.IdCredential);
                     Employee employee = new Employee
@@ -90,7 +91,7 @@ namespace CabWeb
             Response.Redirect("Default.aspx");
         }
 
-
+ 
         /*
         public Client loadCliente(Credential credential)
         {

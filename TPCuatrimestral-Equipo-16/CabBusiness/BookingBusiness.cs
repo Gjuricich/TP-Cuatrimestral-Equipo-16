@@ -90,7 +90,93 @@ namespace CabBusiness
             }
         }
 
-      
+        public List<Booking> BookingClient(int idClient)
+        {
+            List<Booking> list = new List<Booking>();
+            DataManager dataManager = new DataManager();
+            CityBusiness ctBusines = new CityBusiness();
+
+            try
+            {
+
+                dataManager.setQuery("SELECT * FROM Booking WHERE IdClient=@id AND StateBooking<>@status");
+                dataManager.setParameter("@status", "En proceso");
+                dataManager.setParameter("@id", idClient);
+                dataManager.executeRead();
+                while (dataManager.Lector.Read())
+                {
+                    Booking booking = new Booking();
+                    booking.IdBooking = (int)(long)dataManager.Lector["IdBooking"];
+                    booking.IdClient = (int)(long)dataManager.Lector["IdClient"];
+                    int Origin = (int)(long)dataManager.Lector["IdOrigen"];
+                    int Destination = (int)(long)dataManager.Lector["IdDestino"];
+                    booking.SolicitudDate = (DateTime)dataManager.Lector["SolicitudDate"];
+                    booking.DateBooking = (DateTime)dataManager.Lector["DateBooking"];
+                    booking.Passengers = (short)dataManager.Lector["Passengers"];
+                    booking.StateBooking = (string)dataManager.Lector["StateBooking"];
+                    booking.State = (bool)dataManager.Lector["Estado"];
+                    booking.Origin = ctBusines.GetCityByID(Origin);
+                    booking.Destination = ctBusines.GetCityByID(Destination);
+                    list.Add(booking);
+                }
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
+
+        public List<Booking> BookingInProgressClient(int idClient)
+        {
+            List<Booking> list = new List<Booking>();
+            DataManager dataManager = new DataManager();
+            CityBusiness ctBusines = new CityBusiness();
+
+            try
+            {
+
+                dataManager.setQuery("SELECT * FROM Booking WHERE IdClient=@id AND StateBooking=@status" );
+                dataManager.setParameter("@status", "En proceso");
+                dataManager.setParameter("@id", idClient);
+                dataManager.executeRead();
+                while (dataManager.Lector.Read())
+                {
+                    Booking booking = new Booking();
+                    booking.IdBooking = (int)(long)dataManager.Lector["IdBooking"];
+                    booking.IdClient = (int)(long)dataManager.Lector["IdClient"];
+                    int Origin = (int)(long)dataManager.Lector["IdOrigen"];
+                    int Destination = (int)(long)dataManager.Lector["IdDestino"];
+                    booking.SolicitudDate = (DateTime)dataManager.Lector["SolicitudDate"];
+                    booking.DateBooking = (DateTime)dataManager.Lector["DateBooking"];
+                    booking.Passengers = (short)dataManager.Lector["Passengers"];
+                    booking.StateBooking = (string)dataManager.Lector["StateBooking"];
+                    booking.State = (bool)dataManager.Lector["Estado"];
+                    booking.Origin = ctBusines.GetCityByID(Origin);
+                    booking.Destination = ctBusines.GetCityByID(Destination);
+                    list.Add(booking);
+                }
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
+
+
 
         public void addBooking(Booking booking)
         {
@@ -117,6 +203,28 @@ namespace CabBusiness
             {
                 dataManager.closeConection();
             }
+        }
+
+        public void editStatusRequestBooking(int IdBooking, string StatusRequest)
+        {
+            DataManager dataManager = new DataManager();
+
+            try
+            {
+                dataManager.setQuery("UPDATE Booking SET StateBooking = @StatusBooking WHERE IdBooking = @IDBOOKING");
+                dataManager.setParameter("@IDBOOKING", IdBooking);
+                dataManager.setParameter("@StatusBooking", StatusRequest);
+                dataManager.executeRead();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+
         }
 
         public void ChangeStateBooking(int bookingId)

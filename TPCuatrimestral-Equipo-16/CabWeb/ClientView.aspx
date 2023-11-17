@@ -157,8 +157,32 @@
                     <%} %>
                     <%if (CurrentContent == 1)
                         {%>
-                    <center>
-                        <h1>Home</h1>
+                     <center>
+                            <h1>Reservations in progress</h1>
+
+                            <div class="row" style="margin-top: 50px; margin-left: 25px; margin-right: 25px; margin-bottom: 50px;overflow:auto">
+                                <asp:Repeater ID="rptActiveBokings" runat="server">
+                                    <ItemTemplate>
+                                        <div class="col-12 col-md-6 col-lg-4 mb-2" style="background-color: rgba(0, 0, 0, 0.5);">
+                                            <center>
+                                                <div style="max-width: 18rem;">
+                                                    <center>
+                                                        <img src="https://th.bing.com/th/id/R.5980a84df020a575b1e6b9e4d24c265e?rik=phr7zp%2fsNPdVWA&pid=ImgRaw&r=0" alt="Foto" style="width: 100px; height: 100px; border-radius: 50%;" />
+                                                    </center>
+                                                    <p>Origin: <%# Eval("Origin.NameCity") %></p>
+                                                    <p>Destiny: <%# Eval("Destination.NameCity") %></p>
+                                                    <p>Date of booking: <%# Eval("DateBooking") %></p>
+                                                    <p>Date of petition: <%# Eval("SolicitudDate") %></p>
+                                                    <p>State of reservation: <%# Eval("StateBooking") %></p>
+                                                    <asp:LinkButton ID="Cancelcontrol" runat="server" Text="Cancel" CssClass="btn btn-danger" OnClick="Cancel_Click" CommandArgument='<%# Eval("IdBooking") %>' />
+                                                </div>
+                                            </center>
+                                        </div>
+
+                                    </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+       
                     </center>
 
  
@@ -166,7 +190,7 @@
                     <%} %>
                     <%else if (CurrentContent == 2)
                         {%>
-                    <center>
+                    
                        
                     <%} %>
                     <%else if (CurrentContent == 3)
@@ -222,10 +246,10 @@
                           <%else if (CurrentContent == 5)
                         {%>
                         <center>
-                            <h1>Your Reservations</h1>
+                            <h1>Reservations</h1>
 
                             <div class="row" style="margin-top: 50px; margin-left: 25px; margin-right: 25px; margin-bottom: 50px;overflow:auto">
-                                <asp:Repeater ID="rptActiveBokings" runat="server">
+                                <asp:Repeater ID="rptBokings" runat="server">
                                     <ItemTemplate>
                                         <div class="col-12 col-md-6 col-lg-4 mb-2" style="background-color: rgba(0, 0, 0, 0.5);">
                                             <center>
@@ -238,6 +262,7 @@
                                                     <p>Date of booking: <%# Eval("DateBooking") %></p>
                                                     <p>Date of petition: <%# Eval("SolicitudDate") %></p>
                                                     <p>State of reservation: <%# Eval("StateBooking") %></p>
+                                                    
                                                 </div>
                                             </center>
                                         </div>
