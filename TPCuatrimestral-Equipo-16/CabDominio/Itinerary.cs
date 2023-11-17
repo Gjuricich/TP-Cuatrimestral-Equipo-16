@@ -6,27 +6,18 @@ using System.Threading.Tasks;
 
 namespace CabDominio
 {
-    class Itinerary
+    public class Itinerary
     {
         public DateTime FlightArrival { get; set; }
         public DateTime FlightDeparture { get; set; }
         public string AirportArrival { get; set; }
         public string AirportDeparture { get; set; }
-
-        public Aircraft aircraft { get; set; }
-        public Flight flight { get; set; }
-        public List<Employee> crew { get; set; } 
         public int ETA { get; set; }
-        public int flightHours { get; set; }
-        public TimeSpan flightHour { get; set; }
+        public TimeSpan flightHours { get; set; }
         public string updateTrip { get; set; }
         public Itinerary()
         {
-            aircraft = new Aircraft();
-            crew = new List<Employee>();
-            flightHour  = new TimeSpan(2, 30, 0);
-            flight = new Flight();
-
+            flightHours = new TimeSpan(2, 30, 0);
         }
     }
 
