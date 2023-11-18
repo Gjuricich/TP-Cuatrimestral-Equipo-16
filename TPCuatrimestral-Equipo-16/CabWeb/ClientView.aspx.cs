@@ -23,7 +23,7 @@ namespace CabWeb
                       
             bkBusiness = new BookingBusiness();
             CurrentClient = (Client)Session["ClientLogged"];
-            addBookingClientSession(CurrentClient.IdClient);
+            addBookingClientSession(CurrentClient.IdClient);//si no es postback despues debe actualizar en bookings
        
 
             //Carga de la página
@@ -186,6 +186,8 @@ namespace CabWeb
        
         protected void ChangePhoto2_Click(object sender, EventArgs e)
         {
+            
+            
             if (fileUpload1.HasFile)
             {
                 CredentialBusiness crBusiness = new CredentialBusiness();
@@ -195,9 +197,23 @@ namespace CabWeb
                 string Folder = "/images/ProfileImagesClients/";
                 string uploadFolder = rutaCarpetaRaiz + Folder;
                 string filePath = Path.Combine(uploadFolder, fileName);
-                fileUpload1.SaveAs(filePath);
-                crBusiness.ChangePhoto(Folder + fileName, CurrentClient.credentials.IdCredential);
-                ProfilePhoto= Folder + fileName;
+
+                try
+                {
+                    
+                    fileUpload1.SaveAs(filePath);
+                    crBusiness.ChangePhoto(Folder + fileName, CurrentClient.credentials.IdCredential);
+                    CurrentClient.credentials.Photo = Folder + fileName;
+                    Session.Add("ClientLogged", CurrentClient);
+                    ProfilePhoto = Folder + fileName;
+                    
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+          
             }
 
         }

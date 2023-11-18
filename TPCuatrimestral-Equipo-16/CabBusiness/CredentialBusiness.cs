@@ -28,9 +28,11 @@ namespace CabBusiness
                     credential.IdPerson = (int)(long)dataManager.Lector["IdPerson"];
                     credential.Rol = (string)dataManager.Lector["Rol"];
                     credential.Email = (string)dataManager.Lector["Email"];
-                    if (dataManager.Lector["ImageProfile"]==null)
+                    if (dataManager.Lector["ImageProfile"]!=null && dataManager.Lector["ImageProfile"] != DBNull.Value)
                     {
                         credential.Photo = (string)dataManager.Lector["ImageProfile"];
+                        
+                        
                     }
                     else{
                         credential.Photo = "/pp.jpg";
@@ -212,6 +214,33 @@ namespace CabBusiness
                 data.closeConection();
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public string getPhoto(int IdCredential)
         {
 

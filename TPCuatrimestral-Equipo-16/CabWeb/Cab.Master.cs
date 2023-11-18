@@ -37,6 +37,7 @@ namespace CabWeb
             else if ((Employee)Session["EmployeeLogged"] != null)
             {
                 Session.Remove("EmployeeLogged");
+                Session.Remove("BookingsInProgress");
             }
             Label2.Text = "";
             Response.Redirect("~/Default.aspx");

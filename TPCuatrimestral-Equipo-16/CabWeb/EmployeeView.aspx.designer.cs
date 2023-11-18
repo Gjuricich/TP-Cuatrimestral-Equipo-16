@@ -15,85 +15,49 @@ namespace CabWeb
     {
 
         /// <summary>
-        /// Control UpdatePanel1.
+        /// Control updatePanelGeneral.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.UpdatePanel updatePanelGeneral;
 
         /// <summary>
-        /// Control linkButtonUser.
+        /// Control btnProfile.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkButtonUser;
+        protected global::System.Web.UI.WebControls.LinkButton btnProfile;
 
         /// <summary>
-        /// Control linkButton1.
+        /// Control btnDashboard.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton btnDashboard;
 
         /// <summary>
-        /// Control Bookings.
+        /// Control panelHome.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Bookings;
+        protected global::System.Web.UI.WebControls.Panel panelHome;
 
         /// <summary>
-        /// Control linkButton3.
+        /// Control lblAddPhoto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkButton3;
-
-        /// <summary>
-        /// Control linkButton4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkButton4;
-
-        /// <summary>
-        /// Control menuContent.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuContent;
-
-        /// <summary>
-        /// Control lblDateOfBirth.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateOfBirth;
-
-        /// <summary>
-        /// Control Label4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label lblAddPhoto;
 
         /// <summary>
         /// Control lblName.
@@ -231,6 +195,15 @@ namespace CabWeb
         protected global::System.Web.UI.WebControls.TextBox txtGender;
 
         /// <summary>
+        /// Control panelDashboard.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelDashboard;
+
+        /// <summary>
         /// Control rptActiveBokings.
         /// </summary>
         /// <remarks>
@@ -240,13 +213,13 @@ namespace CabWeb
         protected global::System.Web.UI.WebControls.Repeater rptActiveBokings;
 
         /// <summary>
-        /// Control fileUploadProfilePicture.
+        /// Control fileUpload1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileUploadProfilePicture;
+        protected global::System.Web.UI.WebControls.FileUpload fileUpload1;
 
         /// <summary>
         /// Control ChangePhoto2.

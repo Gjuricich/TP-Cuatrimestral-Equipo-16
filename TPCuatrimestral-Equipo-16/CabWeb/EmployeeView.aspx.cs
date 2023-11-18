@@ -23,7 +23,12 @@ namespace CabWeb
             loadProfile(CurrentEmployee);
             loadProfilePhoto();
             loadBookings();
-    
+            if (!IsPostBack)
+            {                      
+                panelHome.CssClass = "";
+                panelDashboard.CssClass = "hidden";
+            }
+
         }
 
        
@@ -47,10 +52,10 @@ namespace CabWeb
 
         private void loadProfilePhoto()
         {
-            CredentialBusiness crBusiness = new CredentialBusiness();
-            if (crBusiness.getPhoto(CurrentEmployee.credentials.IdCredential) != null)
+            
+            if (CurrentEmployee.credentials.Photo != null)
             {
-                ProfilePhoto = crBusiness.getPhoto(CurrentEmployee.credentials.IdCredential);
+                ProfilePhoto = CurrentEmployee.credentials.Photo;
             }
 
             else
@@ -58,24 +63,38 @@ namespace CabWeb
                 ProfilePhoto = "/pp.jpg";
 
             }
+         
         }
-   
+
 
 
         //----------------------------------         Eventos        --------------------------------------------------
 
+        protected void btnProfile_Click(object sender, EventArgs e)
+        {
+            panelHome.CssClass = "";
+            panelDashboard.CssClass = "hidden";
+            updatePanelGeneral.Update();
+
+        }
+
+        protected void btnDashboard_Click(object sender, EventArgs e)
+        {
+            panelDashboard.CssClass = "";
+            panelHome.CssClass = "hidden";
+            updatePanelGeneral.Update();
+        
+        }
+
+
         protected void Cancel_Click(object sender, EventArgs e)
         {
             BookingBusiness bBusiness = new BookingBusiness();
-
-
             try
             {
                 string IdBooking = ((LinkButton)sender).CommandArgument;
                 bBusiness.editStatusRequestBooking(int.Parse(IdBooking), "Cancelada");
-
-
-
+                ScriptManager.RegisterStartupScript(updatePanelGeneral, updatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + updatePanelGeneral.ClientID + "', '');", true);
             }
             catch (Exception ex)
             {
@@ -96,8 +115,7 @@ namespace CabWeb
             {
                 string IdBooking = ((LinkButton)sender).CommandArgument;
                 bBusiness.editStatusRequestBooking(int.Parse(IdBooking), "Aprobada");
-
-
+                ScriptManager.RegisterStartupScript(updatePanelGeneral, updatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + updatePanelGeneral.ClientID + "', '');", true);
 
             }
             catch (Exception ex)
@@ -106,56 +124,49 @@ namespace CabWeb
                 throw ex;
             }
 
-
-
         }
-        protected void linkButtonUser_Click(object sender, EventArgs e)
-        {
-            CurrentContent = 0;
-        }
-        protected void linkButton1_Click(object sender, EventArgs e)
-        {
-            CurrentContent = 1;
-        }
-        protected void linkButton2_Click(object sender, EventArgs e)
-        {
-            CurrentContent = 2;
-        }
-        protected void linkButton3_Click(object sender, EventArgs e)
-        {
-            CurrentContent = 3;
-        }
-        protected void linkButton4_Click(object sender, EventArgs e)
-        {
-            CurrentContent = 4;
-        }
-        protected void Bookings_Click(object sender, EventArgs e)
-        {
-            CurrentContent = 5;
-        }
+      
 
         
         protected void ChangePhoto2_Click(object sender, EventArgs e)
         {
-            if (fileUploadProfilePicture.HasFile)
+
+            if (fileUpload1.HasFile)
             {
                 CredentialBusiness crBusiness = new CredentialBusiness();
-                string extension = ObtenerExtension(fileUploadProfilePicture);
+                string extension = ObtenerExtension(fileUpload1);
                 string fileName = Guid.NewGuid().ToString() + CurrentEmployee.Dni + "." + extension;
                 string rutaCarpetaRaiz = Server.MapPath("~");
                 string Folder = "/images/ProfileImagesEmployees/";
                 string uploadFolder = rutaCarpetaRaiz + Folder;
                 string filePath = Path.Combine(uploadFolder, fileName);
-                fileUploadProfilePicture.SaveAs(filePath);
-                crBusiness.ChangePhoto(Folder + fileName, CurrentEmployee.credentials.IdCredential);
-                ProfilePhoto = Folder + fileName;
-            }
+
+                try
+                {
+                    fileUpload1.SaveAs(filePath);
+                    crBusiness.ChangePhoto(Folder + fileName, CurrentEmployee.credentials.IdCredential);
+                    CurrentEmployee.credentials.Photo = Folder + fileName;
+                    Session.Add("EmployeeLogged", CurrentEmployee);
+                    ProfilePhoto = Folder + fileName;                   
+                    //ScriptManager.RegisterStartupScript(updatePanelGeneral, updatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + updatePanelGeneral.ClientID + "', '');", true);
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+
+            }       
 
         }
+       
+              
+            
 
 
-        //----------------------------------         FUNCIONES       --------------------------------------------------
-        public string ObtenerExtension(FileUpload fileUploadControl)
+            //----------------------------------         FUNCIONES       --------------------------------------------------
+            public string ObtenerExtension(FileUpload fileUploadControl)
         {
             if (fileUploadControl.HasFile)
             {
