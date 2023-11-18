@@ -161,7 +161,7 @@
                         <center>
                             <h1> Solicitudes </h1>
 
-                            <div class="row" style="margin-top: 50px; margin-left: 25px; margin-right: 25px; margin-bottom: 50px; overflow: auto">
+<%--                            <div class="row" style="margin-top: 50px; margin-left: 25px; margin-right: 25px; margin-bottom: 50px; overflow: auto">
                                 <asp:Repeater ID="rptActiveBokings" runat="server">
                                     <ItemTemplate>
                                         <div class="col-12 col-md-6 col-lg-4 mb-2" style="background-color: rgba(0, 0, 0, 0.5);">
@@ -192,7 +192,48 @@
                         </asp:Repeater>
                     </div>
         <asp:Button ID="ChangeStatebooking2" runat="server" CommandArgument='<%# Eval("IdBooking") %>' class="btn btn-outline-primary" OnClick="ChangeStatebooking_Click" Text="Change State booking" Style="font-weight: bold; border-color: dimgrey; margin-top: 4%;margin-bottom: 4%;" AutoPostBack="true" />
-                                             
+                          --%>  
+                            
+
+                                    <div class="row" style="display: flex; flex-direction: column; margin-top: 70px; margin-left: 25%; margin-right: 25%; margin-bottom: 70px; overflow: auto; align-items: center;">
+                                    <asp:Repeater ID="rptActiveBokings" runat="server">
+                                        <ItemTemplate>
+                                            <div class="col-12 col-md-8 col-lg-6 mb-3" style="background-color: rgba(0, 0, 0, 0.5); width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                                <div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
+                                                    <div style="margin-right: 20%;">
+                                                        <center>
+                                                            <img src="https://th.bing.com/th/id/R.5980a84df020a575b1e6b9e4d24c265e?rik=phr7zp%2fsNPdVWA&pid=ImgRaw&r=0" alt="Foto" style="width: 210px; height: 210px; border-radius: 50%;" />
+                                                        </center>
+                                                        <p>ID booking: <%# Eval("IdBooking") %></p>
+                                                        <p>ID Client: <%# Eval("IdClient") %></p>
+                                                    </div>
+                                                    <div>
+                                                        <p style="font-weight: bold; font-size: 1.2em;">Origin: <%# Eval("Origin.NameCity") %></p>
+                                                        <p style="font-weight: bold; font-size: 1.2em;">Destiny: <%# Eval("Destination.NameCity") %></p>
+                                                        <p>Date of booking: <%# Eval("DateBooking") %></p>
+                                                        <p>Date of petition: <%# Eval("SolicitudDate") %></p>
+                                                        <p>Passengers: <%# Eval("Passengers") %></p>
+                                                        <p>State of reservation:
+                                                            <span style='<%# Eval("StateBooking").ToString() == "En proceso" ? "color: yellow;" : Eval("StateBooking").ToString() == "Aprobada" ? "color: green;" : "" %>'>
+                                                                <%# Eval("StateBooking") %>
+                                                            </span>
+                                                        </p>
+                                                        <asp:LinkButton ID="ChangeStatebooking3" runat="server" OnClick="ChangeStatebooking2_Click" CommandArgument='<%# Eval("IdBooking") %>' UseSubmitBehavior="false" OnClientClick="return confirm('Are you sure you want to Approve this Reservation?');">
+                                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                                        </asp:LinkButton>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </div>
+                                <asp:Button ID="ChangeStatebooking2" runat="server" CommandArgument='<%# Eval("IdBooking") %>' class="btn btn-outline-primary" OnClick="ChangeStatebooking_Click" Text="Change State booking" Style="font-weight: bold; border-color: dimgrey; margin-top: 4%; margin-bottom: 4%;" AutoPostBack="true" />
+  
+
+
+
+
+
                     </center>
                     <%} %>
               

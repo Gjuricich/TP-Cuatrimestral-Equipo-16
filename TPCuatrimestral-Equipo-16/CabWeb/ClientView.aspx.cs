@@ -33,7 +33,14 @@ namespace CabWeb
             loadBookings();
             loadBookingsStatus();
 
-       
+            txtName.Text = CurrentClient.Name;
+            txtLastName.Text = CurrentClient.Surname;
+            txtEmail.Text = CurrentClient.credentials.Email;
+            txtCel.Text = CurrentClient.Cellphone.ToString();
+            txtAdress.Text = CurrentClient.Address;
+            txtGender.Text = CurrentClient.Gender.ToString();
+
+
         }
 
         private void loadBookings()

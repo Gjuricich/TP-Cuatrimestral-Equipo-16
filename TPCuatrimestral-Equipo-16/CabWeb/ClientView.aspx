@@ -160,7 +160,7 @@
                      <center>
                             <h1>Reservations in progress</h1>
 
-                            <div class="row" style="margin-top: 50px; margin-left: 25px; margin-right: 25px; margin-bottom: 50px;overflow:auto">
+                           <%-- <div class="row" style="margin-top: 50px; margin-left: 25px; margin-right: 25px; margin-bottom: 50px;overflow:auto">
                                 <asp:Repeater ID="rptActiveBokings" runat="server">
                                     <ItemTemplate>
                                         <div class="col-12 col-md-6 col-lg-4 mb-2" style="background-color: rgba(0, 0, 0, 0.5);">
@@ -181,7 +181,34 @@
 
                                     </ItemTemplate>
                         </asp:Repeater>
-                    </div>
+                    </div>--%>
+
+
+                                 <div class="row" style="display: flex; flex-direction: column; margin-top: 50px; margin-left: 25%; margin-right: 25%; margin-bottom: 50px; overflow: auto; align-items: center;">
+                                    <asp:Repeater ID="rptActiveBokings" runat="server">
+                                        <ItemTemplate>
+                                            <div class="col-12 col-md-8 col-lg-6 mb-3" style="background-color: rgba(0, 0, 0, 0.5); width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                                <div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
+                                                    <div style=" margin-right: 20%;">
+                                                        <img src="https://th.bing.com/th/id/R.5980a84df020a575b1e6b9e4d24c265e?rik=phr7zp%2fsNPdVWA&pid=ImgRaw&r=0" alt="Foto" style="width: 210px; height: 210px; border-radius: 50%;" />
+                                                    </div>
+                                                    <div>
+                                                        <p style="font-weight: bold; font-size: 1.2em;">Origin: <%# Eval("Origin.NameCity") %></p>
+                                                        <p style="font-weight: bold; font-size: 1.2em;">Destiny: <%# Eval("Destination.NameCity") %></p>
+                                                        <p>Date of booking: <%# Eval("DateBooking") %></p>
+                                                        <p>Date of petition: <%# Eval("SolicitudDate") %></p>
+                                                        <p>State of reservation: <strong><%# Eval("StateBooking") %></strong></p>
+                                                         <asp:LinkButton ID="Cancelcontrol" runat="server" Text="Cancel" CssClass="btn btn-danger" OnClick="Cancel_Click" OnClientClick="return confirm('¿Are you sure that do you want cancel ticket ?')" CommandArgument='<%# Eval("IdBooking") %>' />
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </div>
+
+
+
        
                     </center>
 
@@ -197,7 +224,7 @@
                         {%>
                     <center>
                
-                           <div class="centered-inputs DefaultBox" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                           <div class="centered-inputs DefaultBox" style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%);">
                             <div class="container text-center" style="display: flex; justify-content: center; align-items: center;">
                                 <div class="row " display="flex" >
                                 <div class="col"  >
@@ -214,22 +241,24 @@
                                 </div>
                                 <div class="col" >
                                     <h4><strong>DATE</strong></h4>
-                                    <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="TxbDatePicked" type="date" data-date-format="dd/MM/yyyy" runat="server"></asp:TextBox>
+                                    <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="TxbDatePicked" type="date" data-date-format="dd/MM/yyyy" runat="server" required></asp:TextBox>
                                 </div>
                                     <div class="col">
                                         <h4><strong>TIME</strong></h4>
-                                        <asp:TextBox ID="TxbTimePicked" class="form-control form-control-sm rounded" style="max-width: 500px;" type="time" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="TxbTimePicked" class="form-control form-control-sm rounded" style="max-width: 500px;" type="time" runat="server" required></asp:TextBox>
                                     </div>
                                     <div class="col">
                                         <h4><strong>PASSENGER</strong></h4>
-                                        <input type="number" id="passengerInput" runat="server" min="1" max="10" style="background-color: transparent; max-width: 600%;">
+                                        <input type="number" id="passengerInput" runat="server" min="1" max="10" style="background-color: transparent; max-width: 600%;" required>
                                       </div>
                                     <%-- <div class="col"  >
                                     <%--<asp:button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top:4%;" runat="server"> Search </asp:button>--%>
 
                                     <%-- </div>--%>
+                                    
                                     <asp:Button ID="Bookflight" runat="server" class="btn btn-outline-secondary" OnClick="Bookflight_Click" Text="Book flight" Style="font-weight: bold; border-color: dimgrey; margin-top: 4%;" />
 
+                                     
                                 </div>
                             </div>
                            </div>
@@ -248,7 +277,7 @@
                         <center>
                             <h1>Reservations</h1>
 
-                            <div class="row" style="margin-top: 50px; margin-left: 25px; margin-right: 25px; margin-bottom: 50px;overflow:auto">
+                         <%--   <div class="row" style="margin-top: 50px; margin-left: 25px; margin-right: 25px; margin-bottom: 50px;overflow:auto">
                                 <asp:Repeater ID="rptBokings" runat="server">
                                     <ItemTemplate>
                                         <div class="col-12 col-md-6 col-lg-4 mb-2" style="background-color: rgba(0, 0, 0, 0.5);">
@@ -269,9 +298,33 @@
 
                                     </ItemTemplate>
                         </asp:Repeater>
-                    </div>
+                    </div>--%>
        
-                    </center>
+
+                                    <div class="row" style="display: flex; flex-direction: column; margin-top: 50px; margin-left: 25%; margin-right: 25%; margin-bottom: 50px; overflow: auto; align-items: center;">
+                                        <asp:Repeater ID="rptBokings" runat="server">
+                                            <ItemTemplate>
+                                                <div class="col-12 col-md-8 col-lg-6 mb-3" style="background-color: rgba(0, 0, 0, 0.5); width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                                    <div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
+                                                        <div style=" margin-right: 20%;">
+                                                            <img src="https://th.bing.com/th/id/R.5980a84df020a575b1e6b9e4d24c265e?rik=phr7zp%2fsNPdVWA&pid=ImgRaw&r=0" alt="Foto" style="width: 210px; height: 210px; border-radius: 50%;" />
+                                                        </div>
+                                                        <div>
+                                                            <p style="font-weight: bold; font-size: 1.2em;">Origin: <%# Eval("Origin.NameCity") %></p>
+                                                            <p style="font-weight: bold; font-size: 1.2em;">Destiny: <%# Eval("Destination.NameCity") %></p>
+                                                            <p>Date of booking: <%# Eval("DateBooking") %></p>
+                                                            <p>Date of petition: <%# Eval("SolicitudDate") %></p>
+                                                            <p>State of reservation: <strong><%# Eval("StateBooking") %></strong></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>
+                        
+                        
+                        
+                        </center>
                     <%} %>
               
             </div>
@@ -448,4 +501,10 @@
         </table>
     </div>
   </section>
+
+
+
+
+
+
 </asp:Content>
