@@ -1,5 +1,30 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Cab.Master" AutoEventWireup="true" CodeBehind="EmployeeView.aspx.cs" Inherits="CabWeb.EmployeeView"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+        <style>
+        body 
+        {
+            background: url('images/JeteditEmployee.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .ClientBox 
+        {
+            background-color: rgba(169, 169, 169, 0.7);
+            width: 85%;
+            height: 800px;
+            overflow: auto;
+        }
+
+        .BookingBox
+        {
+            background-color: rgba(169, 169, 169, 0.2);
+            padding:1%;
+         
+        }
+
+        
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -9,27 +34,7 @@
         }%>
 
     
-    <style>
-        body {
-            background: url('images/JeteditEmployee.jpg') no-repeat center center fixed;
-            background-size: cover;
-        }
 
-        .ClientBox {
-            background-color: rgba(169, 169, 169, 0.7);
-            width: 85%;
-            height: 800px;
-            overflow: auto;
-        }
-
-          .BookingBox {
-            background-color: rgba(169, 169, 169, 0.2);
-            padding:1%;
-         
-        }
-
-        
-    </style>
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server"  UpdateMode="Conditional"  ChildrenAsTriggers="true">
@@ -159,7 +164,7 @@
                           <%else if (CurrentContent == 5)
                         {%>
                         <center>
-                            <h1> Solicitudes </h1>
+                            <h1> Solicitudes de Reserva </h1>
 
 <%--                            <div class="row" style="margin-top: 50px; margin-left: 25px; margin-right: 25px; margin-bottom: 50px; overflow: auto">
                                 <asp:Repeater ID="rptActiveBokings" runat="server">
@@ -218,16 +223,15 @@
                                                                 <%# Eval("StateBooking") %>
                                                             </span>
                                                         </p>
-                                                        <asp:LinkButton ID="ChangeStatebooking3" runat="server" OnClick="ChangeStatebooking2_Click" CommandArgument='<%# Eval("IdBooking") %>' UseSubmitBehavior="false" OnClientClick="return confirm('Are you sure you want to Approve this Reservation?');">
-                                                            <i class="bi bi-check-circle-fill text-success"></i>
-                                                        </asp:LinkButton>
+                                                        <asp:LinkButton ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-danger" OnClick="Cancel_Click" OnClientClick="return confirm('¿Are you sure that do you want cancel ticket ?')" CommandArgument='<%# Eval("IdBooking") %>' />
+                                                        <asp:LinkButton ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success" OnClick="Approve_Click" OnClientClick="return confirm('¿Are you sure that do you want approve ticket ?')" CommandArgument='<%# Eval("IdBooking") %>' />
                                                     </div>
                                                 </div>
                                             </div>
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </div>
-                                <asp:Button ID="ChangeStatebooking2" runat="server" CommandArgument='<%# Eval("IdBooking") %>' class="btn btn-outline-primary" OnClick="ChangeStatebooking_Click" Text="Change State booking" Style="font-weight: bold; border-color: dimgrey; margin-top: 4%; margin-bottom: 4%;" AutoPostBack="true" />
+                            
   
 
 

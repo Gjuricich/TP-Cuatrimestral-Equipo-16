@@ -48,6 +48,48 @@ namespace CabBusiness
             }
         }
 
+        
+             public List<Booking> ListInProgress()
+           {
+            List<Booking> list = new List<Booking>();
+            DataManager dataManager = new DataManager();
+
+            try
+            {
+                dataManager.setQuery("SELECT * FROM Booking WHERE StateBooking=@status");
+                dataManager.setParameter("@status", "En proceso");       
+                dataManager.executeRead();
+                while (dataManager.Lector.Read())
+                {
+                    Booking booking = new Booking();
+                    booking.IdBooking = (int)(long)dataManager.Lector["IdBooking"];
+                    booking.IdClient = (int)(long)dataManager.Lector["IdClient"];
+                    booking.Origin.IdCity = (int)(long)dataManager.Lector["IdOrigen"];
+                    booking.Destination.IdCity = (int)(long)dataManager.Lector["IdDestino"];
+                    booking.SolicitudDate = (DateTime)dataManager.Lector["SolicitudDate"];
+                    booking.DateBooking = (DateTime)dataManager.Lector["DateBooking"];
+                    booking.Passengers = (short)dataManager.Lector["Passengers"];
+                    booking.StateBooking = (string)dataManager.Lector["StateBooking"];
+                    booking.State = (bool)dataManager.Lector["Estado"];
+
+                    list.Add(booking);
+                }
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
+
+
+
         public List<Booking> ListByClient(Client client)
         {
             int idClient = client.IdClient;

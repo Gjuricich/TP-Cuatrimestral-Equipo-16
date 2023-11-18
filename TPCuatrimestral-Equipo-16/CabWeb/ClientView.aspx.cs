@@ -32,14 +32,21 @@ namespace CabWeb
             loadProfilePhoto();
             loadBookings();
             loadBookingsStatus();
+            loadProfile(CurrentClient);
 
+      
+
+
+        }
+
+        private void loadProfile(Client CurrentClient)
+        {
             txtName.Text = CurrentClient.Name;
             txtLastName.Text = CurrentClient.Surname;
             txtEmail.Text = CurrentClient.credentials.Email;
             txtCel.Text = CurrentClient.Cellphone.ToString();
             txtAdress.Text = CurrentClient.Address;
             txtGender.Text = CurrentClient.Gender.ToString();
-
 
         }
 

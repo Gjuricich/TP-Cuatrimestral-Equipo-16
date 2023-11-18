@@ -13,20 +13,42 @@ namespace CabWeb
     public partial class EmployeeView : System.Web.UI.Page
     {
         public Employee CurrentEmployee;
-        public BookingBusiness bkBusiness = new BookingBusiness();
-        public int CurrentContent = 0;
-        public List<Booking> RecivedReservations;
+        public int CurrentContent = 0;  
         public string ProfilePhoto;
         protected void Page_Load(object sender, EventArgs e)
         {
-            CredentialBusiness crBusiness = new CredentialBusiness();
-            bkBusiness = new BookingBusiness();
-            RecivedReservations = new List<Booking>();
+                                       
             CurrentEmployee = (Employee)Session["EmployeeLogged"];
-            RecivedReservations = bkBusiness.List();
-            rptActiveBokings.DataSource = RecivedReservations;
+            updateBookingEmployeeSession();
+            loadProfile(CurrentEmployee);
+            loadProfilePhoto();
+            loadBookings();
+    
+        }
+
+       
+
+        private void loadProfile(Employee CurrentEmployee)
+        {
+            txtName.Text = CurrentEmployee.Name;
+            txtLastName.Text = CurrentEmployee.Surname;
+            txtEmail.Text = CurrentEmployee.credentials.Email;
+            txtCel.Text = CurrentEmployee.Cellphone.ToString();
+            txtAdress.Text = CurrentEmployee.Address;
+            txtGender.Text = CurrentEmployee.Gender.ToString();
+
+        }
+
+        private void loadBookings()
+        {
+            rptActiveBokings.DataSource = (List<Booking>)Session["BookingsInProgress"];
             rptActiveBokings.DataBind();
-          if (crBusiness.getPhoto(CurrentEmployee.credentials.IdCredential)!=null)
+        }
+
+        private void loadProfilePhoto()
+        {
+            CredentialBusiness crBusiness = new CredentialBusiness();
+            if (crBusiness.getPhoto(CurrentEmployee.credentials.IdCredential) != null)
             {
                 ProfilePhoto = crBusiness.getPhoto(CurrentEmployee.credentials.IdCredential);
             }
@@ -36,14 +58,53 @@ namespace CabWeb
                 ProfilePhoto = "/pp.jpg";
 
             }
+        }
+   
 
-            txtName.Text = CurrentEmployee.Name;
-            txtLastName.Text = CurrentEmployee.Surname;
-            txtEmail.Text = CurrentEmployee.credentials.Email;
-            txtCel.Text = CurrentEmployee.Cellphone.ToString();
-            txtAdress.Text = CurrentEmployee.Address;
-           txtGender.Text = CurrentEmployee.Gender.ToString();
 
+        //----------------------------------         Eventos        --------------------------------------------------
+
+        protected void Cancel_Click(object sender, EventArgs e)
+        {
+            BookingBusiness bBusiness = new BookingBusiness();
+
+
+            try
+            {
+                string IdBooking = ((LinkButton)sender).CommandArgument;
+                bBusiness.editStatusRequestBooking(int.Parse(IdBooking), "Cancelada");
+
+
+
+            }
+            catch (Exception ex)
+            {
+                //Response.Redirect("~/Error.aspx");
+                throw ex;
+            }
+
+
+
+        }
+
+        protected void Approve_Click(object sender, EventArgs e)
+        {
+            BookingBusiness bBusiness = new BookingBusiness();
+
+
+            try
+            {
+                string IdBooking = ((LinkButton)sender).CommandArgument;
+                bBusiness.editStatusRequestBooking(int.Parse(IdBooking), "Aprobada");
+
+
+
+            }
+            catch (Exception ex)
+            {
+                //Response.Redirect("~/Error.aspx");
+                throw ex;
+            }
 
 
 
@@ -73,24 +134,7 @@ namespace CabWeb
             CurrentContent = 5;
         }
 
-        protected void ChangeStatebooking_Click(object sender, EventArgs e)
-        {
-            bkBusiness = new BookingBusiness();
-            Button btn = (Button)sender;
-            string idbok = btn.CommandArgument;
-            int IdBooking = int.Parse(idbok);
-            bkBusiness.ChangeStateBooking(IdBooking);
-
-        }
-        protected void ChangeStatebooking2_Click(object sender, EventArgs e)
-        {
-            bkBusiness = new BookingBusiness();
-            LinkButton btn = (LinkButton)sender;
-            string idbok = btn.CommandArgument;
-            int IdBooking = int.Parse(idbok);
-            bkBusiness.ChangeStateBooking(IdBooking);
-
-        }
+        
         protected void ChangePhoto2_Click(object sender, EventArgs e)
         {
             if (fileUploadProfilePicture.HasFile)
@@ -108,6 +152,9 @@ namespace CabWeb
             }
 
         }
+
+
+        //----------------------------------         FUNCIONES       --------------------------------------------------
         public string ObtenerExtension(FileUpload fileUploadControl)
         {
             if (fileUploadControl.HasFile)
@@ -120,6 +167,25 @@ namespace CabWeb
             {
                 return string.Empty;  // No hay archivo cargado
             }
+        }
+
+        private void updateBookingEmployeeSession()
+        {
+            BookingBusiness bkBusiness = new BookingBusiness();
+            List<Booking> BookingsInProgress;
+
+
+            try
+            {
+                BookingsInProgress = bkBusiness.ListInProgress();
+                Session["BookingsInProgress"] = BookingsInProgress;
+               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
 }
