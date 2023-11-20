@@ -219,6 +219,12 @@ namespace CabWeb
                 return;
             }
             booking.DateBooking = fechaSeleccionada;
+            if (ctBusiness.GetCityByName(ddlcityDestiny.SelectedValue).IdCity == ctBusiness.GetCityByName(ddlcityOrigin.SelectedValue).IdCity)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('El destino no puede ser el mismo que el origen.');", true);
+                return;
+            }
             booking.Destination = ctBusiness.GetCityByName(ddlcityDestiny.SelectedValue);
             booking.Origin = ctBusiness.GetCityByName(ddlcityOrigin.SelectedValue);
             booking.Passengers= pasajeros;
