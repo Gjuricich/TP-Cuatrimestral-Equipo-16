@@ -193,7 +193,7 @@
                                     </div>
                                     <div class="col">
                                         <h4><strong>PASSENGER</strong></h4>
-                                        <input type="number" id="passengerInput" runat="server" min="1" max="10" style="background-color: transparent; max-width: 600%;" required>
+                                        <input type="number" id="passengerInput" runat="server" min="1" max="12" style="background-color: transparent; max-width: 600%;" required>
                                       </div>
                                                                
                                     <asp:Button ID="Bookflight" runat="server" class="btn btn-outline-secondary" OnClick="Bookflight_Click" Text="Book flight" Style="font-weight: bold; border-color: dimgrey; margin-top: 4%;" />

@@ -190,16 +190,38 @@ namespace CabWeb
             CityBusiness ctBusiness = new CityBusiness();
             Booking booking = new Booking();
             string fechaSeleccionadaText = TxbDatePicked.Text;
+             if (TxbDatePicked.Text=="")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Por favor, seleccione una fecha.');", true);
+                return;
+            }
             fechaSeleccionadaText.Replace('-', '/');
             string horaSeleccionadaText = TxbTimePicked.Text;
+            if (TxbTimePicked.Text=="")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Por favor, seleccione una hora.');", true);
+                return;
+            }
             string fechayhora = fechaSeleccionadaText + " " + horaSeleccionadaText;
             DateTime fechaSeleccionada = DateTime.ParseExact(fechayhora, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+            TimeSpan anticipacion = fechaSeleccionada - DateTime.Now;
+            if (anticipacion.TotalDays < 5)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('La reserva debe realizarse con al menos 5 días de anticipación.');", true);
+                return; 
+            }
+            int capacidadMaxima = 12;
+            short pasajeros;
+            if (!short.TryParse(passengerInput.Value, out pasajeros) || pasajeros < 1 || pasajeros > capacidadMaxima)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('La cantidad de pasajeros debe ser un número entre 1 y " + capacidadMaxima + ".');", true);
+                return;
+            }
             booking.DateBooking = fechaSeleccionada;
             booking.Destination = ctBusiness.GetCityByName(ddlcityDestiny.SelectedValue);
             booking.Origin = ctBusiness.GetCityByName(ddlcityOrigin.SelectedValue);
-            short Pasajeros;
-            short.TryParse(passengerInput.Value,out Pasajeros);
-            booking.Passengers= Pasajeros;
+            booking.Passengers= pasajeros;
             booking.IdClient = CurrentClient.IdClient;
             booking.StateBooking = "En proceso";
             booking.State = true;
