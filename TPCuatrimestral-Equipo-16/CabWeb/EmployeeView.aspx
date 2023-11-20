@@ -36,8 +36,7 @@
             Response.Redirect("Default.aspx");
         }%>
         
-        <asp:UpdatePanel ID="updatePanelGeneral" runat="server" UpdateMode="Conditional">
-        <ContentTemplate>
+        
         <div class="container-fluid">
         <div class="row">
 
@@ -71,6 +70,9 @@
         <div class="col">
 
      <%------------------   PROFILE    ---------------%> 
+        <asp:UpdatePanel ID="updatePanelGeneral" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+
 
         <asp:Panel ID="panelHome" runat="server" CssClass="hidden">
            
@@ -177,7 +179,6 @@
         <asp:Panel ID="panelFlight" runat="server" CssClass="hidden">
              <center>
                         <h1>Historial</h1>
-                        <script>new DataTable('#example');</script>
                         <table id="example" class="table table-striped" style="width: 100%">
                             <thead>
                                 <tr>
@@ -187,6 +188,7 @@
                                     <th>Aircraft</th>
                                     <th>Passengers</th>
                                     <th>Request status</th>
+                                    <th></th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -200,7 +202,12 @@
                                         <td> Nombre modelo avión</td>
                                         <td><%# Eval("AmountPassengers") %></td>
                                         <td><%# Eval("FlightState") %></td>
-                                        <td><%# Eval("Status") %></td>
+                                        <td>
+                                       
+                                              <a href="EditEmployee.aspx" class="btn btn-primary">
+                                             <i class="bi bi-pencil-fill"></i>
+                                              </a>
+                                        </td>
                                         <td>
                                             <button type="button" class="btn btn-danger">
                                             <i class="bi bi-trash"></i> 
@@ -214,14 +221,15 @@
                         </table>
                     </center>           
         </asp:Panel>
-         </div>
-      </div>
-    </div>
-
-
+   
 
                 </ContentTemplate>       
             </asp:UpdatePanel>
+
+             </div>
+  
+       </div>
+    </div>
 
         <%-----------------------------------------------------     MODALES         ----------------------------------------------%>
 

@@ -72,7 +72,7 @@
     <Content Include="Default.aspx" />
     <Content Include="EmployeeView.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Intento.aspx" />
+    <Content Include="LALA.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Message.aspx" />
     <Content Include="PaymentMethods.aspx" />
@@ -146,12 +146,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Intento.aspx.cs">
-      <DependentUpon>Intento.aspx</DependentUpon>
+    <Compile Include="LALA.aspx.cs">
+      <DependentUpon>LALA.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Intento.aspx.designer.cs">
-      <DependentUpon>Intento.aspx</DependentUpon>
+    <Compile Include="LALA.aspx.designer.cs">
+      <DependentUpon>LALA.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
