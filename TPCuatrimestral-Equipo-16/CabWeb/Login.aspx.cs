@@ -82,7 +82,21 @@ namespace CabWeb
             }
             else
             {
-                Response.Redirect("Login.aspx");
+                string script = @"
+                    <script type='text/javascript'>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var myModal = new bootstrap.Modal(document.getElementById('errorMessage'));
+                            myModal.show();
+                        
+                            setTimeout(function () {
+                                            myModal.hide();
+                                        }, 2000);
+
+                        });
+                    </script>";
+                ClientScript.RegisterStartupScript(this.GetType(), "showModal", script, false);
+
+                //Response.Redirect("Login.aspx");
             }
         }
         protected void btnRedirect_Click(object sender, EventArgs e)
