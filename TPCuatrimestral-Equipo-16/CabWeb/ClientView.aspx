@@ -1,10 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Cab.Master" AutoEventWireup="true" CodeBehind="ClientView.aspx.cs" Inherits="CabWeb.ClientView" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%if (Session["ClientLogged"] == null)
-        {
-            Response.Redirect("Default.aspx");
-        }%>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <style>
         body {
@@ -12,11 +8,12 @@
             background-size: cover;
         }
 
-        .ClientBox {
+         .ProfileBox {
             background-color: rgba(169, 169, 169, 0.7);
-            width: 85%;
-            height: 800px;
-            overflow: auto;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 100%;
+            margin-top : 5px;       
         }
 
           .BookingBox {
@@ -24,104 +21,93 @@
             padding:1%;
          
         }
+           .hidden 
+        {
+            display: none;
+        }
 
         
     </style>
 
 
-   
-   
+</asp:Content>
 
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <div class="row">
-                <div class="ol-sm-auto bg-light " style="width: 9rem">
-                    <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center " style="width: 8.2rem;">
-                        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center justify-content-center ">
-                            <li>
-                                <br />
-                                <asp:LinkButton ID="linkButtonUser" runat="server" OnClick="linkButtonUser_Click" class="nav-link py-3 border-bottom">
-    <img src="/IconSidebar/svg1 (5).svg"" alt="Descripción de la imagen"style="margin-top:250%; height:40px;width:40px;"/>
-                                </asp:LinkButton>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-                            </li>
-                            <li class="nav-item">
-                                <asp:LinkButton ID="linkButton1" runat="server" OnClick="linkButton1_Click" class="nav-link py-3 border-bottom">
-    <img src="/IconSidebar/svg1 (1).svg" alt="Descripción de la imagen"style="height:40px;width:40px;" />
-                                </asp:LinkButton>
-                            </li>
+    <%if (Session["ClientLogged"] == null)
+      {
+            Response.Redirect("Default.aspx");
+      }%>
 
-                               <li class="nav-item">
-                                <asp:LinkButton ID="Bookings" runat="server" OnClick="Bookings_Click" class="nav-link py-3 border-bottom">
-    <img src="/IconSidebar/Travels.svg" alt="Descripción de la imagen"style="height:40px;width:40px;" />
-                                </asp:LinkButton>
-                            </li>
-                            <li>
-                              <%--  <asp:LinkButton ID="linkButton2" runat="server" OnClick="linkButton2_Click" class="nav-link py-3 border-bottom">
-    <img src="/IconSidebar/svg1 (2).svg"" alt="Descripción de la imagen"style="height:40px;width:40px;" />
-                                </asp:LinkButton>--%>
-                                <a href="#historical">
-                                     <img src="/IconSidebar/svg1 (2).svg"" alt="Descripción de la imagen"style="height:40px;width:40px; margin-top:15%;" />
-                                    <hr />
-                                </a>
-                            </li>
-                            <li>
-                                <asp:LinkButton ID="linkButton3" runat="server" OnClick="linkButton3_Click" class="nav-link py-3 border-bottom">
-    <img src="/IconSidebar/svg1 (3).svg"" alt="Descripción de la imagen"style="height:40px;width:40px;" />
-                                </asp:LinkButton>
-                            </li>
-                            <li>
-                                <asp:LinkButton ID="linkButton4" runat="server" OnClick="linkButton4_Click" class="nav-link py-3 border-bottom">
-    <img src="/IconSidebar/svg1 (4).svg"" alt="Descripción de la imagen"style="height:40px;width:40px;"/>
-                                </asp:LinkButton>
-
-                            </li>
-                        </ul>
+    
 
 
-                    </div>
+      <div class="container-fluid">
+        <div class="row">
 
+                  <%-----------------------------------------------------     Barra lateral         ----------------------------------------------%>
+            <div class="col-md-auto bg-light" style="padding: 0; min-width: 8rem;">
+                <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-5">
+                            <asp:LinkButton ID="btnProfile" runat="server" OnClick="btnProfile_Click" class="nav-link p-0">
+                                <img src="/IconSidebar/svg1 (5).svg" alt="Profile" style="height: 40px; width: 40px; margin: 0 auto;" />
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item mb-5">
+                            <asp:LinkButton ID="btnBookingInProgress" runat="server" Onclick="btnBookingInProgress_Click" class="nav-link p-0">
+                                <img src="/IconSidebar/svg1 (2).svg" alt="Bookings" style="height: 40px; width: 40px; margin: 0 auto;" />
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item mb-5">
+                            <asp:LinkButton ID="btnBooking" runat="server" OnClick="btnBooking_Click" class="nav-link p-0">
+                                <img src="/IconSidebar/svg1 (4).svg" alt="Flight" style="height: 40px; width: 40px; margin: 0 auto;" />
+                            </asp:LinkButton>
+                        </li>
+                         <li class="nav-item mb-5">
+                            <asp:LinkButton ID="btnAddBooking" runat="server" OnClick="btnAddBooking_Click" class="nav-link p-0">
+                                <img src="/IconSidebar/svg1 (3).svg" alt="Flight" style="height: 40px; width: 40px; margin: 0 auto;" />
+                            </asp:LinkButton>
+                        </li>
+                    </ul>
                 </div>
-
-                <div class="col-11 ClientBox" id="menuContent">
+            </div>
+      
        
 
-                    <%if (CurrentContent == 0)
-                        {%>
-                    
-              
-                            
-                            
-                            <div class="col-3 bg-secondary  rounded shadow p-3" style ="margin-top : 5px;margin-left:37.5%;">
-                                <br />
-                                <center>
-                          <img src='<%:ProfilePhoto%>' alt="Foto" style="width: 200px; height: 200px; border-radius: 50%; margin-bottom:2%;" />
-                                <br />
-                           <h1><%:CurrentClient.Name + " " + CurrentClient.Surname%></h1>
-                        <br />
-                   </center>
-                            <img src="/IconSidebar/antg.svg" alt="Antigüedad" style="width: 25px; height: 25px;" />
-                            <asp:Label ID="lblAntiguedad" runat="server"  />
-                             <br />
-                            <img src="/IconSidebar/famount.svg" alt="cant" style="width: 25px; height: 25px;"  />
-                            <asp:Label ID="lblVuelos" runat="server" />
-                             <br />
-                            <img src="/IconSidebar/ok.svg" alt="ok" style="width: 25px; height: 25px;"  />
-                            <asp:Label ID="llblAceptadas" runat="server" />
-                             <br />
-                            <img src="/IconSidebar/pross.svg" alt="pross" style="width: 25px; height: 25px;"  />
-                            <asp:Label ID="lblEnProceso" runat="server"/>
-                             <br />
-                                </div>
-                            <center>
-                            <asp:Label ID="Label4" runat="server" style="color: black;" Text="Add profile picture"></asp:Label><br />
+     <%-----------------------------------------------------    Contenido íconos        ----------------------------------------------%>
+            
+           <div class="col">
+           <asp:UpdatePanel ID="UpdatePanelGeneral" runat="server" UpdateMode="Conditional">
+           <ContentTemplate>
 
+
+     <%------------------   PROFILE    ---------------%> 
+               <asp:Panel ID="panelprofile" runat="server" CssClass="hidden">
+           
+               <div class="col-4" style="margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
+                    <div  class="ProfileBox">
+                        
+                           <center>
+                               <img src='<%:CurrentClient.credentials.Photo%>' alt="Foto" style="width: 200px; height: 200px; border-radius: 50%; margin-bottom:2%;" />
+                                <br/>
+                                  <h1><%:CurrentClient.Name + " " + CurrentClient.Surname%></h1>
+                                <br/>
+                           </center>
+
+
+                           <center>  
+                            <%---------------------------------         Cambiar foto de perfil        ----------------------------------%>
+                          
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" style="margin-top:2%; margin-bottom:2%;">
                               <i class="bi bi-pencil-fill"></i>
                             </button>
-                   
-                                <div>
-                             <asp:Label class="text-secondary" ID="lblName" runat="server"></asp:Label>
+                            <asp:Label ID="lblAddPhoto" runat="server" style="color: black;" Text="Add profile picture"></asp:Label>
+
+                             <%---------------------------------          Formulario          -------------------------------------------%>
+                                              
+                            <div>   
+                            <asp:Label class="text-secondary" ID="lblName" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  ID="txtName" runat="server" ReadOnly="true"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblLastName" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtLastName" runat="server" ReadOnly="true"></asp:TextBox><br />
@@ -135,57 +121,24 @@
                             <asp:Label class="text-secondary" ID="lblAdress" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded"  style="max-width: 500px;"  ID="txtAdress" runat="server"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblGender" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGender" runat="server" MaxLength="1"></asp:TextBox><br />
-                          
-
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGender" runat="server" MaxLength="1"></asp:TextBox><br />                         
+                       
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top:2%; margin-bottom:2%;">
-                                Edit
-                            </button>
+                                Save changes
+                            </button>           
+                            </div>
+                            </center>
+                     </div>
+                  </div>                  
+              </asp:Panel>
 
-                            
-                          
-                            <a href="Default.aspx" class="btn btn-secondary" style="margin-top:2%; margin-bottom:2%;">Back</a>
+                   <%------------------   Reservas en proceso    ---------------%>
 
-                        
-                        
-                           
-                        </div>
-     
-</div>
-
-                    </center>
-                    <%} %>
-                    <%if (CurrentContent == 1)
-                        {%>
-                     <center>
-                            <h1>Reservations in progress</h1>
-
-                           <%-- <div class="row" style="margin-top: 50px; margin-left: 25px; margin-right: 25px; margin-bottom: 50px;overflow:auto">
-                                <asp:Repeater ID="rptActiveBokings" runat="server">
-                                    <ItemTemplate>
-                                        <div class="col-12 col-md-6 col-lg-4 mb-2" style="background-color: rgba(0, 0, 0, 0.5);">
-                                            <center>
-                                                <div style="max-width: 18rem;">
-                                                    <center>
-                                                        <img src="https://th.bing.com/th/id/R.5980a84df020a575b1e6b9e4d24c265e?rik=phr7zp%2fsNPdVWA&pid=ImgRaw&r=0" alt="Foto" style="width: 100px; height: 100px; border-radius: 50%;" />
-                                                    </center>
-                                                    <p>Origin: <%# Eval("Origin.NameCity") %></p>
-                                                    <p>Destiny: <%# Eval("Destination.NameCity") %></p>
-                                                    <p>Date of booking: <%# Eval("DateBooking") %></p>
-                                                    <p>Date of petition: <%# Eval("SolicitudDate") %></p>
-                                                    <p>State of reservation: <%# Eval("StateBooking") %></p>
-                                                    <asp:LinkButton ID="Cancelcontrol" runat="server" Text="Cancel" CssClass="btn btn-danger" OnClick="Cancel_Click" CommandArgument='<%# Eval("IdBooking") %>' />
-                                                </div>
-                                            </center>
-                                        </div>
-
-                                    </ItemTemplate>
-                        </asp:Repeater>
-                    </div>--%>
-
-
-                                 <div class="row" style="display: flex; flex-direction: column; margin-top: 50px; margin-left: 25%; margin-right: 25%; margin-bottom: 50px; overflow: auto; align-items: center;">
-                                    <asp:Repeater ID="rptActiveBokings" runat="server">
+        <asp:Panel ID="panelBookings" runat="server" CssClass="hidden">
+            <center>
+                            <h1> Solicitudes de Reserva </h1>                            
+                                    <div class="row" style="display: flex; flex-direction: column; margin-top: 70px; margin-left: 25%; margin-right: 25%; margin-bottom: 70px; overflow: auto; align-items: center;">
+                                     <asp:Repeater ID="rptActiveBokings" runat="server">
                                         <ItemTemplate>
                                             <div class="col-12 col-md-8 col-lg-6 mb-3" style="background-color: rgba(0, 0, 0, 0.5); width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                                                 <div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
@@ -205,26 +158,17 @@
                                             </div>
                                         </ItemTemplate>
                                     </asp:Repeater>
-                                </div>
-
-
-
-       
+                                </div>                           
                     </center>
+             </asp:Panel>
 
- 
+                <%------------------  Solicitud de reserva    ---------------%>
 
-                    <%} %>
-                    <%else if (CurrentContent == 2)
-                        {%>
-                    
-                       
-                    <%} %>
-                    <%else if (CurrentContent == 3)
-                        {%>
-                    <center>
+                <asp:Panel ID="panelRequestBooking" runat="server" CssClass="hidden">
                
-                           <div class="centered-inputs DefaultBox" style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%);">
+                     <center>
+               
+                           <div class="centered-inputs DefaultBox" style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);">
                             <div class="container text-center" style="display: flex; justify-content: center; align-items: center;">
                                 <div class="row " display="flex" >
                                 <div class="col"  >
@@ -251,11 +195,7 @@
                                         <h4><strong>PASSENGER</strong></h4>
                                         <input type="number" id="passengerInput" runat="server" min="1" max="10" style="background-color: transparent; max-width: 600%;" required>
                                       </div>
-                                    <%-- <div class="col"  >
-                                    <%--<asp:button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top:4%;" runat="server"> Search </asp:button>--%>
-
-                                    <%-- </div>--%>
-                                    
+                                                               
                                     <asp:Button ID="Bookflight" runat="server" class="btn btn-outline-secondary" OnClick="Bookflight_Click" Text="Book flight" Style="font-weight: bold; border-color: dimgrey; margin-top: 4%;" />
 
                                      
@@ -263,44 +203,31 @@
                             </div>
                            </div>
                
-                    </center>
-                    <%} %>
-                    <%else if (CurrentContent == 4)
-                        {%>
+                    </center>              
+                </asp:Panel>
+
+                <%------------------  Historial de reservaciones    ---------------%>
+
+                <asp:Panel ID="panelReservations" runat="server" CssClass="hidden">
                     <center>
-                        <h1>Flyes</h1>
-                    </center>
-                    <%} %>
-
-                          <%else if (CurrentContent == 5)
-                        {%>
-                        <center>
-                            <h1>Reservations</h1>
-
-                         <%--   <div class="row" style="margin-top: 50px; margin-left: 25px; margin-right: 25px; margin-bottom: 50px;overflow:auto">
-                                <asp:Repeater ID="rptBokings" runat="server">
-                                    <ItemTemplate>
-                                        <div class="col-12 col-md-6 col-lg-4 mb-2" style="background-color: rgba(0, 0, 0, 0.5);">
-                                            <center>
-                                                <div style="max-width: 18rem;">
-                                                    <center>
-                                                        <img src="https://th.bing.com/th/id/R.5980a84df020a575b1e6b9e4d24c265e?rik=phr7zp%2fsNPdVWA&pid=ImgRaw&r=0" alt="Foto" style="width: 100px; height: 100px; border-radius: 50%;" />
-                                                    </center>
-                                                    <p>Origin: <%# Eval("Origin.NameCity") %></p>
-                                                    <p>Destiny: <%# Eval("Destination.NameCity") %></p>
-                                                    <p>Date of booking: <%# Eval("DateBooking") %></p>
-                                                    <p>Date of petition: <%# Eval("SolicitudDate") %></p>
-                                                    <p>State of reservation: <%# Eval("StateBooking") %></p>
-                                                    
-                                                </div>
-                                            </center>
-                                        </div>
-
-                                    </ItemTemplate>
-                        </asp:Repeater>
-                    </div>--%>
-       
-
+                            <h1>Reservations</h1>  
+                                              
+                    
+                           <%--  <img src="/IconSidebar/antg.svg" alt="Antigüedad" style="width: 25px; height: 25px;" />
+                            <asp:Label ID="lblAntiguedad" runat="server"  />
+                             <br /> 
+                            <img src="/IconSidebar/famount.svg" alt="cant" style="width: 25px; height: 25px;"  />
+                            <asp:Label ID="lblVuelos" runat="server" />
+                             <br />--%> 
+                            <img src="/IconSidebar/ok.svg" alt="ok" style="width: 25px; height: 25px;"  />
+                            <asp:Label ID="llblAceptadas" runat="server" />
+                             <br />
+                            <img src="/IconSidebar/pross.svg" alt="pross" style="width: 25px; height: 25px;"  />
+                            <asp:Label ID="lblEnProceso" runat="server"/>
+                             <br />
+                               
+                      
+                                        
                                     <div class="row" style="display: flex; flex-direction: column; margin-top: 50px; margin-left: 25%; margin-right: 25%; margin-bottom: 50px; overflow: auto; align-items: center;">
                                         <asp:Repeater ID="rptBokings" runat="server">
                                             <ItemTemplate>
@@ -320,27 +247,21 @@
                                                 </div>
                                             </ItemTemplate>
                                         </asp:Repeater>
-                                    </div>
-                        
-                        
-                        
-                        </center>
-                    <%} %>
-              
-            </div>
-              
-            </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+                                    </div>                       
+                          </center>
+                     </asp:Panel>
+                  </ContentTemplate>       
+                 </asp:UpdatePanel>
+               </div>
+             </div>
+           </div>
 
+              <%-----------------------------------------------------     MODALES         ----------------------------------------------%>
 
-
-   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                <%--     <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>--%>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -356,7 +277,8 @@
 
 
 
-    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    
+                 <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -369,144 +291,12 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                    <asp:Button ID = "ChangePhoto2" class="btn btn-primary" runat="server" Text="Change photo" Onclick="ChangePhoto2_Click" />
+                                    <asp:Button ID = "ChangePhotoClient" class="btn btn-primary" runat="server" Text="Change photo" OnClick="ChangePhotoClient_Click"/>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                                 </div>
                             </div>
-
-
-
-
-
-    <%--DataTable--%>
-     <section id="historical">
-    <center>
-        <h1 style="margin-top:2%;">Historical</h1>
-    </center>
-    <div class="p-5">
-        <table id="example" class="table table-striped" style="width: 100%; ">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011-04-25</td>
-                      <td> <button type="button" class="btn btn-danger">
-                                <i class="bi bi-trash"></i> 
-                            </button></td>
-                </tr>
-                <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011-07-25</td>
-                    <td>$170,750</td>
-                </tr>
-                <tr>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>San Francisco</td>
-                    <td>66</td>
-                    <td>2009-01-12</td>
-                    <td>$86,000</td>
-                </tr>
-                <tr>
-                    <td>Cedric Kelly</td>
-                    <td>Senior Javascript Developer</td>
-                    <td>Edinburgh</td>
-                    <td>22</td>
-                    <td>2012-03-29</td>
-                    <td>$433,060</td>
-                </tr>
-                <tr>
-                    <td>Airi Satou</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>33</td>
-                    <td>2008-11-28</td>
-                    <td>$162,700</td>
-                </tr>
-                <tr>
-                    <td>Brielle Williamson</td>
-                    <td>Integration Specialist</td>
-                    <td>New York</td>
-                    <td>61</td>
-                    <td>2012-12-02</td>
-                    <td>$372,000</td>
-                </tr>
-                <tr>
-                    <td>Herrod Chandler</td>
-                    <td>Sales Assistant</td>
-                    <td>San Francisco</td>
-                    <td>59</td>
-                    <td>2012-08-06</td>
-                    <td>$137,500</td>
-                </tr>
-
-                <tr>
-                    <td>Jonas Alexander</td>
-                    <td>Developer</td>
-                    <td>San Francisco</td>
-                    <td>30</td>
-                    <td>2010-07-14</td>
-                    <td>$86,500</td>
-                </tr>
-                <tr>
-                    <td>Shad Decker</td>
-                    <td>Regional Director</td>
-                    <td>Edinburgh</td>
-                    <td>51</td>
-                    <td>2008-11-13</td>
-                    <td>$183,000</td>
-                </tr>
-                <tr>
-                    <td>Michael Bruce</td>
-                    <td>Javascript Developer</td>
-                    <td>Singapore</td>
-                    <td>29</td>
-                    <td>2011-06-27</td>
-                    <td>$183,000</td>
-                </tr>
-                <tr>
-                    <td>Donna Snider</td>
-                    <td>Customer Support</td>
-                    <td>New York</td>
-                    <td>27</td>
-                    <td>2011-01-25</td>
-                    <td>$112,000</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-  </section>
-
-
-
-
 
 
 </asp:Content>

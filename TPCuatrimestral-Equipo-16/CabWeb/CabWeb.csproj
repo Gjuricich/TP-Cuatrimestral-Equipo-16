@@ -72,7 +72,6 @@
     <Content Include="Default.aspx" />
     <Content Include="EmployeeView.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="LALA.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Message.aspx" />
     <Content Include="PaymentMethods.aspx" />
@@ -145,13 +144,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="LALA.aspx.cs">
-      <DependentUpon>LALA.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LALA.aspx.designer.cs">
-      <DependentUpon>LALA.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

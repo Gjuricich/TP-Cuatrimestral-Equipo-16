@@ -138,3 +138,32 @@ CREATE TABLE Booking(
     Estado BIT NOT NULL DEFAULT(1),
     CHECK(IdOrigen <> IdDestino)
 )
+CREATE TABLE Aircraft(
+    IdAircraft INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    Model VARCHAR(100) NOT NULL,
+    PassengerCapacity TINYINT NOT NULL,
+    MinimumCrew TINYINT NOT NULL,
+    FuelCapacity DECIMAL(10,2) NOT NULL,
+    FlightRange DECIMAL(10,2) NOT NULL,
+    YearOfManufacture DATETIME NOT NULL,
+    Available BIT NOT NULL DEFAULT(1),
+    Estado BIT NOT NULL DEFAULT(1)
+)
+GO
+INSERT INTO Aircraft (Model, PassengerCapacity, MinimumCrew, FuelCapacity, FlightRange, YearOfManufacture, Available, Estado)
+VALUES
+('Gulfstream G650', 18, 2, 50000.00, 8000.00, '2016-02-01', 1, 1),
+('Bombardier Challenger 350', 10, 2, 20000.50, 3500.75, '2017-08-10', 1, 1),
+('Cessna Citation X', 8, 2, 15000.25, 3500.50, '2014-11-15', 1, 1),
+('Embraer Phenom 300', 7, 1, 11000.75, 2000.25, '2019-05-20', 1, 1),
+('Dassault Falcon 7X', 14, 3, 65000.50, 5600.00, '2015-04-05', 1, 1)
+GO
+CREATE TABLE Flight(   
+   IdFlight INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+   FlightDateTime DateTime NOT NULL,
+   AmountPassengers INT NOT NULL CHECK(AmountPassengers BETWEEN 1 AND 12),
+   IdBooking BIGINT NOT NULL FOREIGN KEY REFERENCES Booking(IdBooking),
+   IdAircraft INT FOREIGN KEY REFERENCES Aircraft(IdAircraft),
+   FlightState VARCHAR(15) NOT NULL DEFAULT('En proceso') CHECK(FlightState  IN('En proceso','Finalizado ','Cancelado')),
+   Estado BIT NOT NULL DEFAULT(1)
+)

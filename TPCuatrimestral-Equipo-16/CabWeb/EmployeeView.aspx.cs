@@ -14,7 +14,7 @@ namespace CabWeb
     {
         public Employee CurrentEmployee;
         public int CurrentContent = 0;
-        public string ProfilePhoto;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -27,11 +27,9 @@ namespace CabWeb
             loadFlights();
             if (!IsPostBack)
             {
-               
                 panelHome.CssClass = "";
                 panelDashboard.CssClass = "hidden";
                 panelFlight.CssClass = "hidden";
-
 
             }
 
@@ -68,15 +66,9 @@ namespace CabWeb
         private void loadProfilePhoto()
         {
             //falta validación si no encuentra la foto de perfil dentro de la carpeta
-            if (CurrentEmployee.credentials.Photo != null)
+            if (CurrentEmployee.credentials.Photo == null)
             {
-                ProfilePhoto = CurrentEmployee.credentials.Photo;
-            }
-
-            else
-            {
-                ProfilePhoto = "/pp.jpg";
-
+               CurrentEmployee.credentials.Photo= "/pp.jpg";
             }
 
         }
@@ -99,7 +91,7 @@ namespace CabWeb
             panelDashboard.CssClass = "";
             panelHome.CssClass = "hidden";
             panelFlight.CssClass = "hidden";
-            updatePanelGeneral.Update();
+            ScriptManager.RegisterStartupScript(updatePanelGeneral, updatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + updatePanelGeneral.ClientID + "', '');", true);
 
         }
 
@@ -182,7 +174,6 @@ namespace CabWeb
                     crBusiness.ChangePhoto(Folder + fileName, CurrentEmployee.credentials.IdCredential);
                     CurrentEmployee.credentials.Photo = Folder + fileName;
                     Session.Add("EmployeeLogged", CurrentEmployee);
-                    ProfilePhoto = Folder + fileName;
                     //ScriptManager.RegisterStartupScript(updatePanelGeneral, updatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + updatePanelGeneral.ClientID + "', '');", true);
 
                 }

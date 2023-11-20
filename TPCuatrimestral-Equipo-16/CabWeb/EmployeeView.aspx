@@ -80,7 +80,7 @@
                     <div  class="ProfileBox">
                         
                            <center>
-                               <img src='<%:ProfilePhoto%>' alt="Foto" style="width: 200px; height: 200px; border-radius: 50%; margin-bottom:2%;" />
+                               <img src='<%:CurrentEmployee.credentials.Photo%>' alt="Foto" style="width: 200px; height: 200px; border-radius: 50%; margin-bottom:2%;" />
                                 <br/>
                                   <h1><%:CurrentEmployee.Name + " " + CurrentEmployee.Surname%></h1>
                                 <br/>
@@ -174,7 +174,7 @@
                     </center>
         </asp:Panel>
 
-          <%------------------   Reservas en proceso    ---------------%>
+          <%------------------   Vuelos    ---------------%>
 
         <asp:Panel ID="panelFlight" runat="server" CssClass="hidden">
              <center>
@@ -227,9 +227,8 @@
             </asp:UpdatePanel>
 
              </div>
-  
-       </div>
-    </div>
+         </div>
+      </div>
 
         <%-----------------------------------------------------     MODALES         ----------------------------------------------%>
 

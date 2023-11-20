@@ -49,15 +49,61 @@ namespace CabBusiness
         }
 
         
-             public List<Booking> ListInProgress()
-           {
+          
+
+
+
+        public List<Booking> ListByClient(int idClient)
+        {     
+            List<Booking> list = new List<Booking>();
+            DataManager dataManager = new DataManager();
+
+            try
+            {
+
+                dataManager.setQuery("SELECT B.IdBooking,B.IdClient, B.IdOrigen, B.IdDestino, CO.NombreCiudad AS CiudadOrigen, CD.NombreCiudad AS CiudadDestino, B.SolicitudDate, B.DateBooking,  B.Passengers, B.StateBooking, B.Estado FROM Booking B INNER JOIN Ciudades CO ON B.IdOrigen = CO.IdCiudad INNER JOIN Ciudades CD ON B.IdDestino = CD.IdCiudad WHERE B.IdClient = @Idclient");
+                dataManager.setParameter("@Idclient", idClient);
+                dataManager.executeRead();
+                while (dataManager.Lector.Read())
+                {
+                    Booking booking = new Booking();
+                    booking.IdBooking = (int)(long)dataManager.Lector["IdBooking"];
+                    booking.IdClient = (int)(long)dataManager.Lector["IdClient"];
+                    booking.Origin.IdCity = (int)(long)dataManager.Lector["IdOrigen"];
+                    booking.Destination.IdCity = (int)(long)dataManager.Lector["IdDestino"];
+                    booking.SolicitudDate = (DateTime)dataManager.Lector["SolicitudDate"];
+                    booking.DateBooking = (DateTime)dataManager.Lector["DateBooking"];
+                    booking.Passengers = (short)dataManager.Lector["Passengers"];
+                    booking.StateBooking = (string)dataManager.Lector["StateBooking"];
+                    booking.State = (bool)dataManager.Lector["Estado"];
+                    booking.Origin.NameCity = (string)dataManager.Lector["CiudadOrigen"];
+                    booking.Destination.NameCity = (string)dataManager.Lector["CiudadDestino"];
+                    list.Add(booking);
+                }
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
+
+        /*
+        public List<Booking> ListInProgress()
+        {
             List<Booking> list = new List<Booking>();
             DataManager dataManager = new DataManager();
 
             try
             {
                 dataManager.setQuery("SELECT * FROM Booking WHERE StateBooking=@status");
-                dataManager.setParameter("@status", "En proceso");       
+                dataManager.setParameter("@status", "En proceso");
                 dataManager.executeRead();
                 while (dataManager.Lector.Read())
                 {
@@ -87,51 +133,6 @@ namespace CabBusiness
                 dataManager.closeConection();
             }
         }
-
-
-
-        public List<Booking> ListByClient(Client client)
-        {
-            int idClient = client.IdClient;
-            List<Booking> list = new List<Booking>();
-            DataManager dataManager = new DataManager();
-            CityBusiness ctBusines = new CityBusiness();
-
-            try
-            {
-
-                dataManager.setQuery("SELECT * FROM Booking WHERE IdClient = '" + idClient + "'");
-                dataManager.executeRead();
-                while (dataManager.Lector.Read())
-                {
-                    Booking booking = new Booking();
-                    booking.IdBooking = (int)(long)dataManager.Lector["IdBooking"];
-                    booking.IdClient = (int)(long)dataManager.Lector["IdClient"];
-                    int Origin = (int)(long)dataManager.Lector["IdOrigen"];
-                    int Destination = (int)(long)dataManager.Lector["IdDestino"];
-                    booking.SolicitudDate = (DateTime)dataManager.Lector["SolicitudDate"];
-                    booking.DateBooking = (DateTime)dataManager.Lector["DateBooking"];
-                    booking.Passengers = (short)dataManager.Lector["Passengers"];
-                    booking.StateBooking = (string)dataManager.Lector["StateBooking"];
-                    booking.State = (bool)dataManager.Lector["Estado"];
-                    booking.Origin = ctBusines.GetCityByID(Origin);
-                    booking.Destination = ctBusines.GetCityByID(Destination);
-                    list.Add(booking);
-                }
-
-                return list;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-
-            }
-            finally
-            {
-                dataManager.closeConection();
-            }
-        }
-
         public List<Booking> BookingClient(int idClient)
         {
             List<Booking> list = new List<Booking>();
@@ -217,6 +218,8 @@ namespace CabBusiness
                 dataManager.closeConection();
             }
         }
+
+        */
 
 
 

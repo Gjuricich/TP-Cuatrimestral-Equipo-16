@@ -17,30 +17,36 @@ namespace CabWeb
         public List<Booking> ActiveBookingsOfClient;
         public int CurrentContent = 0;
         public BookingBusiness bkBusiness;
-        public string ProfilePhoto;
+
         protected void Page_Load(object sender, EventArgs e)
         {
                       
             bkBusiness = new BookingBusiness();
-            CurrentClient = (Client)Session["ClientLogged"];
-            addBookingClientSession(CurrentClient.IdClient);//si no es postback despues debe actualizar en bookings
-       
-
-            //Carga de la página
-
-            loadCities();
-            loadProfilePhoto();
+            CurrentClient = (Client)Session["ClientLogged"];            
+            
+            updateBookingEmployeeSession(CurrentClient.IdClient);
+            loadProfile(CurrentClient);
             loadBookings();
             loadBookingsStatus();
-            loadProfile(CurrentClient);
 
-      
 
+            if (!IsPostBack)
+            {
+                
+                loadCities();
+                panelprofile.CssClass = "";
+                panelBookings.CssClass = "hidden";
+                panelRequestBooking.CssClass = "hidden";
+                panelReservations.CssClass = "hidden";
+         
+            }
+            
 
         }
 
         private void loadProfile(Client CurrentClient)
         {
+            loadProfilePhoto();
             txtName.Text = CurrentClient.Name;
             txtLastName.Text = CurrentClient.Surname;
             txtEmail.Text = CurrentClient.credentials.Email;
@@ -52,54 +58,55 @@ namespace CabWeb
 
         private void loadBookings()
         {
-            //Carga de rpt reservas en progreso(se pueden cancelar)
-            rptActiveBokings.DataSource = (List<Booking>)Session["ClientBookingsInProgress"];
+            List<Booking> allBookings = (List<Booking>)Session["Bookings"];       
+            List<Booking> bookings = allBookings.Where(booking => booking.StateBooking != "En proceso").ToList();
+            List<Booking> bookingsInProgress = allBookings.Where(booking => booking.StateBooking == "En proceso").ToList();
+            // Carga de rpt reservas en progreso(se pueden cancelar)
+            rptActiveBokings.DataSource = bookingsInProgress;
             rptActiveBokings.DataBind();
             //Carga de rpt reservas ya aprobadas o canceladas          
-            rptBokings.DataSource = (List<Booking>)Session["ClientBookings"];
+            rptBokings.DataSource = bookings;
             rptBokings.DataBind();
         }
+
 
         private void loadBookingsStatus()
         {
             //lblAntiguedad.Text = "Antiguedad de la cuenta : " + AntiguedadDeLaCuenta(); 
-            List<Booking> aux = (List<Booking>)Session["ClientBookingsInProgress"];
-            List<Booking> aux1 = (List<Booking>)Session["ClientBookings"];          
-            lblVuelos.Text = "Cantidad de vuelos : " + CurrentClient.FlightHistory.Count().ToString();
-            llblAceptadas.Text = "Reservas Aceptadas : " + aux1.Count(booking => booking.StateBooking == "Aceptada").ToString();
-            lblEnProceso.Text = "Reservas En Proceso : " + aux.Count().ToString();
+            List<Booking> aux = (List<Booking>)Session["Bookings"];
+            // lblVuelos.Text = "Cantidad de vuelos : " + CurrentClient.FlightHistory.Count().ToString();
+            int aceptadas;
+            aceptadas= aux.Count(booking => booking.StateBooking == "Aprobada");
+            int Enproceso = aux.Count(booking => booking.StateBooking == "En proceso");
+            llblAceptadas.Text = "Reservas Aceptadas : " + aceptadas.ToString();
+            lblEnProceso.Text = "Reservas En Proceso : " + Enproceso.ToString();
 
         }
+     
 
         private void loadProfilePhoto()
         {
 
-            if (CurrentClient.credentials.Photo != null)
+            if (CurrentClient.credentials.Photo == null)
             {
-                ProfilePhoto = CurrentClient.credentials.Photo;
-            }
-
-            else
-            {
-                ProfilePhoto = "/pp.jpg";
-
+                CurrentClient.credentials.Photo = "/pp.jpg";
             }
         }
+
         private void loadCities()
         {
-            CityBusiness ctBusiness = new CityBusiness();
-            List<string> cities = new List<string>();
-            for (int x = 0; x < ctBusiness.List().Count(); x++)
-            {
-                cities.Add(ctBusiness.List()[x].NameCity);
-            }
-            if (!IsPostBack)
-            {
+               
+                CityBusiness ctBusiness = new CityBusiness();
+                List<string> cities = new List<string>();
+                for (int x = 0; x < ctBusiness.List().Count(); x++)
+                {
+                    cities.Add(ctBusiness.List()[x].NameCity);
+                }
                 ddlcityOrigin.DataSource = cities;
                 ddlcityOrigin.DataBind();
                 ddlcityDestiny.DataSource = cities;
                 ddlcityDestiny.DataBind();
-            }
+            
         }
         protected void ddlcityOrigin_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -114,18 +121,58 @@ namespace CabWeb
 
         //----------------------------------         Eventos        --------------------------------------------------
 
+
+        protected void btnProfile_Click(object sender, EventArgs e)
+        {
+      
+            panelprofile.CssClass = "";
+            panelBookings.CssClass = "hidden";
+            panelRequestBooking.CssClass = "hidden";
+            panelReservations.CssClass = "hidden";
+            UpdatePanelGeneral.Update();
+        }
+
+        protected void btnBookingInProgress_Click(object sender, EventArgs e)
+        {
+       
+            panelBookings.CssClass = "";
+            panelprofile.CssClass = "hidden";
+            panelRequestBooking.CssClass = "hidden";
+            panelReservations.CssClass = "hidden";
+            ScriptManager.RegisterStartupScript(UpdatePanelGeneral, UpdatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + UpdatePanelGeneral.ClientID + "', '');", true);
+
+        }
+
+        protected void btnBooking_Click(object sender, EventArgs e)
+        {
+
+            panelReservations.CssClass = "";
+            panelprofile.CssClass = "hidden";
+            panelBookings.CssClass = "hidden";
+            panelRequestBooking.CssClass = "hidden";
+            ScriptManager.RegisterStartupScript(UpdatePanelGeneral, UpdatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + UpdatePanelGeneral.ClientID + "', '');", true);
+        }
+
+        protected void btnAddBooking_Click(object sender, EventArgs e)
+        {
+            panelRequestBooking.CssClass = "";
+            panelprofile.CssClass = "hidden";
+            panelBookings.CssClass = "hidden";          
+            panelReservations.CssClass = "hidden";
+            
+        }
+
         protected void Cancel_Click(object sender, EventArgs e)
         {
-            BookingBusiness bBusiness = new BookingBusiness();
-      
-
+            BookingBusiness bBusiness = new BookingBusiness();     
             try
             {
                 string IdBooking = ((LinkButton)sender).CommandArgument;
                 bBusiness.editStatusRequestBooking(int.Parse(IdBooking), "Cancelada");
-                
+                ScriptManager.RegisterStartupScript(UpdatePanelGeneral, UpdatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + UpdatePanelGeneral.ClientID + "', '');", true);
 
 
+                // Session["Bookings"] = Bookings;
             }
             catch (Exception ex)
             {
@@ -136,31 +183,7 @@ namespace CabWeb
 
 
         }
-        protected void linkButtonUser_Click(object sender, EventArgs e)
-        {
-            CurrentContent = 0;
-        }
-        protected void linkButton1_Click(object sender, EventArgs e)
-        {
-            CurrentContent = 1;
-        }
-        protected void linkButton2_Click(object sender, EventArgs e)
-        {
-            CurrentContent = 2;
-        }
-        protected void linkButton3_Click(object sender, EventArgs e)
-        {
-            CurrentContent = 3;
-        }
-        protected void linkButton4_Click(object sender, EventArgs e)
-        {
-            CurrentContent = 4;
-        }
-        protected void Bookings_Click(object sender, EventArgs e)
-        {
-            CurrentContent = 5;
-        }
-
+        
         protected void Bookflight_Click(object sender, EventArgs e)
         {
             BookingBusiness bkBusiness = new BookingBusiness();
@@ -183,11 +206,10 @@ namespace CabWeb
             bkBusiness.addBooking(booking);
             Response.Redirect("~/ClientView.aspx");
         }
-       
-        protected void ChangePhoto2_Click(object sender, EventArgs e)
+
+        protected void ChangePhotoClient_Click(object sender, EventArgs e)
         {
-            
-            
+
             if (fileUpload1.HasFile)
             {
                 CredentialBusiness crBusiness = new CredentialBusiness();
@@ -200,58 +222,44 @@ namespace CabWeb
 
                 try
                 {
-                    
+
                     fileUpload1.SaveAs(filePath);
                     crBusiness.ChangePhoto(Folder + fileName, CurrentClient.credentials.IdCredential);
                     CurrentClient.credentials.Photo = Folder + fileName;
                     Session.Add("ClientLogged", CurrentClient);
-                    ProfilePhoto = Folder + fileName;
-                    
+
                 }
                 catch (Exception ex)
                 {
 
                     throw ex;
                 }
-          
+
             }
-
         }
-
+        
 
         //----------------------------------         Funciones        --------------------------------------------------
 
-
-        private void addBookingClientSession(int IdClient)
+        private void updateBookingEmployeeSession(int IdClient)
         {
             BookingBusiness bkBusiness = new BookingBusiness();
-            List<Booking> ClientBookingsInProgress;
-            List<Booking> ClientBookings;
+            List<Booking> Bookings;
 
             try
             {
-
-                ClientBookingsInProgress = bkBusiness.BookingInProgressClient(IdClient);
-                ClientBookings = bkBusiness.BookingClient(IdClient);
-                Session["ClientBookingsInProgress"] = ClientBookingsInProgress;
-                Session["ClientBookings"] = ClientBookings;
-
+                Bookings = bkBusiness.ListByClient(IdClient);
+                Session["Bookings"] = Bookings;
 
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
 
-
-
         }
 
-
-
-
-
+       
         public string ObtenerExtension(FileUpload fileUploadControl)
         {
             if (fileUploadControl.HasFile)
@@ -306,5 +314,6 @@ namespace CabWeb
             }
         }
 
+       
     }
 }

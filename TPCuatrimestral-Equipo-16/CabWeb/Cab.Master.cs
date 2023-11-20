@@ -29,8 +29,7 @@ namespace CabWeb
             if ((Client)Session["ClientLogged"] != null)
             {
                 Session.Remove("ClientLogged");
-                Session.Remove("ClientBookings");
-                Session.Remove("ClientBookingsInProgress");
+                Session.Remove("Bookings");
 
 
             }

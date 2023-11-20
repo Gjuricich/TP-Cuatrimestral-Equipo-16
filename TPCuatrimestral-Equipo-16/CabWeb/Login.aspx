@@ -36,15 +36,6 @@
                         <asp:Button Text="Log in" runat="server" OnClick="liveAlertBtn_Click" CssClass="btn btn-primary btn-block" ID="liveAlertBtn" style="margin-bottom: 50px; margin-top: 20px" />
                         <a class="btn btn-secondary text-light text-decoration-none" href="Default.aspx" style="margin-bottom: 50px; margin-top: 20px"><strong>Back</strong></a><br />                 
                         <a class="btn btn-outline-secondary" style="font-weight: bold; border-color: dimgrey;" href="SignUp.aspx"><strong>Register</strong></a>                 
-                       <%--
-                          </div>
-                            <div class="text-center mt-2">
-                        <a class="btn btn-primary btn-block" href="SignUp.aspx"><strong> Sign Up </strong></a>
-                    </div>
-                    <div class="text-center mt-2">
-                        <a class="btn btn-primary btn-block" href="SignUpEmployee.aspx"><strong> Sign Up Employee </strong></a>
-                    </div>
-                    --%>
                 </div>
             </div>
         </div>

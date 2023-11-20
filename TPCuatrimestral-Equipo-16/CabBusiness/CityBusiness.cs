@@ -12,7 +12,7 @@ namespace CabBusiness
     {
         public City GetCityByName(string name)
         {
-            City city= new City(); ;
+            City city= new City(); 
             DataManager dataManager = new DataManager();
             dataManager.setQuery("SELECT IdCiudad, IdProvincia, NombreCiudad, Estado FROM CIUDADES WHERE NombreCiudad = '" + name + "'");
 

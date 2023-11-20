@@ -15,103 +15,67 @@ namespace CabWeb
     {
 
         /// <summary>
-        /// Control UpdatePanel1.
+        /// Control btnProfile.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.LinkButton btnProfile;
 
         /// <summary>
-        /// Control linkButtonUser.
+        /// Control btnBookingInProgress.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkButtonUser;
+        protected global::System.Web.UI.WebControls.LinkButton btnBookingInProgress;
 
         /// <summary>
-        /// Control linkButton1.
+        /// Control btnBooking.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton btnBooking;
 
         /// <summary>
-        /// Control Bookings.
+        /// Control btnAddBooking.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Bookings;
+        protected global::System.Web.UI.WebControls.LinkButton btnAddBooking;
 
         /// <summary>
-        /// Control linkButton3.
+        /// Control UpdatePanelGeneral.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkButton3;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelGeneral;
 
         /// <summary>
-        /// Control linkButton4.
+        /// Control panelprofile.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkButton4;
+        protected global::System.Web.UI.WebControls.Panel panelprofile;
 
         /// <summary>
-        /// Control lblAntiguedad.
+        /// Control lblAddPhoto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAntiguedad;
-
-        /// <summary>
-        /// Control lblVuelos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVuelos;
-
-        /// <summary>
-        /// Control llblAceptadas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label llblAceptadas;
-
-        /// <summary>
-        /// Control lblEnProceso.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEnProceso;
-
-        /// <summary>
-        /// Control Label4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label lblAddPhoto;
 
         /// <summary>
         /// Control lblName.
@@ -249,6 +213,15 @@ namespace CabWeb
         protected global::System.Web.UI.WebControls.TextBox txtGender;
 
         /// <summary>
+        /// Control panelBookings.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelBookings;
+
+        /// <summary>
         /// Control rptActiveBokings.
         /// </summary>
         /// <remarks>
@@ -256,6 +229,15 @@ namespace CabWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptActiveBokings;
+
+        /// <summary>
+        /// Control panelRequestBooking.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelRequestBooking;
 
         /// <summary>
         /// Control ddlcityOrigin.
@@ -312,6 +294,33 @@ namespace CabWeb
         protected global::System.Web.UI.WebControls.Button Bookflight;
 
         /// <summary>
+        /// Control panelReservations.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelReservations;
+
+        /// <summary>
+        /// Control llblAceptadas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label llblAceptadas;
+
+        /// <summary>
+        /// Control lblEnProceso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEnProceso;
+
+        /// <summary>
         /// Control rptBokings.
         /// </summary>
         /// <remarks>
@@ -330,12 +339,12 @@ namespace CabWeb
         protected global::System.Web.UI.WebControls.FileUpload fileUpload1;
 
         /// <summary>
-        /// Control ChangePhoto2.
+        /// Control ChangePhotoClient.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ChangePhoto2;
+        protected global::System.Web.UI.WebControls.Button ChangePhotoClient;
     }
 }
