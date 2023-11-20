@@ -47,7 +47,7 @@
                             </li>
                             <li class="nav-item">
                                 <asp:LinkButton ID="linkButton1" runat="server" OnClick="linkButton1_Click" class="nav-link py-3 border-bottom">
-    <img src="/IconSidebar/svg1 (1).svg"g" alt="Descripción de la imagen"style="height:40px;width:40px;" />
+    <img src="/IconSidebar/svg1 (1).svg" alt="Descripción de la imagen"style="height:40px;width:40px;" />
                                 </asp:LinkButton>
                             </li>
 
@@ -241,11 +241,11 @@
                                 </div>
                                 <div class="col" >
                                     <h4><strong>DATE</strong></h4>
-                                    <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="TxbDatePicked" type="date" data-date-format="dd/MM/yyyy" runat="server" required></asp:TextBox>
+                                    <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="TxbDatePicked" type="date" data-date-format="dd/MM/yyyy" runat="server"></asp:TextBox>
                                 </div>
                                     <div class="col">
                                         <h4><strong>TIME</strong></h4>
-                                        <asp:TextBox ID="TxbTimePicked" class="form-control form-control-sm rounded" style="max-width: 500px;" type="time" runat="server" required></asp:TextBox>
+                                        <asp:TextBox ID="TxbTimePicked" class="form-control form-control-sm rounded" style="max-width: 500px;" type="time" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="col">
                                         <h4><strong>PASSENGER</strong></h4>
@@ -394,7 +394,7 @@
                     <th>Office</th>
                     <th>Age</th>
                     <th>Start date</th>
-                    <th>Salary</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -404,7 +404,9 @@
                     <td>Edinburgh</td>
                     <td>61</td>
                     <td>2011-04-25</td>
-                    <td>$320,800</td>
+                      <td> <button type="button" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> 
+                            </button></td>
                 </tr>
                 <tr>
                     <td>Garrett Winters</td>

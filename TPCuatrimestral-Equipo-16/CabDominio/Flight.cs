@@ -20,6 +20,8 @@ namespace CabDominio
         public Itinerary itinerary { get; set; }
         public string FlightState { get; set; }
 
+        public bool Status { get; set; }
+
         public List<Person> Passengers { get; set; }
         public Flight()
         {

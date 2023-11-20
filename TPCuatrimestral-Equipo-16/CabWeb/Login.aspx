@@ -25,12 +25,12 @@
                     <h2 class="text-center"> AirJets </h2>               
                         <div class="form-group">
                             <label for="Mail"></label>
-                            <asp:TextBox runat="server" ID="txtMail" CssClass="form-control" placeholder="User" required></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtMail" CssClass="form-control" placeholder="User"></asp:TextBox>
                          
                         </div>
                         <div class="form-group">
                             <label for="Password"></label>
-                            <asp:TextBox runat="server" ID="txtPassword"  TextMode="Password" CssClass="form-control" placeholder="Password" required></asp:TextBox>     
+                            <asp:TextBox runat="server" ID="txtPassword"  TextMode="Password" CssClass="form-control" placeholder="Password"></asp:TextBox>     
                         </div>  
                         <div>
                         <asp:Button Text="Log in" runat="server" OnClick="liveAlertBtn_Click" CssClass="btn btn-primary btn-block" ID="liveAlertBtn" style="margin-bottom: 50px; margin-top: 20px" />
@@ -48,6 +48,7 @@
                 </div>
             </div>
         </div>
+            </div>
       </center>
     </div>
 

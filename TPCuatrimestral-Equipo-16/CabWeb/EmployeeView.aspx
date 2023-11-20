@@ -47,12 +47,17 @@
                     <ul class="nav flex-column">
                         <li class="nav-item mb-5">
                             <asp:LinkButton ID="btnProfile" runat="server" OnClick="btnProfile_Click" class="nav-link p-0">
-                                <img src="/IconSidebar/svg1 (5).svg" alt="Descripción de la imagen" style="height: 40px; width: 40px; margin: 0 auto;" />
+                                <img src="/IconSidebar/svg1 (5).svg" alt="Profile" style="height: 40px; width: 40px; margin: 0 auto;" />
                             </asp:LinkButton>
                         </li>
                         <li class="nav-item mb-5">
                             <asp:LinkButton ID="btnDashboard" runat="server" OnClick="btnDashboard_Click" class="nav-link p-0">
-                                <img src="/IconSidebar/svg1 (1).svg" alt="Descripción de la imagen" style="height: 40px; width: 40px; margin: 0 auto;" />
+                                <img src="/IconSidebar/svg1 (2).svg" alt="Bookings" style="height: 40px; width: 40px; margin: 0 auto;" />
+                            </asp:LinkButton>
+                        </li>
+                        <li class="nav-item mb-5">
+                            <asp:LinkButton ID="btnFlight" runat="server" OnClick="btnFlight_Click" class="nav-link p-0">
+                                <img src="/IconSidebar/svg1 (4).svg" alt="Flight" style="height: 40px; width: 40px; margin: 0 auto;" />
                             </asp:LinkButton>
                         </li>
                     </ul>
@@ -165,6 +170,49 @@
 
 
                     </center>
+        </asp:Panel>
+
+          <%------------------   Reservas en proceso    ---------------%>
+
+        <asp:Panel ID="panelFlight" runat="server" CssClass="hidden">
+             <center>
+                        <h1>Historial</h1>
+                        <script>new DataTable('#example');</script>
+                        <table id="example" class="table table-striped" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>Flight date</th>
+                                    <th>Origin</th>
+                                    <th>Destination</th>                                   
+                                    <th>Aircraft</th>
+                                    <th>Passengers</th>
+                                    <th>Request status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <asp:Repeater ID="repeaterFlight" runat="server">
+                                    <ItemTemplate>
+                                      <tr>
+                                        <td><%# Eval("FlightDateTime ") %></td>
+                                        <td>Origin</td>
+                                        <td>Destination</td>
+                                        <td> Nombre modelo avión</td>
+                                        <td><%# Eval("AmountPassengers") %></td>
+                                        <td><%# Eval("FlightState") %></td>
+                                        <td><%# Eval("Status") %></td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger">
+                                            <i class="bi bi-trash"></i> 
+                                            </button>
+                                        </td>
+                                      </tr>  
+                                    </ItemTemplate>
+                               </asp:Repeater>
+                         
+                            </tbody>
+                        </table>
+                    </center>           
         </asp:Panel>
          </div>
       </div>

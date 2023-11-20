@@ -42,6 +42,15 @@ namespace CabWeb
         protected global::System.Web.UI.WebControls.LinkButton btnDashboard;
 
         /// <summary>
+        /// Control btnFlight.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnFlight;
+
+        /// <summary>
         /// Control panelHome.
         /// </summary>
         /// <remarks>
@@ -211,6 +220,24 @@ namespace CabWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptActiveBokings;
+
+        /// <summary>
+        /// Control panelFlight.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelFlight;
+
+        /// <summary>
+        /// Control repeaterFlight.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater repeaterFlight;
 
         /// <summary>
         /// Control fileUpload1.
