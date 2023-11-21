@@ -69,6 +69,11 @@
                                 <img src="/IconSidebar/svg1 (3).svg" alt="Flight" style="height: 40px; width: 40px; margin: 0 auto;" />
                             </asp:LinkButton>
                         </li>
+                                 <li class="nav-item mb-5">
+                            <asp:LinkButton ID="btnFlight" runat="server" OnClick="btnFlight_Click" class="nav-link p-0">
+                                <img src="/IconSidebar/svg1 (4).svg" alt="Flight" style="height: 40px; width: 40px; margin: 0 auto;" />
+                            </asp:LinkButton>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -167,11 +172,12 @@
                 <asp:Panel ID="panelRequestBooking" runat="server" CssClass="hidden">
                
                      <center>
-               
+                           
                            <div class="centered-inputs DefaultBox" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                             <div class="container text-center" style="display: flex; justify-content: center; align-items: center;">
-                                <div class="row " display="flex" >
-                                <div class="col"  >
+                                <div  class="ProfileBox">
+                                <div class="row " display="flex" >   
+                                <div class="col"  >                                
                                     <h4><strong>FROM</strong></h4>
                                     <asp:DropDownList ID="ddlcityOrigin" runat="server" AutoPostBack="false" style="background-color: transparent;  max-width: 600%;">
                                         </asp:DropDownList>
@@ -196,13 +202,12 @@
                                         <input type="number" id="passengerInput" runat="server" min="1" max="12" style="background-color: transparent; max-width: 600%;" required>
                                       </div>
                                                                
-                                    <asp:Button ID="Bookflight" runat="server" class="btn btn-outline-secondary" OnClick="Bookflight_Click" Text="Book flight" Style="font-weight: bold; border-color: dimgrey; margin-top: 4%;" />
+                                    <asp:Button ID="Bookflight" runat="server" class="btn btn-primary" OnClick="Bookflight_Click" Text="Book flight" Style="font-weight: bold; border-color: dimgrey; margin-top: 4%;" />
 
-                                     
-                                </div>
+                               </div>      
+                             </div>
                             </div>
-                           </div>
-               
+                           </div>                                
                     </center>              
                 </asp:Panel>
 
@@ -250,6 +255,156 @@
                                     </div>                       
                           </center>
                      </asp:Panel>
+                     
+          <%------------------  PANEL  Vuelos    ---------------%>
+
+        <asp:Panel ID="panelFlight" runat="server" CssClass="hidden">
+             <center>
+                        <h1>Flights</h1>
+                        <div class="col-10" style="margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;">
+                        <table id="example" class="table table-striped" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>Flight date</th>
+                                    <th>Origin</th>
+                                    <th>Destination</th>                                   
+                                    <th>Aircraft</th>
+                                    <th>Passengers</th>
+                                    <th>Request status</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <asp:Repeater ID="repeaterFlight" runat="server">
+                                    <ItemTemplate>
+                                      <tr>
+                                        <td><%# Eval("FlightDateTime ") %></td>
+                                        <td>Origin</td>
+                                        <td>Destination</td>
+                                        <td> Nombre modelo avión</td>
+                                        <td><%# Eval("AmountPassengers") %></td>
+                                        <td><%# Eval("FlightState") %></td>
+                                        <td>
+                                         <asp:LinkButton ID="btnDetail" runat="server"  class="btn btn-secondary" OnClick="btnDetail_Click"  CommandArgument='<%# Eval("ID_Flight") %>'>
+                                            <i class="bi bi-plus-square"></i>
+                                         </asp:LinkButton>                                  
+                                        </td>
+                                        <td>
+                                             <asp:LinkButton ID="btnaddPassengerPanel" runat="server"  class="btn btn-primary" OnClick="btnaddPassengerPanel_Click" CommandArgument='<%# Eval("ID_Flight") %>'>
+                                             Add passenger
+                                         </asp:LinkButton>
+                                        </td>
+                                      </tr>  
+                                    </ItemTemplate>
+                               </asp:Repeater>
+                         
+                            </tbody>
+                        </table>
+                    </center>           
+              </asp:Panel>
+
+                      
+                  <%------------------  PANEL  AGREGAR PASAJERO    ---------------%>
+                 <asp:Panel ID="panelAddPassengers" runat="server" CssClass="hidden">
+                <center>
+
+                     <div class="col-4" style="margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
+                    <div  class="ProfileBox">
+                        
+                           <center>                         
+                                  <h1> Passenger flight  </h1>
+                                <br/>
+                           </center>
+
+
+                           <center>  
+                                                    
+                            <div>   
+                            <asp:Label class="text-dark" ID="lblNameP" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  placeholder="Name" ID="txtNameP" runat="server" ></asp:TextBox><br />                            
+                            <asp:Label class="text-dark" ID="lblLastNameP" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtLastNameP"  placeholder="Surname" runat="server"></asp:TextBox><br />      
+                            <asp:Label class="text-dark" ID="lblDNIP" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="DNI" ID="txtDNIP" runat="server" ></asp:TextBox><br />
+                            <asp:Label class="text-dark" ID="lblGenderP" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGenderP" placeholder="Gender" runat="server" MaxLength="1"></asp:TextBox><br />                          
+                       
+                             <div style="margin-top: 10px;">
+                                  <asp:Button ID="BtnAddPassenger" runat="server" Text="Add Passenger" class="btn btn-secondary" OnClientClick="return confirm('¿Are you sure that do you want add this passenger ?')"  OnClick="btnAddPassenger_Click" />
+                            </div>          
+                            </div>
+                            </center>
+                           </div>
+                         </div>                  
+
+
+
+                          </center> 
+                          </asp:Panel>
+
+             <%------------------  PANEL  Detalles vuelo    ---------------%>
+
+             <asp:Panel ID="panelDetail" runat="server" CssClass="hidden">
+                    
+                 <h1> Flight Details</h1>
+                 <center>
+
+                       <div class="col-10" style="margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;"> 
+                       
+                     
+                         <%------------------------------------------       PASAJEROS       ----------------------------------------------%>
+                          <div  class="ProfileBox" style="margin-top: 20px;">                      
+                             <h2> Passengers </h2> 
+                               <table class="table">
+                               <thead>
+                                <tr>
+                                  <th scope="col">DNI</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Surname</th>
+                                  <th scope="col">Gender</th>                          
+                                </tr>
+                             </thead>
+                          <tbody>
+                                 <asp:Repeater ID="rptCurrentFlightPassengers" runat="server">
+                                    <ItemTemplate>
+                                      <tr>
+                                        <td><%# Eval("Dni ") %></td>
+                                        <td><%# Eval("Name") %></td>
+                                        <td><%# Eval("Surname") %></td>
+                                        <td><%# Eval("Gender") %></td>                                                     
+                                      </tr>  
+                                    </ItemTemplate>
+                               </asp:Repeater>
+
+                         </tbody>
+                        </table>
+                     </div>
+
+                            
+
+                     <%------------------------------------------      ITINERARIO       ----------------------------------------------%>
+                     <div  class="ProfileBox" style="margin-top: 20px;">   
+                       <h2> Itinerary </h2>
+                         <div>       
+
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  placeholder="Name" ID="TextBox1" runat="server" ReadOnly="true"></asp:TextBox><br />
+                            <asp:Label class="text-dark" ID="Label2"  Text="Flight Arrival" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="DNI" ID="TextBox2" runat="server" ReadOnly="true"></asp:TextBox><br />
+                            <asp:Label class="text-dark" ID="Label3" Text="Flight Departure" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="TextBox3"  placeholder="Surname" runat="server"></asp:TextBox><br />              
+                            <asp:Label class="text-dark" ID="Label4" Text="Airport Arrival"  runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded"  style="max-width: 500px;" placeholder="Cellphone" ID="TextBox4" runat="server"></asp:TextBox><br />                          
+                            <asp:Label class="text-dark" ID="Label5" Text="AirportDeparture" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="TextBox5" placeholder="Gender" runat="server" MaxLength="1"></asp:TextBox><br />                          
+                       </div>
+                         </div>
+                                
+
+
+                 </center> 
+                 </div>
+            </asp:Panel>
                   </ContentTemplate>       
                  </asp:UpdatePanel>
                </div>

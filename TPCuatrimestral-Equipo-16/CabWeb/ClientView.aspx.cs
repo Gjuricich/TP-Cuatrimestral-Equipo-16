@@ -25,6 +25,7 @@ namespace CabWeb
             CurrentClient = (Client)Session["ClientLogged"];            
             
             updateBookingEmployeeSession(CurrentClient.IdClient);
+            updateFlightClientSession();
             loadProfile(CurrentClient);
             loadBookings();
             loadBookingsStatus();
@@ -38,6 +39,9 @@ namespace CabWeb
                 panelBookings.CssClass = "hidden";
                 panelRequestBooking.CssClass = "hidden";
                 panelReservations.CssClass = "hidden";
+                panelFlight.CssClass = "hidden";
+                panelAddPassengers.CssClass = "hidden";
+                panelDetail.CssClass = "hidden";
          
             }
             
@@ -119,7 +123,7 @@ namespace CabWeb
             ddlcityDestiny.SelectedValue = selectedValue;
         }
 
-        //----------------------------------         Eventos        --------------------------------------------------
+        //----------------------------------         EVENTOS PANELES NAVEGACIÓN LATERAL       --------------------------------------------------
 
 
         protected void btnProfile_Click(object sender, EventArgs e)
@@ -129,6 +133,9 @@ namespace CabWeb
             panelBookings.CssClass = "hidden";
             panelRequestBooking.CssClass = "hidden";
             panelReservations.CssClass = "hidden";
+            panelFlight.CssClass = "hidden";
+            panelAddPassengers.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
             UpdatePanelGeneral.Update();
         }
 
@@ -139,6 +146,9 @@ namespace CabWeb
             panelprofile.CssClass = "hidden";
             panelRequestBooking.CssClass = "hidden";
             panelReservations.CssClass = "hidden";
+            panelFlight.CssClass = "hidden";
+            panelAddPassengers.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
             ScriptManager.RegisterStartupScript(UpdatePanelGeneral, UpdatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + UpdatePanelGeneral.ClientID + "', '');", true);
 
         }
@@ -150,6 +160,9 @@ namespace CabWeb
             panelprofile.CssClass = "hidden";
             panelBookings.CssClass = "hidden";
             panelRequestBooking.CssClass = "hidden";
+            panelFlight.CssClass = "hidden";
+            panelAddPassengers.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
             ScriptManager.RegisterStartupScript(UpdatePanelGeneral, UpdatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + UpdatePanelGeneral.ClientID + "', '');", true);
         }
 
@@ -159,8 +172,107 @@ namespace CabWeb
             panelprofile.CssClass = "hidden";
             panelBookings.CssClass = "hidden";          
             panelReservations.CssClass = "hidden";
-            
+            panelFlight.CssClass = "hidden";
+            panelAddPassengers.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
+
         }
+
+        protected void btnFlight_Click(object sender, EventArgs e)
+        {
+
+             //List<Flight> ClientFlights = (List<Flight>)Session["FlightsClient"];
+            repeaterFlight.DataSource = (List<Flight>)Session["FlightsClient"];
+            repeaterFlight.DataBind();
+
+
+
+            panelAddPassengers.CssClass = "hidden";
+            panelprofile.CssClass = "hidden";
+            panelBookings.CssClass = "hidden";
+            panelRequestBooking.CssClass = "hidden";
+            panelReservations.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
+            panelFlight.CssClass = "";
+
+
+
+            //updatePanelGeneral.Update();
+            //ScriptManager.RegisterStartupScript(updatePanelGeneral, updatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + updatePanelGeneral.ClientID + "', '');", true);
+
+        }
+
+        // --------------------------------------------------------- EVENTO PANEL AGREGAR  PASAJERO -----------------------------------------------------------
+
+
+        protected void btnAddPassenger_Click(object sender, EventArgs e)
+        {
+            FlightPassenger flightPassenger = new FlightPassenger();
+            FlightPassengerBusiness fpBusiness = new FlightPassengerBusiness();
+            string IdFlight = ((LinkButton)sender).CommandArgument;
+            flightPassenger.Name = txtNameP.Text;
+            flightPassenger.Surname = txtLastNameP.Text;
+            flightPassenger.Dni = txtDNIP.Text;
+            flightPassenger.Gender = Convert.ToChar(txtGenderP.Text);
+            flightPassenger.IdFlight = int.Parse(IdFlight);
+
+
+            try
+            {
+                fpBusiness.addPassenger(flightPassenger);
+                
+                panelDetail.CssClass = "";
+                panelAddPassengers.CssClass = "hidden";
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+        }
+
+        protected void btnaddPassengerPanel_Click(object sender, EventArgs e)
+        {
+            panelAddPassengers.CssClass = "";
+            panelprofile.CssClass = "hidden";
+            panelBookings.CssClass = "hidden";
+            panelRequestBooking.CssClass = "hidden";
+            panelReservations.CssClass = "hidden";
+            panelFlight.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
+        }
+
+        protected void btnDetail_Click(object sender, EventArgs e)
+        {
+
+
+            string IdFlight = ((LinkButton)sender).CommandArgument;
+            FlightPassengerBusiness fpBusiness = new FlightPassengerBusiness();     
+            List<Flight> allFlights = (List<Flight>)Session["FlightsClient"];
+            Flight CurrentFlight = allFlights.Find(Flights => Flights.ID_Flight == int.Parse(IdFlight));
+            CurrentFlight.Passengers = fpBusiness.List(CurrentFlight.ID_Flight);
+            Session["CurrentFlight"] = CurrentFlight;
+            rptCurrentFlightPassengers.DataSource = CurrentFlight.Passengers;
+            rptCurrentFlightPassengers.DataBind();
+
+
+            panelDetail.CssClass = "";
+            panelAddPassengers.CssClass = "hidden";
+            panelprofile.CssClass = "hidden";
+            panelBookings.CssClass = "hidden";
+            panelRequestBooking.CssClass = "hidden";
+            panelReservations.CssClass = "hidden";
+            panelFlight.CssClass = "hidden";
+        }
+
+
+
+
+
+        // --------------------------------------------------------- PANEL MOSTRAR DATOS DE VUELO -----------------------------------------------------------
 
         protected void Cancel_Click(object sender, EventArgs e)
         {
@@ -287,7 +399,25 @@ namespace CabWeb
 
         }
 
-       
+        private void updateFlightClientSession()
+        {
+            FlightBusiness fBusiness = new FlightBusiness();
+            List<Flight> flight;
+            try
+            {
+                flight = fBusiness.ListByClient(CurrentClient.IdClient);
+                Session["FlightsClient"] = flight;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
+
         public string ObtenerExtension(FileUpload fileUploadControl)
         {
             if (fileUploadControl.HasFile)
@@ -342,6 +472,6 @@ namespace CabWeb
             }
         }
 
-       
+      
     }
 }

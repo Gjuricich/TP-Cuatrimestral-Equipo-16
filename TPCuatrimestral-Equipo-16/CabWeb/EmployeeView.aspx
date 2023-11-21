@@ -178,7 +178,8 @@
 
         <asp:Panel ID="panelFlight" runat="server" CssClass="hidden">
              <center>
-                        <h1>Historial</h1>
+                        <h1>Flights</h1>
+                       <div class="col-10" style="margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;">
                         <table id="example" class="table table-striped" style="width: 100%">
                             <thead>
                                 <tr>
@@ -204,7 +205,7 @@
                                         <td><%# Eval("FlightState") %></td>
                                         <td>
                                          <asp:LinkButton ID="btnDetail" runat="server"  class="btn btn-secondary" OnClick="btnDetail_Click"  CommandArgument='<%# Eval("ID_Flight") %>'>
-                                             <i class="bi bi-plus-square-fill"></i>
+                                            <i class="bi bi-plus-square"></i>
                                          </asp:LinkButton>
                                          <%-- 
                                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#menuEdit" style="margin-top:2%; margin-bottom:2%;">
@@ -229,10 +230,12 @@
             <%------------------  PANEL  Detalles vuelo    ---------------%>
 
              <asp:Panel ID="panelDetail" runat="server" CssClass="hidden">
-                    <center>
+                    
+                 <h1> Flight Details</h1>
+                 <center>
 
                        <div class="col-6" style="margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;"> 
-                         <h1> Flight Details</h1>
+                         
                      
                          <%------------------------------------------       PASAJEROS       ----------------------------------------------%>
                           <div  class="ProfileBox" style="margin-top: 20px;">                      
@@ -262,7 +265,7 @@
                                          </asp:LinkButton>                                                                           
                                         </td>
                                         <td>
-                                         <asp:LinkButton ID="btnDeletePassenger" runat="server"  class="btn btn-secondary" OnClick="btnDeletePassenger_Click"  CommandArgument='<%# Eval("IdFlight") %>'>
+                                         <asp:LinkButton ID="btnDeletePassenger" runat="server"  class="btn btn-secondary" OnClick="btnDeletePassenger_Click" OnClientClick="return confirm('¿Are you sure that do you want delete this passenger ?')"  CommandArgument='<%# Eval("IdPerson") %>'>
                                              <i class="bi bi-trash"></i> 
                                          </asp:LinkButton>                                                                                 
                                         </td>
@@ -278,10 +281,7 @@
 
                            <%------------------------------------------       CREW       ----------------------------------------------%>
                       <div  class="ProfileBox" style="margin-top: 20px;">   
-                           <h2> Crew </h2>
-                          <button type="button" class="btn btn-primary">
-                               <i class="bi bi-pencil"></i> Editar
-                          </button>
+                           <h2> Crew </h2>                  
                           <table class="table">
                              <thead>
                                 <tr>
@@ -304,14 +304,15 @@
                      <div  class="ProfileBox" style="margin-top: 20px;">   
                        <h2> Itinerary </h2>
                          <div>       
+
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  placeholder="Name" ID="TextBox1" runat="server" ReadOnly="true"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="Label2" Text="Flight Arrival" runat="server"></asp:Label>
+                            <asp:Label class="text-dark" ID="Label2"  Text="Flight Arrival" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="DNI" ID="TextBox2" runat="server" ReadOnly="true"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="Label3" Text="Flight Departure" runat="server"></asp:Label>
+                            <asp:Label class="text-dark" ID="Label3" Text="Flight Departure" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="TextBox3"  placeholder="Surname" runat="server"></asp:TextBox><br />              
-                            <asp:Label class="text-secondary" ID="Label4" Text="Airport Arrival"  runat="server"></asp:Label>
+                            <asp:Label class="text-dark" ID="Label4" Text="Airport Arrival"  runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded"  style="max-width: 500px;" placeholder="Cellphone" ID="TextBox4" runat="server"></asp:TextBox><br />                          
-                            <asp:Label class="text-secondary" ID="Label5" Text="AirportDeparture" runat="server"></asp:Label>
+                            <asp:Label class="text-dark" ID="Label5" Text="AirportDeparture" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="TextBox5" placeholder="Gender" runat="server" MaxLength="1"></asp:TextBox><br />                          
                        </div>
                          </div>
@@ -322,44 +323,7 @@
                  </div>
             </asp:Panel>
              
-             <%-- ESTE PANEL Y LA TABLA DE PASAJEROS LA TIENE QUE TENER EL CLIENTE (ASI FUNCIONANL AS WEBS PARA SACAR BOLETOS DE AVION)
-         
-                 <asp:Panel ID="panelADDPassengers" runat="server" CssClass="hidden">
-                <center>
-
-                     <div class="col-4" style="margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
-                    <div  class="ProfileBox">
-                        
-                           <center>                         
-                                  <h1> Passenger flight  </h1>
-                                <br/>
-                           </center>
-
-
-                           <center>  
-                                                    
-                            <div>   
-                            <asp:Label class="text-secondary" ID="lblNameP" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  placeholder="Name" ID="txtNameP" runat="server" ReadOnly="true"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="lblDNIP" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="DNI" ID="txtDNIP" runat="server" ReadOnly="true"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="lblLastNameP" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtLastNameP"  placeholder="Surname" runat="server"></asp:TextBox><br />                                     
-                            <asp:Label class="text-secondary" ID="lblGenderP" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGenderP" placeholder="Gender" runat="server" MaxLength="1"></asp:TextBox><br />                          
-                       
-                             <div style="margin-top: 10px;">
-                                          <asp:Button ID="BtnAddPassenger" runat="server" Text="Add Passenger" class="btn btn-secondary" OnClick="BtnAddPassenger_Click" />
-                            </div>          
-                            </div>
-                            </center>
-                    </div>
-            </div>                  
-
-
-
-                </center> 
-            </asp:Panel>--%>
+          
              
             <%------------------  PANEL  EDITAR PASAJERO   ---------------%>
 
@@ -378,17 +342,17 @@
                    
                                                     
                             <div>   
-                            <asp:Label class="text-secondary" ID="lblNameP" style="color:black;" Text="Name" runat="server"></asp:Label>
+                            <asp:Label class="text-dark" ID="lblNameP"  Text="Name" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtNameP" runat="server" ReadOnly="true"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="lblDNIP" Text="DNI" style="color:black;"  runat="server"></asp:Label>
+                            <asp:Label class="text-dark" ID="lblDNIP" Text="DNI"   runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtDNIP" runat="server" ReadOnly="true"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="lblLastNameP" Text="Surname" style="color:black;" runat="server"></asp:Label>
+                            <asp:Label class="text-dark" ID="lblLastNameP" Text="Surname"  runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtLastNameP"  runat="server"></asp:TextBox><br />                                     
-                            <asp:Label class="text-secondary" ID="lblGenderP" Text="Gender" style="color:black;" runat="server"></asp:Label>
+                            <asp:Label class="text-dark" ID="lblGenderP" Text="Gender"  runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGenderP"  runat="server" MaxLength="1"></asp:TextBox><br />                          
                        
                              <div style="margin-top: 10px;">
-                                          <asp:Button ID="BtnUpdatePassenger" runat="server" Text="Add Passenger" class="btn btn-secondary" OnClick="BtnUpdatePassenger_Click" />
+                                          <asp:LinkButton ID="BtnUpdatePassenger" runat="server" Text="Save changes" class="btn btn-secondary" OnClick="BtnUpdatePassenger_Click" OnClientClick="return confirm('¿Are you sure that do you want edit this passenger ?')"     />     
                             </div>          
                             </div>
                            

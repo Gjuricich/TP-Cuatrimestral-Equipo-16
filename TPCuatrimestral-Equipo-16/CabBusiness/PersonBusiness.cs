@@ -73,7 +73,7 @@ namespace CabBusiness
     
             try
             {
-                dataManager.ClearCommand();
+       
                 dataManager.setQuery("INSERT INTO Persons (Nombre, Apellido, Sexo, DNI, FechaNacimiento,Celular, Domicilio ) VALUES (@Nombre, @Apellido,@Sexo,  @DNI, @FechaNacimiento, @Celular, @Domicilio)");
                 dataManager.setParameter("@Nombre", client.Name);
                 dataManager.setParameter("@Apellido", client.Surname);
@@ -83,7 +83,7 @@ namespace CabBusiness
                 dataManager.setParameter("@FechaNacimiento", client.DateOfBirth);
                 dataManager.setParameter("@Celular", client.Cellphone);
                 dataManager.executeRead();
-                dataManager.closeConection();               
+         
                 
             }
             catch (Exception ex)
@@ -104,17 +104,15 @@ namespace CabBusiness
 
             try
             {
-                dataManager.ClearCommand();
                 dataManager.setQuery("INSERT INTO Persons (Nombre, Apellido, Sexo, DNI, FechaNacimiento,Celular, Domicilio ) VALUES (@Nombre, @Apellido,@Sexo,  @DNI, @FechaNacimiento, @Celular, @Domicilio)");
                 dataManager.setParameter("@Nombre", passenger.Name);
                 dataManager.setParameter("@Apellido", passenger.Surname);
                 dataManager.setParameter("@Sexo", passenger.Gender);
                 dataManager.setParameter("@DNI", passenger.Dni);
-                dataManager.setParameter("@Domicilio", passenger.Address);
-                dataManager.setParameter("@FechaNacimiento", passenger.DateOfBirth);
-                dataManager.setParameter("@Celular", passenger.Cellphone);
+                dataManager.setParameter("@Domicilio", "");
+                dataManager.setParameter("@FechaNacimiento", "1985-03-20");
+                dataManager.setParameter("@Celular", "623784" + passenger.IdPerson);
                 dataManager.executeRead();
-                dataManager.closeConection();
 
             }
             catch (Exception ex)
@@ -127,6 +125,33 @@ namespace CabBusiness
                 dataManager.closeConection();
             }
         }
+
+        public void UpdatePassengerToPerson(FlightPassenger passenger)
+        {
+            DataManager dataManager = new DataManager();
+
+            try
+            {
+                dataManager.setQuery("UPDATE Persons SET Nombre= @Nombre, Apellido= @Apellido, Sexo= @Sexo, DNI = @DNI WHERE IdPerson = @IdPerson");
+                dataManager.setParameter("@IdPerson", passenger.IdPerson);
+                dataManager.setParameter("@Nombre", passenger.Name);
+                dataManager.setParameter("@Apellido", passenger.Surname);
+                dataManager.setParameter("@Sexo", passenger.Gender);
+                dataManager.setParameter("@DNI", passenger.Dni);
+                dataManager.executeRead();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
+
         public void editPerson(Client client)
         {
             DataManager dataManager = new DataManager();

@@ -182,14 +182,17 @@ namespace CabWeb
 
         protected void btnEditPassenger_Click(object sender, EventArgs e)
         {
-            string IdPerson = ((LinkButton)sender).CommandArgument;   
+            string IdPerson = ((LinkButton)sender).CommandArgument;
+            Session["IdPerson"] = int.Parse(IdPerson);
             Flight aux = (Flight)Session["CurrentFlight"];
-            FlightPassenger passenger  = aux.Passengers.Find(Flights => Flights.IdPerson == int.Parse(IdPerson));
+            FlightPassenger passenger  = aux.Passengers.Find(passengers=> passengers.IdPerson == int.Parse(IdPerson));
 
             txtNameP.Text = passenger.Name;
             txtLastNameP.Text = passenger.Surname;
             txtDNIP.Text = passenger.Dni;
             txtGender.Text = passenger.Gender.ToString();
+
+   
 
             panelEditPassengers.CssClass = "";
             panelDetail.CssClass = "hidden";
@@ -203,37 +206,59 @@ namespace CabWeb
 
         protected void BtnUpdatePassenger_Click(object sender, EventArgs e)
         {
-            //Se realiza un update directamente en la tabla persona
+            PersonBusiness pBusiness = new PersonBusiness();
+            int IdPerson = (int)Session["IdPerson"];
+            Flight aux = (Flight)Session["CurrentFlight"];
+            FlightPassenger passenger = aux.Passengers.Find(passengers => passengers.IdPerson == IdPerson);
+
+            passenger.Name = txtNameP.Text;
+            passenger.Surname = txtLastNameP.Text;
+            passenger.Dni = txtDNIP.Text;
+            //passenger.Gender = txtGender.Text; 
+
+            pBusiness.UpdatePassengerToPerson(passenger);
+
+
+
+
+            //volvemos a flight porque aun no pude resolver el post back
+            panelEditPassengers.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
+            panelHome.CssClass = "hidden";
+            panelDashboard.CssClass = "hidden";
+            panelFlight.CssClass = "";
+            panelEditCrew.CssClass = "hidden";
+            panelEditItinerary.CssClass = "hidden";
+
+
         }
 
         protected void btnDeletePassenger_Click(object sender, EventArgs e)
         {
-            //se borra la persona fisica y luego el registro de la tabla de forma física
-        }
-
-        protected void BtnAddPassenger_Click(object sender, EventArgs e)
-        {
-            FlightPassenger flightPassenger = new FlightPassenger();
+            string IdPerson = ((LinkButton)sender).CommandArgument;
+            Flight aux = (Flight)Session["CurrentFlight"];
+            FlightPassenger passenger = aux.Passengers.Find(Flights => Flights.IdPerson == int.Parse(IdPerson));
             FlightPassengerBusiness fpBusiness = new FlightPassengerBusiness();
+            fpBusiness.deletePassenger(passenger);
 
-            flightPassenger.Name = txtNameP.Text;
-            flightPassenger.Surname = txtLastNameP.Text;
-            flightPassenger.Dni = txtDNIP.Text;
-            flightPassenger.Gender = Convert.ToChar(txtGenderP.Text);
-            flightPassenger.IdFlight = (int)Session["IdFlight"];
+            updateFlightEmployeeSession();
+           
 
 
-            try
-            {
-                fpBusiness.addPassenger(flightPassenger);
-            }
-            catch (Exception ex)
-            {
+            //volvemos a flight porque aun no pude resolver el post back
+            panelEditPassengers.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
+            panelHome.CssClass = "hidden";
+            panelDashboard.CssClass = "hidden";
+            panelFlight.CssClass = "";
+            panelEditCrew.CssClass = "hidden";
+            panelEditItinerary.CssClass = "hidden";
 
-                throw ex;
-            }
+
 
         }
+
+
 
         //----------------------------------       Botones CANCELAR - APROBAR  RESERVA      --------------------------------------------------
 

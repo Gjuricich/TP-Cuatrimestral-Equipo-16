@@ -73,7 +73,34 @@ namespace CabBusiness
             {
                 dataManager.closeConection();
             }
+        }     
+
+
+        public void deletePassenger(FlightPassenger passenger)
+        {
+            DataManager dataManager = new DataManager();
+            PersonBusiness pBusiness = new PersonBusiness();
+
+            try
+            {
+            
+                dataManager.setQuery("DELETE from FlightPassengers  WHERE IdPerson = @Idperson");
+                dataManager.setParameter("@Idperson", passenger.IdPerson);
+                dataManager.executeRead();
+
+                pBusiness.deletePerson(passenger.Dni);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
         }
-        
+
     }
 }
