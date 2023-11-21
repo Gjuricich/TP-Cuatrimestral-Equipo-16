@@ -167,3 +167,22 @@ CREATE TABLE Flight(
    FlightState VARCHAR(15) NOT NULL DEFAULT('En proceso') CHECK(FlightState  IN('En proceso','Finalizado ','Cancelado')),
    Estado BIT NOT NULL DEFAULT(1)
 )
+GO
+CREATE TABLE FlightCrew (
+    IdFlight INT NOT NULL FOREIGN KEY REFERENCES Flight(IdFlight),
+    IdEmployee BIGINT NOT NULL FOREIGN KEY REFERENCES Employees(IdEmployee),
+    Estado BIT NOT NULL DEFAULT(1),
+    PRIMARY KEY(IdFlight, IdEmployee)
+)
+GO
+INSERT INTO FlightPassengers (IdFlight, IdPerson)
+VALUES
+(1,1), -- INSERTO PERSONAS DE LA TABLA PERSONAS A UN VUELO PARA QUE LO PUEDAN VER, CUANDO ESTE AGREGAR PASAJERO DESDE CLIENTE AHI VAMOS A HACER LOS INSERTS
+(1,2)
+GO
+CREATE TABLE FlightPassengers(
+   IdPerson Bigint FOREIGN KEY REFERENCES Persons(IdPerson),
+   IdFlight INT NOT NULL FOREIGN KEY REFERENCES Flight(IdFlight),
+   Estado BIT NOT NULL DEFAULT(1),
+   PRIMARY KEY(IdFlight, IdPerson) 
+)

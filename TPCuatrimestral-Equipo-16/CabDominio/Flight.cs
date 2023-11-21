@@ -13,7 +13,6 @@ namespace CabDominio
         public DateTime FlightDateTime { get; set; }
         public int AmountPassengers { get; set; }
 
-
         public Booking booking { get; set; }//aca tengo las ciudades de destino y origen
         public List<Employee> crew { get; set; }
         public Aircraft aircraft { get; set; }
@@ -22,11 +21,11 @@ namespace CabDominio
 
         public bool Status { get; set; }
 
-        public List<Person> Passengers { get; set; }
+        public List<FlightPassenger> Passengers { get; set; }
         public Flight()
         {
             aircraft = new Aircraft();
-            Passengers = new List<Person>();
+            Passengers = new List<FlightPassenger>();
             crew = new List<Employee>();
         }
     }

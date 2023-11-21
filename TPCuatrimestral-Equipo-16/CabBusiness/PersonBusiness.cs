@@ -7,7 +7,7 @@ using CabDominio;
 
 namespace CabBusiness
 {
-    public class PersonBusiness
+    public class PersonBusiness 
     {
         public Person GetPersonById(int id)
         {
@@ -97,6 +97,36 @@ namespace CabBusiness
             }
         }
 
+
+        public void addPassengerToPerson(FlightPassenger passenger)
+        {
+            DataManager dataManager = new DataManager();
+
+            try
+            {
+                dataManager.ClearCommand();
+                dataManager.setQuery("INSERT INTO Persons (Nombre, Apellido, Sexo, DNI, FechaNacimiento,Celular, Domicilio ) VALUES (@Nombre, @Apellido,@Sexo,  @DNI, @FechaNacimiento, @Celular, @Domicilio)");
+                dataManager.setParameter("@Nombre", passenger.Name);
+                dataManager.setParameter("@Apellido", passenger.Surname);
+                dataManager.setParameter("@Sexo", passenger.Gender);
+                dataManager.setParameter("@DNI", passenger.Dni);
+                dataManager.setParameter("@Domicilio", passenger.Address);
+                dataManager.setParameter("@FechaNacimiento", passenger.DateOfBirth);
+                dataManager.setParameter("@Celular", passenger.Cellphone);
+                dataManager.executeRead();
+                dataManager.closeConection();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
         public void editPerson(Client client)
         {
             DataManager dataManager = new DataManager();

@@ -15,6 +15,13 @@
             max-width: 100%;
             margin-top : 5px;       
         }
+         .DetailBox {
+            background-color: rgba(169, 169, 169, 0.5);
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 100%;
+            margin-top : 5px;       
+        }
 
         .BookingBox
         {
@@ -164,17 +171,10 @@
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </div>
-                            
-  
-
-
-
-
-
                     </center>
         </asp:Panel>
 
-          <%------------------   Vuelos    ---------------%>
+          <%------------------  PANEL  Vuelos    ---------------%>
 
         <asp:Panel ID="panelFlight" runat="server" CssClass="hidden">
              <center>
@@ -203,10 +203,14 @@
                                         <td><%# Eval("AmountPassengers") %></td>
                                         <td><%# Eval("FlightState") %></td>
                                         <td>
-                                       
-                                              <a href="EditEmployee.aspx" class="btn btn-primary">
-                                             <i class="bi bi-pencil-fill"></i>
-                                              </a>
+                                         <asp:LinkButton ID="btnDetail" runat="server"  class="btn btn-secondary" OnClick="btnDetail_Click"  CommandArgument='<%# Eval("ID_Flight") %>'>
+                                             <i class="bi bi-plus-square-fill"></i>
+                                         </asp:LinkButton>
+                                         <%-- 
+                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#menuEdit" style="margin-top:2%; margin-bottom:2%;">
+                                         <i class="bi bi-pencil-fill"></i>
+                                         </button> --%>
+                                           
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-danger">
@@ -220,9 +224,196 @@
                             </tbody>
                         </table>
                     </center>           
-        </asp:Panel>
-   
+            </asp:Panel>
 
+            <%------------------  PANEL  Detalles vuelo    ---------------%>
+
+             <asp:Panel ID="panelDetail" runat="server" CssClass="hidden">
+                    <center>
+
+                       <div class="col-6" style="margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;"> 
+                         <h1> Flight Details</h1>
+                     
+                         <%------------------------------------------       PASAJEROS       ----------------------------------------------%>
+                          <div  class="ProfileBox" style="margin-top: 20px;">                      
+                             <h2> Passengers </h2> 
+                               <table class="table">
+                               <thead>
+                                <tr>
+                                  <th scope="col">DNI</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Surname</th>
+                                  <th scope="col">Gender</th>
+                                  <th scope="col"></th>
+                                  <th scope="col"></th>
+                                </tr>
+                             </thead>
+                          <tbody>
+                                 <asp:Repeater ID="rptCurrentFlightPassengers" runat="server">
+                                    <ItemTemplate>
+                                      <tr>
+                                        <td><%# Eval("Dni ") %></td>
+                                        <td><%# Eval("Name") %></td>
+                                        <td><%# Eval("Surname") %></td>
+                                        <td><%# Eval("Gender") %></td>                         
+                                        <td>
+                                         <asp:LinkButton ID="btnEditPassenger" runat="server"  class="btn btn-secondary" OnClick="btnEditPassenger_Click"  CommandArgument='<%# Eval("IdPerson") %>'>
+                                             <i class="bi bi-pencil-fill"></i>
+                                         </asp:LinkButton>                                                                           
+                                        </td>
+                                        <td>
+                                         <asp:LinkButton ID="btnDeletePassenger" runat="server"  class="btn btn-secondary" OnClick="btnDeletePassenger_Click"  CommandArgument='<%# Eval("IdFlight") %>'>
+                                             <i class="bi bi-trash"></i> 
+                                         </asp:LinkButton>                                                                                 
+                                        </td>
+                                      </tr>  
+                                    </ItemTemplate>
+                               </asp:Repeater>
+
+                         </tbody>
+                        </table>
+                     </div>
+
+                            
+
+                           <%------------------------------------------       CREW       ----------------------------------------------%>
+                      <div  class="ProfileBox" style="margin-top: 20px;">   
+                           <h2> Crew </h2>
+                          <button type="button" class="btn btn-primary">
+                               <i class="bi bi-pencil"></i> Editar
+                          </button>
+                          <table class="table">
+                             <thead>
+                                <tr>
+                                  <th scope="col">ID</th>
+                                  <th scope="col">NAME</th>
+                                  <th scope="col"></th>
+                                </tr>
+                             </thead>
+                          <tbody>
+                               <tr>
+                                 <th scope="row">1</th>
+                               <td>TATA</td>
+                               <td>TATA</td>
+                               </tr>
+
+                         </tbody>
+                        </table>
+                     </div>
+                     <%------------------------------------------      ITINERARIO       ----------------------------------------------%>
+                     <div  class="ProfileBox" style="margin-top: 20px;">   
+                       <h2> Itinerary </h2>
+                         <div>       
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  placeholder="Name" ID="TextBox1" runat="server" ReadOnly="true"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="Label2" Text="Flight Arrival" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="DNI" ID="TextBox2" runat="server" ReadOnly="true"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="Label3" Text="Flight Departure" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="TextBox3"  placeholder="Surname" runat="server"></asp:TextBox><br />              
+                            <asp:Label class="text-secondary" ID="Label4" Text="Airport Arrival"  runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded"  style="max-width: 500px;" placeholder="Cellphone" ID="TextBox4" runat="server"></asp:TextBox><br />                          
+                            <asp:Label class="text-secondary" ID="Label5" Text="AirportDeparture" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="TextBox5" placeholder="Gender" runat="server" MaxLength="1"></asp:TextBox><br />                          
+                       </div>
+                         </div>
+                                
+
+
+                 </center> 
+                 </div>
+            </asp:Panel>
+             
+             <%-- ESTE PANEL Y LA TABLA DE PASAJEROS LA TIENE QUE TENER EL CLIENTE (ASI FUNCIONANL AS WEBS PARA SACAR BOLETOS DE AVION)
+         
+                 <asp:Panel ID="panelADDPassengers" runat="server" CssClass="hidden">
+                <center>
+
+                     <div class="col-4" style="margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
+                    <div  class="ProfileBox">
+                        
+                           <center>                         
+                                  <h1> Passenger flight  </h1>
+                                <br/>
+                           </center>
+
+
+                           <center>  
+                                                    
+                            <div>   
+                            <asp:Label class="text-secondary" ID="lblNameP" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  placeholder="Name" ID="txtNameP" runat="server" ReadOnly="true"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblDNIP" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="DNI" ID="txtDNIP" runat="server" ReadOnly="true"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblLastNameP" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtLastNameP"  placeholder="Surname" runat="server"></asp:TextBox><br />                                     
+                            <asp:Label class="text-secondary" ID="lblGenderP" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGenderP" placeholder="Gender" runat="server" MaxLength="1"></asp:TextBox><br />                          
+                       
+                             <div style="margin-top: 10px;">
+                                          <asp:Button ID="BtnAddPassenger" runat="server" Text="Add Passenger" class="btn btn-secondary" OnClick="BtnAddPassenger_Click" />
+                            </div>          
+                            </div>
+                            </center>
+                    </div>
+            </div>                  
+
+
+
+                </center> 
+            </asp:Panel>--%>
+             
+            <%------------------  PANEL  EDITAR PASAJERO   ---------------%>
+
+                  <asp:Panel ID="panelEditPassengers" runat="server" CssClass="hidden">
+                <center>
+
+                     <div class="col-4" style="margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
+                    <div  class="ProfileBox">
+                        
+                           <center>                         
+                                  <h1> Passenger flight  </h1>
+                                <br/>
+                           </center>
+
+
+                   
+                                                    
+                            <div>   
+                            <asp:Label class="text-secondary" ID="lblNameP" style="color:black;" Text="Name" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtNameP" runat="server" ReadOnly="true"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblDNIP" Text="DNI" style="color:black;"  runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtDNIP" runat="server" ReadOnly="true"></asp:TextBox><br />
+                            <asp:Label class="text-secondary" ID="lblLastNameP" Text="Surname" style="color:black;" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtLastNameP"  runat="server"></asp:TextBox><br />                                     
+                            <asp:Label class="text-secondary" ID="lblGenderP" Text="Gender" style="color:black;" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGenderP"  runat="server" MaxLength="1"></asp:TextBox><br />                          
+                       
+                             <div style="margin-top: 10px;">
+                                          <asp:Button ID="BtnUpdatePassenger" runat="server" Text="Add Passenger" class="btn btn-secondary" OnClick="BtnUpdatePassenger_Click" />
+                            </div>          
+                            </div>
+                           
+                    </div>
+            </div>                  
+
+
+
+                </center>           
+            </asp:Panel>
+            
+            
+     
+
+          
+
+                  <asp:Panel ID="panelEditItinerary" runat="server" CssClass="hidden">
+                 <center>
+                 </center>           
+            </asp:Panel>
+
+            <asp:Panel ID="panelEditCrew" runat="server" CssClass="hidden">
+                 <center>
+                 </center>           
+            </asp:Panel>
                 </ContentTemplate>       
             </asp:UpdatePanel>
 
@@ -271,7 +462,35 @@
                                 </div>
                                 </div>
                             </div>
-    
+
+       <%-- -
+
+        <div class="modal fade" id="menuEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                            
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <center>
+                                      <div>
+                                           <asp:Button ID="btnEditCrew" runat="server" Text="Edit Crew" class="btn btn-secondary" OnClick="btnEditCrew_Click" />
+                                      </div>                
+                                      <div style="margin-top: 10px;">
+                                          <asp:Button ID="btnEditPassengers" runat="server" Text="Edit Passengers" class="btn btn-secondary" OnClick="btnEditPassengers_Click" />
+                                     </div>
+                                     <div style="margin-top: 10px;">
+                                          <asp:Button ID="btnEditItinerary" runat="server" Text="Edit Itinerary" class="btn btn-secondary" OnClick="btnEditItinerary_Click" />
+                                     </div>
+                                      </center>
+                                    </div>
+                                
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+             --%>
 </asp:Content>
 
 

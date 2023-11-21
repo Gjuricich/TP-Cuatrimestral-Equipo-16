@@ -54,6 +54,7 @@
     <Compile Include="CredentialBusiness.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="FlightBusiness.cs" />
+    <Compile Include="FlightPassengerBusiness.cs" />
     <Compile Include="PersonBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvinceBusiness.cs" />

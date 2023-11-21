@@ -168,7 +168,7 @@
                
                      <center>
                
-                           <div class="centered-inputs DefaultBox" style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);">
+                           <div class="centered-inputs DefaultBox" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                             <div class="container text-center" style="display: flex; justify-content: center; align-items: center;">
                                 <div class="row " display="flex" >
                                 <div class="col"  >

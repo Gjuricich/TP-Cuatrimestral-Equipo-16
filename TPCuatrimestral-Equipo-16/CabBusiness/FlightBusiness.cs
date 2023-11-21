@@ -20,8 +20,8 @@ namespace CabBusiness
                 IdFlight 
                 FlightDateTime 
                 AmountPassengers 
-                 IdBooking 
-               IdAircraft 
+                IdBooking 
+                IdAircraft 
                 FlightState
                 Estado*/
 
