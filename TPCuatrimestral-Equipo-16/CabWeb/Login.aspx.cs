@@ -71,6 +71,8 @@ namespace CabWeb
                         JoinDate = aux.JoinDate,
                         State = aux.State,
                         credentials = credential,
+                        Available = aux.Available,
+                        Position = aux.Position,          
                     };
                     Session.Add("EmployeeLogged", employee);
                     Response.Redirect("EmployeeView.aspx");

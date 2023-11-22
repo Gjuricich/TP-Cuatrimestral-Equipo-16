@@ -15,24 +15,28 @@ namespace CabBusiness
             DataManager dataManager = new DataManager();
 
             try
-            { 
-                /*
-                IdFlight 
-                FlightDateTime 
-                AmountPassengers 
-                IdBooking 
-                IdAircraft 
-                FlightState
-                Estado*/
-
-                dataManager.setQuery("SELECT IdFlight,FlightDateTime,AmountPassengers,FlightState,Estado FROM Flight");
+            {              
+                dataManager.setQuery("SELECT F.IdFlight,F.FlightState,B.Passengers,B.DateBooking,CD.NombreCiudad AS Destino,CO.NombreCiudad AS Origen, A.Model AS Aircraft, F.Estado FROM Flight F LEFT JOIN Booking B ON F.IdBooking = B.IdBooking LEFT JOIN Aircraft A ON F.IdAircraft = A.IdAircraft INNER JOIN Ciudades CD ON B.IdDestino = CD.IdCiudad INNER JOIN Ciudades CO ON B.IdOrigen = CO.IdCiudad");
                 dataManager.executeRead();
                 while (dataManager.Lector.Read())
                 {
                     Flight flight = new Flight();
                     flight.ID_Flight = (int)dataManager.Lector["IdFlight"];
-                    flight.FlightDateTime = (DateTime)dataManager.Lector["FlightDateTime"];
-                    flight.AmountPassengers = (int)dataManager.Lector["AmountPassengers"];
+                    flight.booking.Passengers = (short)dataManager.Lector["Passengers"];
+                    flight.booking.DateBooking = (DateTime)dataManager.Lector["DateBooking"];
+                    flight.booking.Origin.NameCity = (string)dataManager.Lector["Origen"];
+                    flight.booking.Destination.NameCity = (string)dataManager.Lector["Destino"];
+                    if (dataManager.Lector["Aircraft"] != DBNull.Value)
+                    {
+
+                        flight.aircraft.Model = (string)dataManager.Lector["Aircraft"];
+
+
+                    }
+                    else
+                    {
+                        flight.aircraft.Model = "";
+                    }
                     flight.FlightState = (string)dataManager.Lector["FlightState"];
                     flight.Status= (bool)dataManager.Lector["Estado"];
                     list.Add(flight);
@@ -58,26 +62,31 @@ namespace CabBusiness
 
             try
             {
-                /*
-                IdFlight 
-                FlightDateTime 
-                AmountPassengers 
-                IdBooking 
-                IdAircraft 
-                FlightState
-                Estado*/
-
-                dataManager.setQuery("SELECT F.IdFlight,F.FlightDateTime,F.AmountPassengers,F.FlightState,F.Estado FROM Flight F LEFT JOIN Booking B ON F.IdBooking = B.IdBooking LEFT JOIN Client C ON B.IdClient = C.IdClient WHERE C.IdClient = @IdClient ");
+                dataManager.setQuery("SELECT  F.IdFlight,F.FlightState,B.Passengers,B.DateBooking,CD.NombreCiudad AS Destino,CO.NombreCiudad AS Origen, A.Model AS Aircraft, F.Estado FROM Flight F LEFT JOIN Booking B ON F.IdBooking = B.IdBooking LEFT JOIN Aircraft A ON F.IdAircraft = A.IdAircraft INNER JOIN Ciudades CD ON B.IdDestino = CD.IdCiudad INNER JOIN Ciudades CO ON B.IdOrigen = CO.IdCiudad LEFT JOIN Client C ON B.IdClient = C.IdClient WHERE C.IdClient = @IdClient ");
                 dataManager.setParameter("@IdClient", IdClient);
                 dataManager.executeRead();
                 while (dataManager.Lector.Read())
                 {
                     Flight flight = new Flight();
                     flight.ID_Flight = (int)dataManager.Lector["IdFlight"];
-                    flight.FlightDateTime = (DateTime)dataManager.Lector["FlightDateTime"];
-                    flight.AmountPassengers = (int)dataManager.Lector["AmountPassengers"];
+                    flight.booking.Passengers = (short)dataManager.Lector["Passengers"];
+                    flight.booking.DateBooking = (DateTime)dataManager.Lector["DateBooking"];
+                    flight.booking.Origin.NameCity = (string)dataManager.Lector["Origen"];
+                    flight.booking.Destination.NameCity = (string)dataManager.Lector["Destino"];
+                    if (dataManager.Lector["Aircraft"] != DBNull.Value)
+                    {
+
+                        flight.aircraft.Model = (string)dataManager.Lector["Aircraft"];
+
+
+                    }
+                    else
+                    {
+                        flight.aircraft.Model = "";
+                    }
                     flight.FlightState = (string)dataManager.Lector["FlightState"];
                     flight.Status = (bool)dataManager.Lector["Estado"];
+
                     list.Add(flight);
                 }
 
@@ -101,10 +110,8 @@ namespace CabBusiness
             try
             {
        
-                dataManager.setQuery("INSERT INTO Flight(IdBooking,AmountPassengers,FlightDateTime) VALUES (@IdBooking, @PASAJEROS, @FECHARESERVA)");
+                dataManager.setQuery("INSERT INTO Flight(IdBooking) VALUES (@IdBooking)");
                 dataManager.setParameter("@IdBooking", booking.IdBooking);
-                dataManager.setParameter("@PASAJEROS", booking.Passengers);
-                dataManager.setParameter("@FECHARESERVA", booking.DateBooking);
                 dataManager.executeRead();
 
             }

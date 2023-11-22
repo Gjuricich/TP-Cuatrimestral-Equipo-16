@@ -55,6 +55,7 @@
     <Compile Include="Employee.cs" />
     <Compile Include="Flight.cs" />
     <Compile Include="FlightAttendant.cs" />
+    <Compile Include="FlightCrew.cs" />
     <Compile Include="FlightPassenger.cs" />
     <Compile Include="Itinerary.cs" />
     <Compile Include="Manager.cs" />

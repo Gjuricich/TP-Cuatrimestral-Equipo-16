@@ -10,16 +10,19 @@ CREATE TABLE Persons
     DNI NVARCHAR(8) UNIQUE,
     FechaNacimiento DATETIME not null,
     Domicilio NVARCHAR(200),
-    --CodPostal  falta  ver si va y desarrollar tabla
     Celular NVARCHAR(30) UNIQUE
 )
 GO
-INSERT INTO Persons (Nombre, Apellido, Sexo, DNI, FechaNacimiento, FechaRegistro, Domicilio, Celular)
-VALUES ('Juan', 'Perez', 'M', '34567890', '1980-05-15', '2023-10-25', '123 Main St, Ciudad', '5551234567'),
-       ('Maria', 'Gonzalez', 'F', '98765432', '1985-03-20','2023-09-25', '456 Elm St, Ciudad', '5559876543'),
-       ('Luis', 'Martinez', 'M', '45678901', '1990-08-10', '2023-08-25','789 Oak St, Ciudad', '5557890123'),
-       ('Ana', 'Lopez', 'F', '34597801', '1988-12-05','2023-07-25', '567 Pine St, Ciudad', '5552345678'),
-       ('Carlos', 'Rodriguez', 'M', '46789012', '1982-06-30', '2023-04-25', '890 Cedar St, Ciudad', '5553456789')
+INSERT INTO Persons (Nombre, Apellido, Sexo, DNI, FechaNacimiento, Domicilio, Celular)
+VALUES ('Juan', 'Perez', 'M', '34567890', '1980-05-15', '123 Main St, Ciudad', '5551234567'),
+       ('Maria', 'Gonzalez', 'F', '98765432', '1985-03-20', '456 Elm St, Ciudad', '5559876543'),
+       ('Luis', 'Martinez', 'M', '45678901', '1990-08-10', '789 Oak St, Ciudad', '5557890123'),
+       ('Ana', 'Lopez', 'F', '34597801', '1988-12-05', '567 Pine St, Ciudad', '5552345678'),
+       ('Carlos', 'Rodriguez', 'M', '46789012', '1982-06-30',  '890 Cedar St, Ciudad', '5553456789'),
+       ('Maxi', 'Programa', 'M', '46711112', '1982-06-30',  '890 Cedar St, Ciudad', '5500000789'),
+       ('Luis', 'Pasajero', 'M', '45111111', '1990-08-10', '789 Oak St, Ciudad', '5557898823'),
+       ('Ana', 'Pasajero', 'F', '34117801', '1988-12-05', '567 Pine St, Ciudad', '5556645678'),
+       ('Carlos', 'Pasajero', 'M', '46781112', '1982-06-30',  '890 Cedar St, Ciudad', '5113456789')
 GO
 CREATE TABLE Roles
 (
@@ -29,8 +32,7 @@ CREATE TABLE Roles
 GO
 INSERT INTO Roles (Rol)
 VALUES ('Client'),
-       ('Employee'),
-       ('Manager')
+       ('Employee')
 GO
 CREATE TABLE Credentials
 (  
@@ -38,7 +40,6 @@ CREATE TABLE Credentials
     IdPerson Bigint FOREIGN KEY REFERENCES Persons(IdPerson) unique,
     IdRol INT FOREIGN Key REFERENCES Roles(IdRol),
     Email NVARCHAR(255) UNIQUE NOT NULL,
-    --Usuario NVARCHAR(255), vemos....
     HashContraseña NVARCHAR(255),
     Sal NVARCHAR(255),
     ImageProfile  NVARCHAR(500)
@@ -50,21 +51,36 @@ VALUES
 (2,1, 'usuario2@example.com', '/RplRpd+ZqaWdfrDkO1FJJiz7eu4HBwTSSyAZQ7nWSg=', 'd70yJWTixT'),
 (3,2, 'usuario3@example.com', '/RplRpd+ZqaWdfrDkO1FJJiz7eu4HBwTSSyAZQ7nWSg=', 'd70yJWTixT'),
 (4,2, 'usuario4@example.com', '/RplRpd+ZqaWdfrDkO1FJJiz7eu4HBwTSSyAZQ7nWSg=', 'd70yJWTixT'),
-(5,3, 'usuario5@example.com', '/RplRpd+ZqaWdfrDkO1FJJiz7eu4HBwTSSyAZQ7nWSg=', 'd70yJWTixT')
+(5,2, 'usuario5@example.com', '/RplRpd+ZqaWdfrDkO1FJJiz7eu4HBwTSSyAZQ7nWSg=', 'd70yJWTixT'),
+(6,2, 'usuario6@example.com', '/RplRpd+ZqaWdfrDkO1FJJiz7eu4HBwTSSyAZQ7nWSg=', 'd70yJWTixT')
+GO
+CREATE TABLE Positions(
+     IdPosition TINYINT PRIMARY KEY IDENTITY(1,1),
+     Position NVARCHAR(30) NOT NULL
+)
+GO
+INSERT INTO Positions(Position)
+VALUES ('HR Manager'),
+       ('Flight Operations Manager'),
+       ('Pilot'),
+       ('Flight Attendant')
 GO
 CREATE TABLE Employees(
    IdEmployee BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
    IdCredencial Bigint NOT NULL FOREIGN KEY REFERENCES Credentials(Id),
+   IdPosition TINYINT NOT NULL FOREIGN KEY REFERENCES Positions(IdPosition),
    JoinDate  DATE NOT NULL,
    Salary MONEY NOT NULL DEFAULT(20000) CHECK (Salary>0),
+   Available BIT NOT NULL DEFAULT(1),
    Estado BIT NOT NULL DEFAULT(1)
 )
 GO
-INSERT INTO Employees (IdCredencial,Salary, JoinDate)
+INSERT INTO Employees (IdCredencial,IdPosition, Salary, JoinDate)
 VALUES 
-(3, 30000, GETDATE()),
-(4, 40000, GETDATE())
----(5, 60000, GETDATE())todavia no
+(3, 2, 30000, GETDATE()),
+(4, 3, 40000, GETDATE()),
+(5, 4, 30000, GETDATE()),
+(6, 4, 40000, GETDATE())
 GO
 CREATE TABLE Client(
    IdClient BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -113,7 +129,6 @@ CREATE TABLE Aeropuertos(
    IdCiudad Bigint NOT NULL FOREIGN KEY REFERENCES Ciudades(IdCiudad),
    NombreAeropuerto varchar(250) NOT NULL,
    Direccion varchar(250) NOT NULL,
-   --Terminal CHAR NOT NULL,
    Estado BIT NOT NULL DEFAULT(1)
 )
 GO
@@ -132,12 +147,16 @@ CREATE TABLE Booking(
     IdOrigen  BIGINT NOT NULL FOREIGN KEY REFERENCES Ciudades(IdCiudad),
     IdDestino  BIGINT NOT NULL FOREIGN KEY REFERENCES Ciudades(IdCiudad),
     SolicitudDate DATETIME NOT NULL DEFAULT(GETDATE()),
-    DateBooking DATETIME NOT NULL CHECK(DateBooking > DATEADD(day, 5, GETDATE())),
+    DateBooking DATE NOT NULL CHECK(DateBooking > DATEADD(day, 5, GETDATE())),
     Passengers SMALLINT NOT NULL CHECK(Passengers BETWEEN 1 AND 12),
     StateBooking VARCHAR(12) NOT NULL DEFAULT('En proceso') CHECK(StateBooking IN('En proceso','Aprobada ','Cancelada')),
     Estado BIT NOT NULL DEFAULT(1),
     CHECK(IdOrigen <> IdDestino)
 )
+INSERT INTO Booking(IdClient,IdOrigen,IdDestino,SolicitudDate,DateBooking,Passengers,StateBooking)
+VALUES
+(1,1,4,GETDATE(),'2030-11-06',7,'Aprobada')
+GO
 CREATE TABLE Aircraft(
     IdAircraft INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     Model VARCHAR(100) NOT NULL,
@@ -160,13 +179,14 @@ VALUES
 GO
 CREATE TABLE Flight(   
    IdFlight INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-   FlightDateTime DateTime NOT NULL,
-   AmountPassengers INT NOT NULL CHECK(AmountPassengers BETWEEN 1 AND 12),
    IdBooking BIGINT NOT NULL FOREIGN KEY REFERENCES Booking(IdBooking),
    IdAircraft INT FOREIGN KEY REFERENCES Aircraft(IdAircraft),
    FlightState VARCHAR(15) NOT NULL DEFAULT('En proceso') CHECK(FlightState  IN('En proceso','Finalizado ','Cancelado')),
    Estado BIT NOT NULL DEFAULT(1)
 )
+INSERT INTO Flight(IdBooking,IdAircraft)
+VALUES 
+(1,5)    
 GO
 CREATE TABLE FlightCrew (
     IdFlight INT NOT NULL FOREIGN KEY REFERENCES Flight(IdFlight),
@@ -174,6 +194,11 @@ CREATE TABLE FlightCrew (
     Estado BIT NOT NULL DEFAULT(1),
     PRIMARY KEY(IdFlight, IdEmployee)
 )
+GO
+INSERT INTO FlightCrew(IdFlight,IdEmployee)
+VALUES
+(1,2),
+(1,3)
 GO
 CREATE TABLE FlightPassengers(
    IdPerson Bigint FOREIGN KEY REFERENCES Persons(IdPerson),
@@ -182,12 +207,11 @@ CREATE TABLE FlightPassengers(
    PRIMARY KEY(IdFlight, IdPerson) 
 )
 GO
-CREATE TABLE FlightCrew (
-    IdFlight INT NOT NULL FOREIGN KEY REFERENCES Flight(IdFlight),
-    IdEmployee BIGINT NOT NULL FOREIGN KEY REFERENCES Employees(IdEmployee),
-    Estado BIT NOT NULL DEFAULT(1),
-    PRIMARY KEY(IdFlight, IdEmployee)
-)
+INSERT INTO FlightPassengers(IdFlight,IdPerson)
+VALUES
+(1,7),
+(1,8),
+(1,9)
 GO
 CREATE TABLE Itinerary(   
    IdItinerary INT NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -201,3 +225,8 @@ CREATE TABLE Itinerary(
    updateTrip varchar(500),
    Estado BIT NOT NULL DEFAULT(1)
 )
+GO
+INSERT INTO Itinerary(IdFlight,FlightArrival,FlightDeparture,CodIATAArrival,CodIATADeparture,ETA,flightHours)
+VALUES
+(1,GETDATE(),GETDATE(),'AEP','BRC',5,'02:30:00')
+

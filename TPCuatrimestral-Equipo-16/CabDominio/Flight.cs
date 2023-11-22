@@ -10,23 +10,19 @@ namespace CabDominio
     public class Flight
     {
         public int ID_Flight { get; set; }
-        public DateTime FlightDateTime { get; set; }
-        public int AmountPassengers { get; set; }
-
-        public Booking booking { get; set; }//aca tengo las ciudades de destino y origen
-        public List<Employee> crew { get; set; }
+        public Booking booking { get; set; }
         public Aircraft aircraft { get; set; }
-        public Itinerary itinerary { get; set; }
         public string FlightState { get; set; }
-
-        public bool Status { get; set; }
-
+        public Itinerary itinerary { get; set; }             
+        public List<Employee> crew { get; set; }
         public List<FlightPassenger> Passengers { get; set; }
+        public bool Status { get; set; }
         public Flight()
         {
             aircraft = new Aircraft();
             Passengers = new List<FlightPassenger>();
             crew = new List<Employee>();
+            booking = new Booking();
         }
     }
 

@@ -9,20 +9,15 @@ namespace CabBusiness
 {
     public class EmployeeBusiness
     {
-        private DataManager dataManager;
-
-        public EmployeeBusiness()
-        {
-            dataManager = new DataManager();
-        }
+         
 
         public Employee GetEmployeeById(int id)
         {
-
+            DataManager dataManager = new DataManager();
             Employee employee = new Employee();
             try
             {
-                dataManager.setQuery("SELECT E.IdEmployee,E.JoinDate,E.Salary,E.Estado FROM Credentials C INNER JOIN Employees E ON C.Id = IdCredencial WHERE C.Id = @Id");
+                dataManager.setQuery("SELECT E.IdEmployee,E.JoinDate,E.Salary, PS.Position, E.Available,E.Estado FROM Credentials C INNER JOIN Employees E ON C.Id = IdCredencial INNER JOIN Positions PS ON E.IdPosition = PS.IdPosition WHERE C.Id = @Id");
                 dataManager.setParameter("@Id", id);
                 dataManager.executeRead();
 
@@ -31,7 +26,9 @@ namespace CabBusiness
                     dataManager.Lector.Read();
                     employee.IdEmployee = (int)(long)dataManager.Lector["IdEmployee"];
                     employee.JoinDate = (DateTime)dataManager.Lector["JoinDate"];
+                    employee.Position = (string)dataManager.Lector["Position"];
                     employee.Salary = (Decimal)dataManager.Lector["Salary"];
+                    employee.Available = (bool)dataManager.Lector["Available"];
                     employee.State = (bool)dataManager.Lector["Estado"];
                     dataManager.closeConection();
                     return employee;

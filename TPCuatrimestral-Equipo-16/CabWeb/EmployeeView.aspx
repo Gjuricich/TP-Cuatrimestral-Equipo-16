@@ -197,11 +197,11 @@
                                 <asp:Repeater ID="repeaterFlight" runat="server">
                                     <ItemTemplate>
                                       <tr>
-                                        <td><%# Eval("FlightDateTime ") %></td>
-                                        <td>Origin</td>
-                                        <td>Destination</td>
-                                        <td> Nombre modelo avión</td>
-                                        <td><%# Eval("AmountPassengers") %></td>
+                                        <td><%# Eval("booking.DateBooking") %></td>
+                                        <td><%# Eval("booking.Origin.NameCity") %></td>
+                                        <td><%# Eval("booking.Destination.NameCity")%></td>
+                                        <td><%# Eval("aircraft.Model") %></td>
+                                        <td><%# Eval("booking.Passengers") %></td>
                                         <td><%# Eval("FlightState") %></td>
                                         <td>
                                          <asp:LinkButton ID="btnDetail" runat="server"  class="btn btn-secondary" OnClick="btnDetail_Click"  CommandArgument='<%# Eval("ID_Flight") %>'>

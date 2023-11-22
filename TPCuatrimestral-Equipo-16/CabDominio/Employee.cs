@@ -9,10 +9,14 @@ namespace CabDominio
     public class Employee : Person
     {
         public int IdEmployee { get; set; }
+        public String Position { get; set; }
         public DateTime JoinDate {get; set;}        
         public decimal Salary {get; set;}
         public bool State {get; set;}
+
+        public bool Available { get; set; }
         public int IdRol {get; set;}
+      
         public Credential credentials { get; set; }
 
         public Employee()
