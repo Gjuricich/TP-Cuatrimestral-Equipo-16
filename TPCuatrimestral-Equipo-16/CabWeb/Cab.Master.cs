@@ -38,6 +38,7 @@ namespace CabWeb
                 Session.Remove("EmployeeLogged");
                 Session.Remove("Bookings");
                 Session.Remove("Flights");
+                Session.Remove("CurrentFlight");
             }
             Label2.Text = "";
             Response.Redirect("~/Default.aspx");

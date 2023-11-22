@@ -179,7 +179,7 @@
         <asp:Panel ID="panelFlight" runat="server" CssClass="hidden">
              <center>
                         <h1>Flights</h1>
-                       <div class="col-10" style="margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;">
+                       <div class="col-12" style="margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;">
                         <table id="example" class="table table-striped" style="width: 100%">
                             <thead>
                                 <tr>
@@ -328,7 +328,7 @@
             <%------------------  PANEL  EDITAR PASAJERO   ---------------%>
 
                   <asp:Panel ID="panelEditPassengers" runat="server" CssClass="hidden">
-                <center>
+       
 
                      <div class="col-4" style="margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
                     <div  class="ProfileBox">
@@ -361,7 +361,7 @@
 
 
 
-                </center>           
+                       
             </asp:Panel>
             
             

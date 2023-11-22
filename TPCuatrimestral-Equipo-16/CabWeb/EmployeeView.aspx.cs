@@ -27,9 +27,13 @@ namespace CabWeb
             loadFlights();
             if (!IsPostBack)
             {
-                panelHome.CssClass = "";
+                panelHome.CssClass = "";             
                 panelDashboard.CssClass = "hidden";
                 panelFlight.CssClass = "hidden";
+                panelDetail.CssClass = "hidden";
+                panelEditCrew.CssClass = "hidden";
+                panelEditItinerary.CssClass = "hidden";
+                panelEditPassengers.CssClass = "hidden";
 
             }
 
@@ -88,6 +92,10 @@ namespace CabWeb
             panelHome.CssClass = "";
             panelDashboard.CssClass = "hidden";
             panelFlight.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
+            panelEditCrew.CssClass = "hidden";
+            panelEditItinerary.CssClass = "hidden";
+            panelEditPassengers.CssClass = "hidden";
             updatePanelGeneral.Update();
 
         }
@@ -97,6 +105,10 @@ namespace CabWeb
             panelDashboard.CssClass = "";
             panelHome.CssClass = "hidden";
             panelFlight.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
+            panelEditCrew.CssClass = "hidden";
+            panelEditItinerary.CssClass = "hidden";
+            panelEditPassengers.CssClass = "hidden";
             ScriptManager.RegisterStartupScript(updatePanelGeneral, updatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + updatePanelGeneral.ClientID + "', '');", true);
 
         }
@@ -106,7 +118,12 @@ namespace CabWeb
             panelFlight.CssClass = "";
             panelDashboard.CssClass = "hidden";
             panelHome.CssClass = "hidden";
-          
+            panelDetail.CssClass = "hidden";
+            panelEditCrew.CssClass = "hidden";
+            panelEditItinerary.CssClass = "hidden";
+            panelEditPassengers.CssClass = "hidden";
+
+
 
             //updatePanelGeneral.Update();
             //ScriptManager.RegisterStartupScript(updatePanelGeneral, updatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + updatePanelGeneral.ClientID + "', '');", true);
@@ -123,6 +140,7 @@ namespace CabWeb
             panelEditCrew.CssClass =  "hidden";
             panelEditItinerary.CssClass = "";
             panelEditPassengers.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
         }
 
         protected void btnEditPassengers_Click(object sender, EventArgs e)
@@ -133,6 +151,7 @@ namespace CabWeb
             panelEditCrew.CssClass = "hidden";
             panelEditItinerary.CssClass = "hidden";
             panelEditPassengers.CssClass = "";
+            panelDetail.CssClass = "hidden";
 
         }
 
@@ -144,6 +163,7 @@ namespace CabWeb
             panelEditCrew.CssClass = "";
             panelEditItinerary.CssClass = "hidden";
             panelEditPassengers.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
 
         }
 
@@ -190,7 +210,7 @@ namespace CabWeb
             txtNameP.Text = passenger.Name;
             txtLastNameP.Text = passenger.Surname;
             txtDNIP.Text = passenger.Dni;
-            txtGender.Text = passenger.Gender.ToString();
+            txtGenderP.Text = passenger.Gender.ToString();
 
    
 
@@ -214,11 +234,11 @@ namespace CabWeb
             passenger.Name = txtNameP.Text;
             passenger.Surname = txtLastNameP.Text;
             passenger.Dni = txtDNIP.Text;
-            //passenger.Gender = txtGender.Text; 
+            passenger.Gender = txtGender.Text[0]; 
 
             pBusiness.UpdatePassengerToPerson(passenger);
 
-
+            Session.Remove("CurrentFlight");
 
 
             //volvemos a flight porque aun no pude resolver el post back
@@ -242,8 +262,8 @@ namespace CabWeb
             fpBusiness.deletePassenger(passenger);
 
             updateFlightEmployeeSession();
-           
 
+            Session.Remove("CurrentFlight");
 
             //volvemos a flight porque aun no pude resolver el post back
             panelEditPassengers.CssClass = "hidden";

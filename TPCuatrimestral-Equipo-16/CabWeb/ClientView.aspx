@@ -14,17 +14,17 @@
             border-radius: 5px;
             max-width: 100%;
             margin-top : 5px;       
-        }
+         }
 
           .BookingBox {
             background-color: rgba(169, 169, 169, 0.2);
             padding:1%;
          
-        }
+          }
            .hidden 
-        {
+           {
             display: none;
-        }
+           }
 
         
     </style>
@@ -318,7 +318,7 @@
                            </center>
 
 
-                           <center>  
+                        
                                                     
                             <div>   
                             <asp:Label class="text-dark" ID="lblNameP" runat="server"></asp:Label>
@@ -331,7 +331,7 @@
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGenderP" placeholder="Gender" runat="server" MaxLength="1"></asp:TextBox><br />                          
                        
                              <div style="margin-top: 10px;">
-                                  <asp:Button ID="BtnAddPassenger" runat="server" Text="Add Passenger" class="btn btn-secondary" OnClientClick="return confirm('¿Are you sure that do you want add this passenger ?')"  OnClick="btnAddPassenger_Click" />
+                                  <asp:Button ID="BtnAddPassenger" runat="server" Text="Add Passenger" class="btn btn-secondary" OnClick="btnAddPassenger_Click" OnClientClick="return confirm('¿Are you sure that do you want add this passenger ?')"   />
                             </div>          
                             </div>
                             </center>
@@ -348,7 +348,8 @@
              <asp:Panel ID="panelDetail" runat="server" CssClass="hidden">
                     
                  <h1> Flight Details</h1>
-                 <center>
+            
+
 
                        <div class="col-10" style="margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;"> 
                        
@@ -402,7 +403,8 @@
                                 
 
 
-                 </center> 
+               
+                           
                  </div>
             </asp:Panel>
                   </ContentTemplate>       
