@@ -1,4 +1,5 @@
 CREATE DATABASE AirJetbWeb_DB
+GO
 use AirJetbWeb_DB
 GO
 CREATE TABLE Persons

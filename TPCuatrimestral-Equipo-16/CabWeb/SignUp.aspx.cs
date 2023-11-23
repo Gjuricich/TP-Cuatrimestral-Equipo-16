@@ -24,15 +24,52 @@ namespace CabWeb
             try
             {
                 newClient.Name = txtName.Text;
+                if (txtName.Text == "")
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your name.');", true);
+                    return;
+                }
                 newClient.Surname = txtLastName.Text;
+                if (txtLastName.Text == "")
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your surname.');", true);
+                    return;
+                }
                 newClient.Dni = txtDni.Text;
+                if (string.IsNullOrWhiteSpace(newClient.Dni))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your DNI.');", true);
+                    return;
+                }
                 newClient.credentials.Email = txtEmail.Text;
-                newClient.Gender = Convert.ToChar(txtGender.Text);
+                if (txtEmail.Text == "")
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your email adress. Example: example@gmail.com');", true);
+                    return;
+                }
                 newClient.Cellphone = txtCel.Text;
-                newClient.DateOfRegister = DateTime.Now;
-                newClient.DateOfBirth = Convert.ToDateTime(txtDateOfBirth.Text);
-                newClient.Address = txtAddress.Text;
+                if (string.IsNullOrWhiteSpace(txtCel.Text))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your cellphone');", true);
+                    return;
+                }
                 string password = txtPassword.Text;
+                if (string.IsNullOrWhiteSpace(txtPassword.Text))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your password');", true);
+                    return;
+                }
+                newClient.Address = txtAddress.Text;
+                if (string.IsNullOrWhiteSpace(txtAddress.Text))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your adress');", true);
+                    return;
+                }
+
+                newClient.Gender = Convert.ToChar(txtGender.Text);
+                newClient.DateOfBirth = Convert.ToDateTime(txtDateOfBirth.Text);
+                newClient.DateOfRegister = DateTime.Now;
+
                 if (fileUploadProfilePicture.HasFile)
                 {
                     string extension = Path.GetExtension(fileUploadProfilePicture.FileName);

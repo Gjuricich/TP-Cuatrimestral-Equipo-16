@@ -20,7 +20,7 @@ namespace CabBusiness
         {
             conection = new SqlConnection();
             command = new SqlCommand();
-            conection.ConnectionString = "server=.\\SQLEXPRESS;database=prueba_AirJetbWeb_DB;integrated security = true;";
+            conection.ConnectionString = "server=.\\SQLEXPRESS;database=AirJetbWeb_DB;integrated security = true;";
 
         }
         public void setQuery(string consulta)
