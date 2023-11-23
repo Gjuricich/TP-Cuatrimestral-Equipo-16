@@ -111,7 +111,7 @@ namespace CabBusiness
                 dataManager.setParameter("@DNI", passenger.Dni);
                 dataManager.setParameter("@Domicilio", "");
                 dataManager.setParameter("@FechaNacimiento", "1985-03-20");
-                dataManager.setParameter("@Celular", "623784" + passenger.IdPerson);
+                dataManager.setParameter("@Celular", passenger.Cellphone);
                 dataManager.executeRead();
 
             }

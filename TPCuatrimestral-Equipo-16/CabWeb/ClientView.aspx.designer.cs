@@ -438,13 +438,31 @@ namespace CabWeb
         protected global::System.Web.UI.WebControls.TextBox txtGenderP;
 
         /// <summary>
+        /// Control lblcellphone.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblcellphone;
+
+        /// <summary>
+        /// Control txtcellphone.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtcellphone;
+
+        /// <summary>
         /// Control BtnAddPassenger.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnAddPassenger;
+        protected global::System.Web.UI.WebControls.LinkButton BtnAddPassenger;
 
         /// <summary>
         /// Control panelDetail.
@@ -561,6 +579,6 @@ namespace CabWeb
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ChangePhotoClient;
+        protected global::System.Web.UI.WebControls.LinkButton ChangePhotoClient;
     }
 }

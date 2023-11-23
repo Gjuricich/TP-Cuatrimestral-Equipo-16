@@ -61,7 +61,7 @@
                         </li>
                         <li class="nav-item mb-5">
                             <asp:LinkButton ID="btnBooking" runat="server" OnClick="btnBooking_Click" class="nav-link p-0">
-                                <img src="/IconSidebar/svg1 (4).svg" alt="Flight" style="height: 40px; width: 40px; margin: 0 auto;" />
+                                <img src="/IconSidebar/Bookings.svg" alt="Flight" style="height: 40px; width: 40px; margin: 0 auto;" />
                             </asp:LinkButton>
                         </li>
                          <li class="nav-item mb-5">
@@ -328,10 +328,14 @@
                             <asp:Label class="text-dark" ID="lblDNIP" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="DNI" ID="txtDNIP" runat="server" ></asp:TextBox><br />
                             <asp:Label class="text-dark" ID="lblGenderP" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGenderP" placeholder="Gender" runat="server" MaxLength="1"></asp:TextBox><br />                          
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGenderP" placeholder="Gender" runat="server" MaxLength="1"></asp:TextBox><br /> 
+                            <asp:Label class="text-dark" ID="lblcellphone" runat="server"></asp:Label>
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtcellphone" placeholder="Cellphone" runat="server" MaxLength="12"></asp:TextBox><br />     
                        
                              <div style="margin-top: 10px;">
-                                  <asp:Button ID="BtnAddPassenger" runat="server" Text="Add Passenger" class="btn btn-secondary" OnClick="btnAddPassenger_Click" OnClientClick="return confirm('¿Are you sure that do you want add this passenger ?')"   />
+                                   <asp:LinkButton ID="BtnAddPassenger" runat="server" Text="Add Passenger" class="btn btn-secondary" OnClick="btnAddPassenger_Click" OnClientClick="return confirm('¿Are you sure that do you want add this passenger ?')"/>
+
+                                 
                             </div>          
                             </div>
                             </center>
@@ -448,7 +452,10 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                    <asp:Button ID = "ChangePhotoClient" class="btn btn-primary" runat="server" Text="Change photo" OnClick="ChangePhotoClient_Click"/>
+                                         <asp:LinkButton ID = "ChangePhotoClient" class="btn btn-primary" runat="server" Text="Change photo" OnClick="ChangePhotoClient_Click"/>
+
+
+                                  
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>

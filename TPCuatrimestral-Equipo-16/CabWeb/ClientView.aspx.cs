@@ -209,13 +209,13 @@ namespace CabWeb
         {
             FlightPassenger flightPassenger = new FlightPassenger();
             FlightPassengerBusiness fpBusiness = new FlightPassengerBusiness();
-            string IdFlight = ((LinkButton)sender).CommandArgument;
+            string IdFlight = (string)Session["IdFlightAddP"];
             flightPassenger.Name = txtNameP.Text;
             flightPassenger.Surname = txtLastNameP.Text;
             flightPassenger.Dni = txtDNIP.Text;
             flightPassenger.Gender = Convert.ToChar(txtGenderP.Text);
             flightPassenger.IdFlight = int.Parse(IdFlight);
-
+            flightPassenger.Cellphone = txtcellphone.Text;
 
             try
             {
@@ -236,6 +236,8 @@ namespace CabWeb
 
         protected void btnaddPassengerPanel_Click(object sender, EventArgs e)
         {
+            string IdFlight = ((LinkButton)sender).CommandArgument;
+            Session["IdFlightAddP"] = IdFlight;
             panelAddPassengers.CssClass = "";
             panelprofile.CssClass = "hidden";
             panelBookings.CssClass = "hidden";
