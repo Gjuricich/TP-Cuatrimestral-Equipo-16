@@ -65,6 +65,45 @@ namespace CabBusiness
             }
         }
 
+        public bool ExistPerson(string DNI, string Cellphone, string email)
+        {
+            DataManager dataManager = new DataManager();
+            bool exists = false; 
+
+            try
+            {
+                dataManager.setQuery("SELECT P.IdPerson FROM Persons P INNER JOIN Credentials C ON C.IdPerson = P.IdPerson WHERE P.DNI = @DNI OR  P.Celular =  @Cellphone OR C.Email = @Email");
+                dataManager.setParameter("@DNI", DNI);
+                dataManager.setParameter("@Cellphone", Cellphone);
+                dataManager.setParameter("@Email", email);
+                dataManager.executeRead();
+                
+                if (dataManager.Lector.HasRows)
+                {
+                    dataManager.Lector.Read();
+
+                    if(dataManager.Lector["IdPerson"] != null)
+                    {
+                        exists = true;
+                        
+                    }
+                }
+
+                return exists;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+            
+        }
+
 
 
         public void addPerson(Client client)

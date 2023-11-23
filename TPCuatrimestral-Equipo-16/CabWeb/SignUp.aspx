@@ -26,15 +26,15 @@
                         <h1 class="text-dark">Register</h1>
                         <br />
                         <asp:Label class="text-secondary" ID="lblName" runat="server"></asp:Label>
-                        <asp:TextBox class="form-control form-control-sm rounded" placeholder="Name" ID="txtName" runat="server"></asp:TextBox><br />
+                        <asp:TextBox class="form-control form-control-sm rounded" placeholder="Name" ID="txtName" MaxLength="60" runat="server"></asp:TextBox><br />
                         <asp:Label class="text-secondary" ID="lblLastName" runat="server"></asp:Label>
-                        <asp:TextBox class="form-control form-control-sm rounded" placeholder="Surname" ID="txtLastName" runat="server"></asp:TextBox><br />
+                        <asp:TextBox class="form-control form-control-sm rounded" placeholder="Surname" ID="txtLastName"  MaxLength="60" runat="server"></asp:TextBox><br />
                         <asp:Label class="text-secondary" ID="LblDni" runat="server"></asp:Label>
-                        <asp:TextBox class="form-control form-control-sm rounded" placeholder="DNI" ID="txtDni" MaxLength="10" runat="server"></asp:TextBox><br />
+                        <asp:TextBox class="form-control form-control-sm rounded" placeholder="DNI" ID="txtDni" MaxLength="8" runat="server"></asp:TextBox><br />
                         <asp:Label class="text-secondary" ID="lblEmail" runat="server"></asp:Label>
                         <asp:TextBox class="form-control form-control-sm rounded" placeholder="Email" ID="txtEmail" runat="server"></asp:TextBox><br />
                         <asp:Label class="text-secondary" ID="lblCel" runat="server"></asp:Label>
-                        <asp:TextBox class="form-control form-control-sm rounded" placeholder="Cellphone" ID="txtCel" MaxLength="20" runat="server"></asp:TextBox><br />
+                        <asp:TextBox class="form-control form-control-sm rounded" placeholder="Cellphone" ID="txtCel" MaxLength="30" runat="server"></asp:TextBox><br />
                         <asp:Label class="text-secondary" ID="lblPassword" runat="server" ></asp:Label>
                         <asp:TextBox class="form-control form-control-sm rounded" placeholder="Password"  ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox><br />
                         <asp:TextBox class="form-control form-control-sm rounded" placeholder="Address" ID="txtAddress" runat="server"></asp:TextBox><br />

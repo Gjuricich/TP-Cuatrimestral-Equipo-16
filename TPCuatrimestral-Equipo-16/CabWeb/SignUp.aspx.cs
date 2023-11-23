@@ -20,6 +20,7 @@ namespace CabWeb
         {
             Client newClient = new Client();
             ClientBusiness cBusiness = new ClientBusiness();
+            PersonBusiness pBusiness = new PersonBusiness();
 
             try
             {
@@ -35,6 +36,13 @@ namespace CabWeb
                     ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your surname.');", true);
                     return;
                 }
+                int dniValue;
+                if (!int.TryParse(txtDni.Text, out dniValue))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter a valid numeric value for DNI.');", true);
+                    return;
+                }
+
                 newClient.Dni = txtDni.Text;
                 if (string.IsNullOrWhiteSpace(newClient.Dni))
                 {
@@ -47,28 +55,54 @@ namespace CabWeb
                     ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your email adress. Example: example@gmail.com');", true);
                     return;
                 }
+                int cellValue;
+                if (!int.TryParse(txtCel.Text, out cellValue))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter a valid numeric value for cellphone.');", true);
+                    return;
+                }
                 newClient.Cellphone = txtCel.Text;
                 if (string.IsNullOrWhiteSpace(txtCel.Text))
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your cellphone');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your cellphone.');", true);
                     return;
                 }
+
+                bool exist = pBusiness.ExistPerson(newClient.Dni, newClient.Cellphone, newClient.credentials.Email);
+                if (exist)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Your email or cellphone or DNI already exists.');", true);
+                    return;
+                }
+
                 string password = txtPassword.Text;
                 if (string.IsNullOrWhiteSpace(txtPassword.Text))
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your password');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your password.');", true);
                     return;
                 }
                 newClient.Address = txtAddress.Text;
                 if (string.IsNullOrWhiteSpace(txtAddress.Text))
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your adress');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your adress.');", true);
                     return;
                 }
-
-                newClient.Gender = Convert.ToChar(txtGender.Text);
+                if (string.IsNullOrWhiteSpace(txtDateOfBirth.Text))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your date of birth.');", true);
+                    return;
+                }
                 newClient.DateOfBirth = Convert.ToDateTime(txtDateOfBirth.Text);
                 newClient.DateOfRegister = DateTime.Now;
+
+
+                if (string.IsNullOrWhiteSpace(txtGender.Text))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", "alert('Please enter your gender.');", true);
+                    return;
+                }
+                newClient.Gender = Convert.ToChar(txtGender.Text);
+
 
                 if (fileUploadProfilePicture.HasFile)
                 {
@@ -128,5 +162,6 @@ namespace CabWeb
             */
         }
 
+      
     }
 }
