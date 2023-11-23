@@ -47,5 +47,28 @@ namespace CabBusiness
 
 
         }
+        public void updateAvailability(int idEmployee)
+        {
+            DataManager dataManager = new DataManager();
+            Employee employee = new Employee();
+            try
+            {
+                dataManager.setQuery("UPDATE Employees SET Available=1 WHERE IdEmployee = @Id");
+                dataManager.setParameter("@Id", idEmployee);
+                dataManager.executeRead();
+                dataManager.closeConection();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                dataManager.closeConection();
+                throw ex;
+            }
+
+
+
+        }
     }
 }

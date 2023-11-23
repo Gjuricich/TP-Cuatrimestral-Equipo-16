@@ -14,14 +14,14 @@ namespace CabDominio
         public Aircraft aircraft { get; set; }
         public string FlightState { get; set; }
         public Itinerary itinerary { get; set; }             
-        public List<Employee> crew { get; set; }
+        public List<FlightCrew> crew { get; set; }
         public List<FlightPassenger> Passengers { get; set; }
         public bool Status { get; set; }
         public Flight()
         {
             aircraft = new Aircraft();
             Passengers = new List<FlightPassenger>();
-            crew = new List<Employee>();
+            crew = new List<FlightCrew>();
             booking = new Booking();
         }
     }

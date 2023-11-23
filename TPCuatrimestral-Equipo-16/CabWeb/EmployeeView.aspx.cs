@@ -169,18 +169,30 @@ namespace CabWeb
 
         protected void btnDetail_Click(object sender, EventArgs e)
         {
+            FlightPassengerBusiness fpBusiness = new FlightPassengerBusiness();
+            FlightCrewBusiness  fcBusiness = new FlightCrewBusiness();
+
             try
             {
                 string IdFlight = ((LinkButton)sender).CommandArgument;
                 Session["IdFlight"] = int.Parse(IdFlight); //recordar modificAR ADD PASAJERO PARA TOMAR EL ID DEL OBJETO
-                FlightPassengerBusiness fpBusiness = new FlightPassengerBusiness();
+                
+
                 //Load pasajeros
                 List<Flight> allFlights = (List<Flight>)Session["Flights"];
                 Flight CurrentFlight = allFlights.Find(Flights => Flights.ID_Flight == int.Parse(IdFlight));
                 CurrentFlight.Passengers = fpBusiness.List(CurrentFlight.ID_Flight);
+                CurrentFlight.crew = fcBusiness.List(CurrentFlight.ID_Flight);
                 Session["CurrentFlight"] = CurrentFlight;
+
+                //cargamos los pasajeros en detail
                 rptCurrentFlightPassengers.DataSource = CurrentFlight.Passengers;
                 rptCurrentFlightPassengers.DataBind();
+
+                //cargamos los empleados
+                rptFlightEmployee.DataSource = CurrentFlight.crew;
+                rptFlightEmployee.DataBind();
+
             }
             catch (Exception ex)
             {
@@ -276,6 +288,19 @@ namespace CabWeb
 
 
 
+        }
+
+        protected void btnDeleteEmployeeFlight_Click(object sender, EventArgs e)
+        {
+
+
+            panelEditPassengers.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
+            panelHome.CssClass = "hidden";
+            panelDashboard.CssClass = "hidden";
+            panelFlight.CssClass = "";
+            panelEditCrew.CssClass = "hidden";
+            panelEditItinerary.CssClass = "hidden";
         }
 
 
@@ -420,6 +445,8 @@ namespace CabWeb
             
 
         }
+
+      
 
        
     }

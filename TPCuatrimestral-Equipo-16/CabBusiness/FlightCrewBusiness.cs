@@ -9,30 +9,27 @@ namespace CabBusiness
 {
     public class FlightCrewBusiness
     {
-
-
-        /*
-        public List<FlightCrewBusiness> List(int IdFlight)
+        public List<FlightCrew> List()
         {
-            List<FlightCrewBusiness> list = new List<FlightCrewBusiness>();
+            List<FlightCrew> list = new List<FlightCrew>();
             DataManager dataManager = new DataManager();
 
             try
             {
-                dataManager.setQuery("SELECT FP.IdPerson,FP.Estado, P.Nombre, P.Apellido, P.Sexo, P.DNI FROM FlightPassengers FP INNER JOIN Persons P ON FP.IdPerson = P.IdPerson WHERE FP.IdFlight = @IDFLIGHT");
-                dataManager.setParameter("@IDFLIGHT", IdFlight);
+                dataManager.setQuery("SELECT FC.IdEmployee,FC.IdFlight, PS.Position, P.Nombre, P.Apellido, P.Sexo, P.DNI, E.Available, FC.Estado FROM FlightCrew FC INNER JOIN Employees E ON FC.IdEmployee = E.IdEmployee INNER JOIN Positions PS ON E.IdPosition = PS.IdPosition LEFT JOIN Credentials C ON E.IdCredencial = C.Id LEFT JOIN Persons P ON C.IdPerson = P.IdPerson WHERE PS.Position IN('Pilot','Flight Attendant') AND E.Available =1");
                 dataManager.executeRead();
                 while (dataManager.Lector.Read())
                 {
-                    FlightPassenger passenger = new FlightPassenger();
-                    passenger.IdFlight = IdFlight;
-                    passenger.IdPerson = (int)(long)dataManager.Lector["IdPerson"];
-                    passenger.Status = (bool)dataManager.Lector["Estado"];
-                    passenger.Name = (string)dataManager.Lector["Nombre"];
-                    passenger.Surname = (string)dataManager.Lector["Apellido"];
-                    passenger.Gender = Convert.ToChar(dataManager.Lector["Sexo"]);
-                    passenger.Dni = (string)dataManager.Lector["DNI"];
-                    list.Add(passenger);
+                    FlightCrew crewMember = new FlightCrew();
+                    crewMember.IdEmployee = (int)(long)dataManager.Lector["IdEmployee"];
+                    crewMember.Status = (bool)dataManager.Lector["Estado"];
+                    crewMember.Available = (bool)dataManager.Lector["Available"];
+                    crewMember.Position = (string)dataManager.Lector["Position"];
+                    crewMember.Name = (string)dataManager.Lector["Nombre"];
+                    crewMember.Surname = (string)dataManager.Lector["Apellido"];
+                    crewMember.Dni = (string)dataManager.Lector["DNI"];
+                    crewMember.Gender = Convert.ToChar(dataManager.Lector["Sexo"]);
+                    list.Add(crewMember);
                 }
 
                 return list;
@@ -47,11 +44,44 @@ namespace CabBusiness
                 dataManager.closeConection();
             }
         }
-        */
+        public List<FlightCrew> List(int IdFlight)
+        {
+            List<FlightCrew> list = new List<FlightCrew>();
+            DataManager dataManager = new DataManager();
 
+            try
+            {
+                dataManager.setQuery("SELECT FC.IdEmployee,FC.IdFlight, PS.Position, P.Nombre, P.Apellido, P.Sexo, P.DNI, E.Available, FC.Estado FROM FlightCrew FC INNER JOIN Employees E ON FC.IdEmployee = E.IdEmployee INNER JOIN Positions PS ON E.IdPosition = PS.IdPosition LEFT JOIN Credentials C ON E.IdCredencial = C.Id LEFT JOIN Persons P ON C.IdPerson = P.IdPerson WHERE FC.IdFlight = @IDFLIGHT");
+                dataManager.setParameter("@IDFLIGHT", IdFlight);
+                dataManager.executeRead();
+                while (dataManager.Lector.Read())
+                {
+                    FlightCrew crewMember = new FlightCrew();
+                    crewMember.IdFlight = IdFlight;
+                    crewMember.IdEmployee = (int)(long)dataManager.Lector["IdEmployee"];
+                    crewMember.Status = (bool)dataManager.Lector["Estado"];
+                    crewMember.Available = (bool)dataManager.Lector["Available"];
+                    crewMember.Position = (string)dataManager.Lector["Position"];
+                    crewMember.Name = (string)dataManager.Lector["Nombre"];
+                    crewMember.Surname = (string)dataManager.Lector["Apellido"];
+                    crewMember.Dni = (string)dataManager.Lector["DNI"];
+                    crewMember.Gender = Convert.ToChar(dataManager.Lector["Sexo"]);
+                    list.Add(crewMember);
+                }
 
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
 
-
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
+   
 
 
 

@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace CabDominio
 {
-    public class FlightCrew
+    public class FlightCrew : Employee
     {
         public int IdFlight { get; set; }
-        public int IdEmployee { get; set; }
         public bool Status { get; set; }
     }
 }

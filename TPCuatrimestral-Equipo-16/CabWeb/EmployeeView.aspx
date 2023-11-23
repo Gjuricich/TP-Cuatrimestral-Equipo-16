@@ -285,17 +285,31 @@
                           <table class="table">
                              <thead>
                                 <tr>
-                                  <th scope="col">ID</th>
-                                  <th scope="col">NAME</th>
+                                  <th scope="col">Position</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Surname</th>
+                                  <th scope="col">Gender</th>
+                                  <th scope="col">DNI</th>
                                   <th scope="col"></th>
                                 </tr>
                              </thead>
                           <tbody>
-                               <tr>
-                                 <th scope="row">1</th>
-                               <td>TATA</td>
-                               <td>TATA</td>
-                               </tr>
+                               <asp:Repeater ID="rptFlightEmployee" runat="server">
+                                    <ItemTemplate>
+                                      <tr>
+                                        <td><%# Eval("Position") %></td>
+                                        <td><%# Eval("Name") %></td>
+                                        <td><%# Eval("Surname") %></td>
+                                        <td><%# Eval("Gender") %></td> 
+                                        <td><%# Eval("Dni") %></td>                                                                                                     
+                                        <td>
+                                         <asp:LinkButton ID="btnDeleteEmployeeFlight" runat="server"  class="btn btn-secondary" OnClick="btnDeleteEmployeeFlight_Click"  OnClientClick="return confirm('¿Are you sure that do you want delete this employee ?')"  CommandArgument='<%# Eval("IdEmployee") %>'>
+                                             <i class="bi bi-trash"></i> 
+                                         </asp:LinkButton>                                                                                 
+                                        </td>
+                                      </tr>  
+                                    </ItemTemplate>
+                               </asp:Repeater>
 
                          </tbody>
                         </table>
