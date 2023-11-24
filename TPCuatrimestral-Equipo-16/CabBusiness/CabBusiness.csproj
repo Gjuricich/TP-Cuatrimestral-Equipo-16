@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AircraftBusiness.cs" />
     <Compile Include="AirportBusiness.cs" />
     <Compile Include="BookingBusiness.cs" />
     <Compile Include="CityBusiness.cs" />

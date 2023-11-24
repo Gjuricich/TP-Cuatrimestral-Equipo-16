@@ -12,9 +12,8 @@ namespace CabDominio
         public string Model { get; set; }
         public int PassengerCapacity { get; set; }
         public int MinimumCrew { get; set; }
-        public int MaximumSpeed { get; set; }
-        public float FuelCapacity { get; set; }
-        public string FlightRange { get; set; }
+        public decimal FuelCapacity { get; set; }
+        public decimal FlightRange { get; set; }
         public DateTime YearOfManufacture { get; set; }
         public bool Available { get; set; }
 
