@@ -36,7 +36,8 @@ namespace CabWeb
                     person = pBusiness.GetPersonById(credential.IdCredential);
                     Client aux = cManager.GetClientById(credential.IdCredential);
                     Client client = new Client
-                    {
+                    {   
+                        IdPerson = person.IdPerson,
                         Name = person.Name,
                         Surname = person.Surname,
                         Gender = person.Gender,

@@ -270,6 +270,22 @@ namespace CabWeb
             panelFlight.CssClass = "hidden";
         }
 
+        protected void btnDeleteClient_Click(object sender, EventArgs e)
+        {
+
+            ClientBusiness cBusiness = new ClientBusiness();
+            cBusiness.deleteClientOfBooking(CurrentClient.IdClient);
+            cBusiness.deleteClient(CurrentClient.IdClient, CurrentClient.IdPerson, CurrentClient.Dni);
+            var master = this.Master as Cab;
+            if (master != null)
+            {
+                master.Logout_Click(sender, e);
+            }
+
+            //Response.Redirect("Default.aspx");
+
+        }
+
 
 
 

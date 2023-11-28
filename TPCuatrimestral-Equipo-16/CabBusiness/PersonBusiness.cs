@@ -12,7 +12,7 @@ namespace CabBusiness
         public Person GetPersonById(int id)
         {
             DataManager dataManager = new DataManager();
-            dataManager.setQuery("SELECT P.Apellido, P.Nombre, P.FechaNacimiento, P.Sexo, P.DNI, P.Domicilio, P.Celular FROM Credentials C INNER JOIN Persons P ON C.IdPerson = P.IdPerson WHERE C.Id = @Id");
+            dataManager.setQuery("SELECT P.Apellido, P.IdPerson, P.Nombre, P.FechaNacimiento, P.Sexo, P.DNI, P.Domicilio, P.Celular FROM Credentials C INNER JOIN Persons P ON C.IdPerson = P.IdPerson WHERE C.Id = @Id");
             dataManager.setParameter("@Id", id);
             dataManager.executeRead();
 
@@ -20,6 +20,7 @@ namespace CabBusiness
             {
                 dataManager.Lector.Read();
                 Person person = new Person();
+                person.IdPerson = (int)(long)dataManager.Lector["IdPerson"];
                 person.Name = (string)dataManager.Lector["Nombre"];
                 person.Surname = (string)dataManager.Lector["Apellido"];
                 person.Gender = Convert.ToChar(dataManager.Lector["Sexo"]);

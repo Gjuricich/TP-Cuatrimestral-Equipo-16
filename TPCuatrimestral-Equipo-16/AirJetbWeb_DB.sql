@@ -144,7 +144,7 @@ VALUES
 GO
 CREATE TABLE Booking(
     IdBooking BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
-    IdClient  BIGINT NOT NULL FOREIGN KEY REFERENCES Client(IdClient),
+    IdClient  BIGINT FOREIGN KEY REFERENCES Client(IdClient),
     IdOrigen  BIGINT NOT NULL FOREIGN KEY REFERENCES Ciudades(IdCiudad),
     IdDestino  BIGINT NOT NULL FOREIGN KEY REFERENCES Ciudades(IdCiudad),
     SolicitudDate DATETIME NOT NULL DEFAULT(GETDATE()),
@@ -200,6 +200,8 @@ INSERT INTO FlightCrew(IdFlight,IdEmployee)
 VALUES
 (1,2),
 (1,3)
+GO
+UPDATE Employees SET Available=0 WHERE IdEmployee IN(2,3)
 GO
 CREATE TABLE FlightPassengers(
    IdPerson Bigint FOREIGN KEY REFERENCES Persons(IdPerson),

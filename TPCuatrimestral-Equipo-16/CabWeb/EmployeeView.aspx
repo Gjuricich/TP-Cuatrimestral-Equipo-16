@@ -386,6 +386,13 @@
 
                   <asp:Panel ID="panelEditItinerary" runat="server" CssClass="hidden">
                  <center>
+
+
+
+
+
+
+
                  </center>           
             </asp:Panel>
 

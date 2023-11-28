@@ -222,6 +222,15 @@ namespace CabWeb
         protected global::System.Web.UI.WebControls.TextBox txtGender;
 
         /// <summary>
+        /// Control btnDeleteClient.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnDeleteClient;
+
+        /// <summary>
         /// Control panelBookings.
         /// </summary>
         /// <remarks>

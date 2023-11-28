@@ -24,7 +24,7 @@ namespace CabWeb
             }
         }
       
-        protected void Logout_Click(object sender, EventArgs e)
+        public void Logout_Click(object sender, EventArgs e)
         {
             if ((Client)Session["ClientLogged"] != null)
             {
@@ -43,5 +43,7 @@ namespace CabWeb
             Label2.Text = "";
             Response.Redirect("~/Default.aspx");
         }
+
+        
     }
 }

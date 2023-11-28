@@ -130,7 +130,10 @@
                        
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top:2%; margin-bottom:2%;">
                                 Save changes
-                            </button>           
+                            </button> 
+                            <asp:LinkButton ID="btnDeleteClient" runat="server"  class="btn btn-danger" OnClick="btnDeleteClient_Click" OnClientClick="return confirm('¿Are you sure that do you want delete your account ?')" >
+                                <i class="bi bi-trash"></i> 
+                            </asp:LinkButton>         
                             </div>
                             </center>
                      </div>
