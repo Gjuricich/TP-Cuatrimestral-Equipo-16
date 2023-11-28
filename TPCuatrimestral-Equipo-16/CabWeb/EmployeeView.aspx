@@ -281,7 +281,10 @@
 
                            <%------------------------------------------       CREW       ----------------------------------------------%>
                       <div  class="ProfileBox" style="margin-top: 20px;">   
-                           <h2> Crew </h2>                  
+                           <h2> Crew </h2>   
+                           <asp:LinkButton ID="btnAvaibleCrew" runat="server"  class="btn btn-secondary" OnClick="btnAvaibleCrew_Click" >
+                                  <i class="bi bi-pencil-fill"></i>
+                           </asp:LinkButton>
                           <table class="table">
                              <thead>
                                 <tr>
@@ -351,9 +354,7 @@
                                   <h1> Passenger flight  </h1>
                                 <br/>
                            </center>
-
-
-                   
+        
                                                     
                             <div>   
                             <asp:Label class="text-dark" ID="lblNameP"  Text="Name" runat="server"></asp:Label>
@@ -388,9 +389,47 @@
                  </center>           
             </asp:Panel>
 
+             <%------------------  Agregar empleado a vuelo  ---------------%>
             <asp:Panel ID="panelEditCrew" runat="server" CssClass="hidden">
                  <center>
-                 </center>           
+                        <h1>Crew Flight</h1>
+                       <div class="col-12" style="margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;">
+                        <table id="tablaEmpleados" class="table table-striped" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>Position</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>                                   
+                                    <th>DNI</th>
+                                    <th>Gender</th>
+                                    <th>Available</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <asp:Repeater ID="rptEditEmployees" runat="server">
+                                    <ItemTemplate>
+                                      <tr>
+                                        <td><%# Eval("Position") %></td>
+                                        <td><%# Eval("Name") %></td>
+                                        <td><%# Eval("Surname")%></td>
+                                        <td><%# Eval("Dni") %></td>
+                                        <td><%# Eval("Gender") %></td>
+                                        <td><%# Eval("Available") %></td>
+                                        <td>
+                                         <asp:LinkButton ID="btnAddcreW" runat="server"  class="btn btn-secondary" OnClick="btnAddcreW_Click">
+                                            <i class="bi bi-plus-square"></i>
+                                         </asp:LinkButton>                                                                                
+                                        </td>                                   
+                                      </tr>  
+                                    </ItemTemplate>
+                               </asp:Repeater>
+                         
+                            </tbody>
+                        </table>
+                           </div>
+                    </center>           
+        
             </asp:Panel>
                 </ContentTemplate>       
             </asp:UpdatePanel>
@@ -398,6 +437,8 @@
              </div>
          </div>
       </div>
+          
+           
 
         <%-----------------------------------------------------     MODALES         ----------------------------------------------%>
 

@@ -258,6 +258,15 @@ namespace CabWeb
         protected global::System.Web.UI.WebControls.Repeater rptCurrentFlightPassengers;
 
         /// <summary>
+        /// Control btnAvaibleCrew.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnAvaibleCrew;
+
+        /// <summary>
         /// Control rptFlightEmployee.
         /// </summary>
         /// <remarks>
@@ -454,6 +463,15 @@ namespace CabWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelEditCrew;
+
+        /// <summary>
+        /// Control rptEditEmployees.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptEditEmployees;
 
         /// <summary>
         /// Control fileUpload1.

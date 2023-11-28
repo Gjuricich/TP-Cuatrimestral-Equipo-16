@@ -117,6 +117,7 @@ namespace CabBusiness
 
             try
             {
+                UpdateCrewMemberAvailable(IdEmployee, 1);
 
                 dataManager.setQuery("DELETE from FlightCrew  WHERE IdEmployee = @IdEmployee");
                 dataManager.setParameter("@IdEmployee", IdEmployee);
@@ -134,7 +135,29 @@ namespace CabBusiness
             }
         }
 
+        public void UpdateCrewMemberAvailable(int IdEmployee, int available)
+        {
+            DataManager dataManager = new DataManager();
 
+            try
+            {
+
+                dataManager.setQuery("UPDATE Employees SET Available = @available WHERE IdEmployee  = @IdEmployee");
+                dataManager.setParameter("@IdEmployee", IdEmployee);
+                dataManager.setParameter("@available", available);
+                dataManager.executeRead();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
 
 
 

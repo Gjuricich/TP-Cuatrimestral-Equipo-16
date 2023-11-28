@@ -34,6 +34,7 @@ namespace CabWeb
                 panelEditCrew.CssClass = "hidden";
                 panelEditItinerary.CssClass = "hidden";
                 panelEditPassengers.CssClass = "hidden";
+           
 
             }
 
@@ -96,6 +97,7 @@ namespace CabWeb
             panelEditCrew.CssClass = "hidden";
             panelEditItinerary.CssClass = "hidden";
             panelEditPassengers.CssClass = "hidden";
+         
             updatePanelGeneral.Update();
 
         }
@@ -109,6 +111,7 @@ namespace CabWeb
             panelEditCrew.CssClass = "hidden";
             panelEditItinerary.CssClass = "hidden";
             panelEditPassengers.CssClass = "hidden";
+           
             ScriptManager.RegisterStartupScript(updatePanelGeneral, updatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + updatePanelGeneral.ClientID + "', '');", true);
 
         }
@@ -122,6 +125,7 @@ namespace CabWeb
             panelEditCrew.CssClass = "hidden";
             panelEditItinerary.CssClass = "hidden";
             panelEditPassengers.CssClass = "hidden";
+
 
 
 
@@ -141,6 +145,7 @@ namespace CabWeb
             panelEditItinerary.CssClass = "";
             panelEditPassengers.CssClass = "hidden";
             panelDetail.CssClass = "hidden";
+  
         }
 
         protected void btnEditPassengers_Click(object sender, EventArgs e)
@@ -152,6 +157,7 @@ namespace CabWeb
             panelEditItinerary.CssClass = "hidden";
             panelEditPassengers.CssClass = "";
             panelDetail.CssClass = "hidden";
+  
 
         }
 
@@ -164,6 +170,7 @@ namespace CabWeb
             panelEditItinerary.CssClass = "hidden";
             panelEditPassengers.CssClass = "hidden";
             panelDetail.CssClass = "hidden";
+
 
         }
 
@@ -206,7 +213,7 @@ namespace CabWeb
             panelEditCrew.CssClass = "hidden";
             panelEditItinerary.CssClass = "hidden";
             panelEditPassengers.CssClass = "hidden";
-           
+   
 
 
 
@@ -233,6 +240,7 @@ namespace CabWeb
             panelFlight.CssClass = "hidden";
             panelEditCrew.CssClass = "hidden";
             panelEditItinerary.CssClass = "hidden";
+         
 
         }
 
@@ -261,6 +269,7 @@ namespace CabWeb
             panelFlight.CssClass = "";
             panelEditCrew.CssClass = "hidden";
             panelEditItinerary.CssClass = "hidden";
+        
 
 
         }
@@ -285,6 +294,7 @@ namespace CabWeb
             panelFlight.CssClass = "";
             panelEditCrew.CssClass = "hidden";
             panelEditItinerary.CssClass = "hidden";
+           
 
 
 
@@ -292,6 +302,11 @@ namespace CabWeb
 
         protected void btnDeleteEmployeeFlight_Click(object sender, EventArgs e)
         {
+
+            FlightCrewBusiness fcBusiness = new FlightCrewBusiness();
+            string IdEmployee = ((LinkButton)sender).CommandArgument;
+            fcBusiness.deleteCrewMember(int.Parse(IdEmployee));
+            Session.Remove("CurrentFlight");
 
 
             panelEditPassengers.CssClass = "hidden";
@@ -301,6 +316,43 @@ namespace CabWeb
             panelFlight.CssClass = "";
             panelEditCrew.CssClass = "hidden";
             panelEditItinerary.CssClass = "hidden";
+            
+        }
+
+        protected void btnAddcreW_Click(object sender, EventArgs e)
+        {
+            //agregar pasajero al vuelo en current flight y base
+            //cambiar estado de disponiblilidad
+
+            
+
+        }
+
+
+
+
+
+        protected void btnAvaibleCrew_Click(object sender, EventArgs e)
+        {
+
+
+            FlightCrewBusiness fcBusiness = new FlightCrewBusiness();
+
+            //cargo tripulacion al vuelo
+            rptEditEmployees.DataSource = fcBusiness.List();
+            rptEditEmployees.DataBind();
+
+            
+            panelEditPassengers.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
+            panelHome.CssClass = "hidden";
+            panelDashboard.CssClass = "hidden";
+            panelFlight.CssClass = "hidden";
+            panelEditCrew.CssClass = "";
+            panelEditItinerary.CssClass = "hidden";
+        
+            
+
         }
 
 
@@ -422,11 +474,7 @@ namespace CabWeb
 
         }
 
-        private void addPassengerToFlight()
-        {
-
-
-        }
+ 
 
         private void updateFlightEmployeeSession()
         {
@@ -445,8 +493,6 @@ namespace CabWeb
             
 
         }
-
-      
 
        
     }
