@@ -16,7 +16,7 @@ namespace CabBusiness
 
             try
             {
-                dataManager.setQuery("SELECT FC.IdEmployee,FC.IdFlight, PS.Position, P.Nombre, P.Apellido, P.Sexo, P.DNI, E.Available, FC.Estado FROM FlightCrew FC INNER JOIN Employees E ON FC.IdEmployee = E.IdEmployee INNER JOIN Positions PS ON E.IdPosition = PS.IdPosition LEFT JOIN Credentials C ON E.IdCredencial = C.Id LEFT JOIN Persons P ON C.IdPerson = P.IdPerson WHERE PS.Position IN('Pilot','Flight Attendant') AND E.Available =1");
+                dataManager.setQuery(" SELECT E.IdEmployee, PS.Position, P.Nombre, P.Apellido, P.Sexo, P.DNI, E.Available, E.Estado FROM Employees E INNER JOIN Positions PS ON E.IdPosition = PS.IdPosition  LEFT JOIN Credentials C ON E.IdCredencial = C.Id LEFT JOIN Persons P ON C.IdPerson = P.IdPerson WHERE PS.Position IN('Pilot','Flight Attendant') AND E.Available =1");
                 dataManager.executeRead();
                 while (dataManager.Lector.Read())
                 {
@@ -85,16 +85,17 @@ namespace CabBusiness
 
 
 
-        public void addCrewMember(FlightCrew member)
+        public void addCrewMember(int IdEmployee, int IdFlight)
         {
             DataManager dataManager = new DataManager();
     
 
             try
-            {  
+            {
+                UpdateCrewMemberAvailable(IdEmployee, 0);
                 dataManager.setQuery("INSERT INTO FlightCrew(IdEmployee,IdFlight) VALUES (@IdEmployee, @IdFlight)");
-                dataManager.setParameter("@IdEmployee", member.IdEmployee);
-                dataManager.setParameter("@IdFlight", member.IdFlight);
+                dataManager.setParameter("@IdEmployee",IdEmployee);
+                dataManager.setParameter("@IdFlight", IdFlight);
                 dataManager.executeRead();
 
             }

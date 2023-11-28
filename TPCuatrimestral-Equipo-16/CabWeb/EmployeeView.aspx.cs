@@ -321,10 +321,20 @@ namespace CabWeb
 
         protected void btnAddcreW_Click(object sender, EventArgs e)
         {
-            //agregar pasajero al vuelo en current flight y base
-            //cambiar estado de disponiblilidad
 
-            
+            FlightCrewBusiness fcBusiness = new FlightCrewBusiness();
+            string IdEmployee = ((LinkButton)sender).CommandArgument;
+            fcBusiness.addCrewMember(int.Parse(IdEmployee),(int)Session["IdFlight"]);
+
+            panelEditPassengers.CssClass = "hidden";
+            panelDetail.CssClass = "hidden";
+            panelHome.CssClass = "hidden";
+            panelDashboard.CssClass = "hidden";
+            panelFlight.CssClass = "";
+            panelEditCrew.CssClass = "hidden";
+            panelEditItinerary.CssClass = "hidden";
+
+
 
         }
 

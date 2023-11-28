@@ -417,7 +417,7 @@
                                         <td><%# Eval("Gender") %></td>
                                         <td><%# Eval("Available") %></td>
                                         <td>
-                                         <asp:LinkButton ID="btnAddcreW" runat="server"  class="btn btn-secondary" OnClick="btnAddcreW_Click">
+                                         <asp:LinkButton ID="btnAddcreW" runat="server"  class="btn btn-secondary" OnClick="btnAddcreW_Click" OnClientClick="return confirm('¿Are you sure that do you want to add this employee ?')"  CommandArgument='<%# Eval("IdEmployee") %>'>
                                             <i class="bi bi-plus-square"></i>
                                          </asp:LinkButton>                                                                                
                                         </td>                                   
