@@ -18,7 +18,7 @@
                     <img src='<%: PhotoByModel(aircraft.Model) %>' class="d-block w-100" style="height: 100vh; width: 100%;" alt="">
                     <div class="carousel-caption d-none d-md-block">
                         <h2><%: aircraft.Model %></h2>
-                        <p>Capacidad : <%: aircraft.PassengerCapacity %></p>
+                        <p>Capacity : <%: aircraft.PassengerCapacity %></p>
                     </div>
                 </div>
             <% } %>

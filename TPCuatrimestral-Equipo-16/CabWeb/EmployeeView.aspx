@@ -52,17 +52,17 @@
                 <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
                     <ul class="nav flex-column">
                         <li class="nav-item mb-5">
-                            <asp:LinkButton ID="btnProfile" runat="server" OnClick="btnProfile_Click" class="nav-link p-0">
+                            <asp:LinkButton ID="btnProfile" runat="server" OnClick="btnProfile_Click" class="nav-link p-0" ToolTip="Profile">
                                 <img src="/IconSidebar/svg1 (5).svg" alt="Profile" style="height: 40px; width: 40px; margin: 0 auto;" />
                             </asp:LinkButton>
                         </li>
                         <li class="nav-item mb-5">
-                            <asp:LinkButton ID="btnDashboard" runat="server" OnClick="btnDashboard_Click" class="nav-link p-0">
+                            <asp:LinkButton ID="btnDashboard" runat="server" OnClick="btnDashboard_Click" class="nav-link p-0" ToolTip="Reservation requests">
                                 <img src="/IconSidebar/svg1 (2).svg" alt="Bookings" style="height: 40px; width: 40px; margin: 0 auto;" />
                             </asp:LinkButton>
                         </li>
                         <li class="nav-item mb-5">
-                            <asp:LinkButton ID="btnFlight" runat="server" OnClick="btnFlight_Click" class="nav-link p-0">
+                            <asp:LinkButton ID="btnFlight" runat="server" OnClick="btnFlight_Click" class="nav-link p-0" ToolTip="Flight history">
                                 <img src="/IconSidebar/svg1 (4).svg" alt="Flight" style="height: 40px; width: 40px; margin: 0 auto;" />
                             </asp:LinkButton>
                         </li>
@@ -113,17 +113,16 @@
                             <asp:Label class="text-secondary" ID="lblPassword" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="New Password" ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblRepetPassword" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Repeat Password" ID="RepetPassword" runat="server" TextMode="Password"></asp:TextBox><br />
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Repeat Password" ID="txtRepetPassword" runat="server" TextMode="Password"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblCel" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded"  style="max-width: 500px;" ID="txtCel" runat="server"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblAdress" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded"  style="max-width: 500px;"  ID="txtAdress" runat="server"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblGender" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGender" runat="server" MaxLength="1"></asp:TextBox><br />                         
-                       
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top:2%; margin-bottom:2%;">
-                                Save changes
-                            </button>           
+
+                             <asp:Button ID = "btnEditEmployeeProfile" class="btn btn-primary" runat="server" Text="Save change" Onclick="btnEditEmployeeProfile_Click" OnClientClick="return confirm('¿Are you sure that do you want edit profile ?')" />
+                               
                             </div>
                             </center>
                     </div>
@@ -135,7 +134,7 @@
 
         <asp:Panel ID="panelDashboard" runat="server" CssClass="hidden">
             <center>
-                            <h1> Solicitudes de Reserva </h1>
+                            <h1> Reservation request </h1>
 
 
                             
@@ -143,7 +142,7 @@
                                     <div class="row" style="display: flex; flex-direction: column; margin-top: 70px; margin-left: 25%; margin-right: 25%; margin-bottom: 70px; overflow: auto; align-items: center;">
                                     <asp:Repeater ID="rptActiveBokings" runat="server">
                                         <ItemTemplate>
-                                            <div class="col-12 col-md-8 col-lg-6 mb-3" style="background-color: rgba(0, 0, 0, 0.5); width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                            <div class="col-12 col-md-8 col-lg-6 mb-3" style="background-color: rgba(169, 169, 169, 0.7); width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                                                 <div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
                                                     <div style="margin-right: 20%;">
                                                         <center>
@@ -449,7 +448,7 @@
 
         <%-----------------------------------------------------     MODALES         ----------------------------------------------%>
 
-              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+             <%-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -459,12 +458,12 @@
                                     You want to modify the fields?
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Ok</button>
+                                        <asp:Button ID = "btnEditProfile" class="btn btn-primary" runat="server" Text="Yes" Onclick="btnEditProfile_Click" />
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                                 </div>
-                            </div>
+                            </div>--%>
 
 
 

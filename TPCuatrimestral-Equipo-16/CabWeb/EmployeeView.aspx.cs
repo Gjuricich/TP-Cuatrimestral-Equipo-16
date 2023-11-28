@@ -504,6 +504,9 @@ namespace CabWeb
 
         }
 
-       
+        protected void btnEditEmployeeProfile_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

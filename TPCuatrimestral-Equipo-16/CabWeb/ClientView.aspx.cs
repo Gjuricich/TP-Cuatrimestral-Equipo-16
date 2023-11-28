@@ -490,6 +490,9 @@ namespace CabWeb
             }
         }
 
-      
+        protected void btnEditClientProfile_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
