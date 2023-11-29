@@ -198,9 +198,13 @@ namespace CabBusiness
 
             try
             {
-                dataManager.setQuery("UPDATE Persons SET Domicilio = @Domicilio, Celular = @Celular WHERE IdPerson = @IDPERSON");
-                dataManager.setParameter("@Domicilio", client.Address);
+                dataManager.setQuery("UPDATE Persons SET Domicilio = @Domicilio, Celular = @Celular, Nombre = @Nombre, Apellido =@Apellido, Sexo = @Sexo WHERE IdPerson = @IDPERSON");
+                dataManager.setParameter("@IDPERSON",client.IdPerson);
                 dataManager.setParameter("@Celular", client.Cellphone);
+                dataManager.setParameter("@Domicilio", client.Address);
+                dataManager.setParameter("@Nombre", client.Name);
+                dataManager.setParameter("@Apellido", client.Surname);
+                dataManager.setParameter("@Sexo", client.Gender);
                 dataManager.executeRead();              
 
             }

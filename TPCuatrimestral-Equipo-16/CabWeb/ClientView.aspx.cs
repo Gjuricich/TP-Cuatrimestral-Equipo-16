@@ -202,6 +202,24 @@ namespace CabWeb
 
         }
 
+        protected void btnSaveChanges_Click(object sender, EventArgs e)
+        {
+            //No levanta los nuevos datos de los txt. Debe ser algo del postback por que en EmployeeView esta igual  
+            Client aux = (Client)Session["ClientLogged"];
+            PersonBusiness pBusiness = new PersonBusiness();
+            aux.Name = txtName.Text;
+            aux.Surname = txtLastName.Text;
+            aux.Address = txtAdress.Text;
+            aux.Cellphone = txtCel.Text;
+            aux.Gender = Convert.ToChar(txtGender.Text);
+            Session["ClientLogged"] = aux;
+            pBusiness.editPerson(aux);
+
+            ScriptManager.RegisterStartupScript(UpdatePanelGeneral, UpdatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + UpdatePanelGeneral.ClientID + "', '');", true);
+
+
+        }
+
         // --------------------------------------------------------- EVENTO PANEL AGREGAR  PASAJERO -----------------------------------------------------------
 
 
@@ -490,9 +508,8 @@ namespace CabWeb
             }
         }
 
-        protected void btnEditClientProfile_Click(object sender, EventArgs e)
-        {
 
-        }
+
+        
     }
 }

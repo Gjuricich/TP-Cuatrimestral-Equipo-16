@@ -113,10 +113,10 @@
                                               
                             <div>   
                             <asp:Label class="text-secondary" ID="lblName" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  ID="txtName" runat="server" ReadOnly="true"></asp:TextBox><br />
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  ID="txtName" runat="server"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblLastName" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtLastName" runat="server" ReadOnly="true"></asp:TextBox><br />
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtEmail" runat="server"></asp:TextBox><br />
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtLastName" runat="server" ></asp:TextBox><br />
+                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtEmail" runat="server" ReadOnly="true"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblPassword" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="New Password" ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblRepetPassword" runat="server"></asp:Label>
@@ -127,8 +127,9 @@
                             <asp:TextBox class="form-control form-control-sm rounded"  style="max-width: 500px;"  ID="txtAdress" runat="server"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblGender" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGender" runat="server" MaxLength="1"></asp:TextBox><br />                         
-                       
-                            <asp:Button ID="btnEditClientProfile" class="btn btn-primary" runat="server" Text="Save change" Onclick="btnEditClientProfile_Click" OnClientClick="return confirm('Are you sure do you want edit profile ?')"/>
+                                                  
+                           <asp:LinkButton ID="btnSaveChanges" class="btn btn-primary" runat="server" Text="Save changes" Onclick="btnSaveChanges_Click" OnClientClick="return confirm('Are you sure do you want to save your changes ?')"/>
+
                             <asp:LinkButton ID="btnDeleteClient" runat="server"  class="btn btn-danger" OnClick="btnDeleteClient_Click" OnClientClick="return confirm('¿Are you sure that do you want delete your account ?')" >
                                 <i class="bi bi-trash"></i> 
                             </asp:LinkButton>         
