@@ -204,13 +204,13 @@ namespace CabWeb
         protected global::System.Web.UI.WebControls.TextBox txtGender;
 
         /// <summary>
-        /// btnEditEmployeeProfile control.
+        /// btnSaveChanges control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditEmployeeProfile;
+        protected global::System.Web.UI.WebControls.LinkButton btnSaveChanges;
 
         /// <summary>
         /// panelDashboard control.

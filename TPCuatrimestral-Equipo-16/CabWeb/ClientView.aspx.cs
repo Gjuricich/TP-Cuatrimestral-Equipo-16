@@ -26,14 +26,13 @@ namespace CabWeb
             
             updateBookingEmployeeSession(CurrentClient.IdClient);
             updateFlightClientSession();
-            loadProfile(CurrentClient);
             loadBookings();
             loadBookingsStatus();
 
 
             if (!IsPostBack)
             {
-                
+                loadProfile(CurrentClient);
                 loadCities();
                 panelprofile.CssClass = "";
                 panelBookings.CssClass = "hidden";
@@ -204,7 +203,7 @@ namespace CabWeb
 
         protected void btnSaveChanges_Click(object sender, EventArgs e)
         {
-            //No levanta los nuevos datos de los txt. Debe ser algo del postback por que en EmployeeView esta igual  
+           
             Client aux = (Client)Session["ClientLogged"];
             PersonBusiness pBusiness = new PersonBusiness();
             aux.Name = txtName.Text;

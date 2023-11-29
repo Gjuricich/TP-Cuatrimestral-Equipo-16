@@ -22,11 +22,11 @@ namespace CabWeb
 
             updateBookingEmployeeSession();
             updateFlightEmployeeSession();
-            loadProfile(CurrentEmployee);
             loadBookings();
             loadFlights();
             if (!IsPostBack)
             {
+                loadProfile(CurrentEmployee);
                 panelHome.CssClass = "";             
                 panelDashboard.CssClass = "hidden";
                 panelFlight.CssClass = "hidden";
@@ -131,6 +131,23 @@ namespace CabWeb
 
             //updatePanelGeneral.Update();
             //ScriptManager.RegisterStartupScript(updatePanelGeneral, updatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + updatePanelGeneral.ClientID + "', '');", true);
+
+        }
+
+        protected void btnSaveChanges_Click(object sender, EventArgs e)
+        {
+           
+            Employee aux = (Employee)Session["EmployeeLogged"];
+            PersonBusiness pBusiness = new PersonBusiness();
+            aux.Name = txtName.Text;
+            aux.Surname = txtLastName.Text;
+            aux.Address = txtAdress.Text;
+            aux.Cellphone = txtCel.Text;
+            aux.Gender = Convert.ToChar(txtGender.Text);
+            Session["EmployeeLogged"] = aux;
+            pBusiness.editPerson(aux);
+
+            ScriptManager.RegisterStartupScript(updatePanelGeneral, updatePanelGeneral.GetType(), "UpdatePanelUpdate", "__doPostBack('" + updatePanelGeneral.ClientID + "', '');", true);
 
         }
 
@@ -504,9 +521,8 @@ namespace CabWeb
 
         }
 
-        protected void btnEditEmployeeProfile_Click(object sender, EventArgs e)
-        {
+      
 
-        }
+        
     }
 }

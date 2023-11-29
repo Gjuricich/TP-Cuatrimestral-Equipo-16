@@ -219,6 +219,33 @@ namespace CabBusiness
             }
         }
 
+        public void editPerson(Employee employee)
+        {
+            DataManager dataManager = new DataManager();
+
+            try
+            {
+                dataManager.setQuery("UPDATE Persons SET Domicilio = @Domicilio, Celular = @Celular, Nombre = @Nombre, Apellido =@Apellido, Sexo = @Sexo WHERE DNI = @DNI");
+                dataManager.setParameter("@DNI", employee.Dni);
+                dataManager.setParameter("@Celular", employee.Cellphone);
+                dataManager.setParameter("@Domicilio", employee.Address);
+                dataManager.setParameter("@Nombre", employee.Name);
+                dataManager.setParameter("@Apellido", employee.Surname);
+                dataManager.setParameter("@Sexo", employee.Gender);
+                dataManager.executeRead();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+        }
+
         public void deletePerson(string DNI)
         {
             DataManager data = new DataManager();
