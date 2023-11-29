@@ -200,7 +200,7 @@ namespace CabWeb
             {
                 string IdFlight = ((LinkButton)sender).CommandArgument;
                 Session["IdFlight"] = int.Parse(IdFlight); //recordar modificAR ADD PASAJERO PARA TOMAR EL ID DEL OBJETO
-                
+
 
                 //Load pasajeros
                 List<Flight> allFlights = (List<Flight>)Session["Flights"];
@@ -216,7 +216,12 @@ namespace CabWeb
                 //cargamos los empleados
                 rptFlightEmployee.DataSource = CurrentFlight.crew;
                 rptFlightEmployee.DataBind();
-
+                //cargamos aeropuertos
+                AirportBusiness airportBusiness = new AirportBusiness();
+                ddlArriveAirport.DataSource = airportBusiness.getNameAirportsByCity(CurrentFlight.booking.Destination.NameCity); 
+                ddlArriveAirport.DataBind();
+                ddlDepartureAirport.DataSource = airportBusiness.getNameAirportsByCity(CurrentFlight.booking.Origin.NameCity);
+                ddlDepartureAirport.DataBind();
             }
             catch (Exception ex)
             {

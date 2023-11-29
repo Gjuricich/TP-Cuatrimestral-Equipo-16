@@ -294,13 +294,13 @@ namespace CabWeb
         protected global::System.Web.UI.WebControls.Label lblDepartureAirport;
 
         /// <summary>
-        /// Control DropDownList3.
+        /// Control ddlDepartureAirport.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList3;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDepartureAirport;
 
         /// <summary>
         /// Control lblDepartureFlight.
@@ -319,6 +319,24 @@ namespace CabWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDepartureFlight;
+
+        /// <summary>
+        /// Control LblFlightHour.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblFlightHour;
+
+        /// <summary>
+        /// Control TxbTimePickeddepature.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxbTimePickeddepature;
 
         /// <summary>
         /// Control lblEta.
@@ -366,13 +384,13 @@ namespace CabWeb
         protected global::System.Web.UI.WebControls.Label lblArriveAirport;
 
         /// <summary>
-        /// Control DropDownListAA.
+        /// Control ddlArriveAirport.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListAA;
+        protected global::System.Web.UI.WebControls.DropDownList ddlArriveAirport;
 
         /// <summary>
         /// Control lblArrivalFlight.
@@ -391,6 +409,24 @@ namespace CabWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtArrivalFlight;
+
+        /// <summary>
+        /// Control lblArrivalFlihtHour.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblArrivalFlihtHour;
+
+        /// <summary>
+        /// Control txtArrivalFlihtHour.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtArrivalFlihtHour;
 
         /// <summary>
         /// Control lblFlightHours.

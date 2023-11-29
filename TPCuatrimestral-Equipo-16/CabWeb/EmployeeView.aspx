@@ -326,13 +326,17 @@
                 <asp:Label class="text-dark" ID="lblDepartureAirport"  Text="Departure airport" runat="server"></asp:Label>
                 <div class="input-group mb-3">
                     <span class="input-group-text" style="background-color: rgba(0, 0, 0, 0.1);"><img src="/IconSidebar/departure_icon.svg" alt="Icon" style="height: 1rem; width: auto;" /></span>
-                       <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control"></asp:DropDownList>
+                       <asp:DropDownList ID="ddlDepartureAirport" runat="server" CssClass="form-control"></asp:DropDownList>
                 </div>
                 <div>
-                    <asp:Label class="text-dark" ID="lblDepartureFlight"  Text="Departure Flight" runat="server"></asp:Label>
+                    <asp:Label class="text-dark" ID="lblDepartureFlight"  Text="Departure Flight Date" runat="server"></asp:Label>
                     <asp:TextBox class="form-control form-control-sm rounded"  ID="txtDepartureFlight" type="date"  data-date-format="dd/mm/yyyy" runat="server"></asp:TextBox><br />
                 </div>
-
+                
+                <div>
+                    <asp:Label class="text-dark" ID="LblFlightHour"  Text="Departure Flight Hour" runat="server"></asp:Label>
+                    <asp:TextBox ID="TxbTimePickeddepature" class="form-control form-control-sm rounded" style="max-width: 500px;" type="time" runat="server"></asp:TextBox>
+                </div>
                  <div>
                     <asp:Label class="text-dark" ID="lblEta"  Text="ETA" runat="server"></asp:Label>
                     <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  ID="txtEta" runat="server" ReadOnly="true"></asp:TextBox><br />
@@ -349,11 +353,15 @@
                <asp:Label class="text-dark" ID="lblArriveAirport"  Text="Arrive airport" runat="server"></asp:Label>
                 <div class="input-group mb-3">
                     <span class="input-group-text" style="background-color: rgba(0, 0, 0, 0.1);"><img src="/IconSidebar/arrival_icon.svg" alt="Icon" style="height: 1.2rem; width: auto;" /></span>
-                       <asp:DropDownList ID="DropDownListAA" runat="server" CssClass="form-control"></asp:DropDownList>
+                       <asp:DropDownList ID="ddlArriveAirport" runat="server" CssClass="form-control"></asp:DropDownList>
                 </div>
                 <div>
-                    <asp:Label class="text-dark" ID="lblArrivalFlight"  Text="Arrival Flight" runat="server"></asp:Label>
+                    <asp:Label class="text-dark" ID="lblArrivalFlight"  Text="Arrival Flight Date" runat="server"></asp:Label>
                     <asp:TextBox class="form-control form-control-sm rounded"  ID="txtArrivalFlight" type="date"  data-date-format="dd/mm/yyyy" runat="server"></asp:TextBox><br />
+                </div>
+                <div>
+                    <asp:Label class="text-dark" ID="lblArrivalFlihtHour"  Text="Arrival Flight Hour" runat="server"></asp:Label>
+                    <asp:TextBox ID="txtArrivalFlihtHour" class="form-control form-control-sm rounded" style="max-width: 500px;" type="time" runat="server"></asp:TextBox>
                 </div>
 
                  <div>
