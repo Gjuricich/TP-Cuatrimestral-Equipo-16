@@ -319,7 +319,69 @@
                      <%------------------------------------------      ITINERARIO       ----------------------------------------------%>
                      <div  class="ProfileBox" style="margin-top: 20px;">   
                        <h2> Itinerary </h2>
-                         <div>       
+
+                         <div class="row">
+            <div class="col-md-6">
+                
+                <asp:Label class="text-dark" ID="lblDepartureAirport"  Text="Departure airport" runat="server"></asp:Label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" style="background-color: rgba(0, 0, 0, 0.1);"><img src="/IconSidebar/departure_icon.svg" alt="Icon" style="height: 1rem; width: auto;" /></span>
+                       <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control"></asp:DropDownList>
+                </div>
+                <div>
+                    <asp:Label class="text-dark" ID="lblDepartureFlight"  Text="Departure Flight" runat="server"></asp:Label>
+                    <asp:TextBox class="form-control form-control-sm rounded"  ID="txtDepartureFlight" type="date"  data-date-format="dd/mm/yyyy" runat="server"></asp:TextBox><br />
+                </div>
+
+                 <div>
+                    <asp:Label class="text-dark" ID="lblEta"  Text="ETA" runat="server"></asp:Label>
+                    <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  ID="txtEta" runat="server" ReadOnly="true"></asp:TextBox><br />
+                </div> 
+                 <asp:Label class="text-dark" ID="lblPassengers"  Text="Passengers Flight" runat="server"></asp:Label>
+                 <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="bi bi-people-fill"></i></span>
+                    <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  ID="txtPassengers" runat="server" ReadOnly="true"></asp:TextBox><br />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+    
+               <asp:Label class="text-dark" ID="lblArriveAirport"  Text="Arrive airport" runat="server"></asp:Label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" style="background-color: rgba(0, 0, 0, 0.1);"><img src="/IconSidebar/arrival_icon.svg" alt="Icon" style="height: 1.2rem; width: auto;" /></span>
+                       <asp:DropDownList ID="DropDownListAA" runat="server" CssClass="form-control"></asp:DropDownList>
+                </div>
+                <div>
+                    <asp:Label class="text-dark" ID="lblArrivalFlight"  Text="Arrival Flight" runat="server"></asp:Label>
+                    <asp:TextBox class="form-control form-control-sm rounded"  ID="txtArrivalFlight" type="date"  data-date-format="dd/mm/yyyy" runat="server"></asp:TextBox><br />
+                </div>
+
+                 <div>
+                    <asp:Label class="text-dark" ID="lblFlightHours"  Text="Flight hours" runat="server"></asp:Label>
+                    <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  ID="txtFlightHours" runat="server" ReadOnly="true"></asp:TextBox><br />
+                </div>
+                 <asp:Label class="text-dark" ID="lblAircraft"  Text="Aircraft Flight" runat="server"></asp:Label>
+                 <div class="input-group mb-3">
+                    <asp:DropDownList ID="DropDownAircraft" runat="server" CssClass="form-control"></asp:DropDownList>
+                </div>
+                </div>
+                <div class="input-group mb-3">
+                   <textarea id="updateTrip" class="form-control" rows="4" placeholder="Update Trip"></textarea>
+                </div>
+            </div>  
+                    
+                    
+                    
+                
+               
+
+
+
+
+
+
+
+                        <%--  <div>       
 
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;"  placeholder="Name" ID="TextBox1" runat="server" ReadOnly="true"></asp:TextBox><br />
                             <asp:Label class="text-dark" ID="Label2"  Text="Flight Arrival" runat="server"></asp:Label>
@@ -330,13 +392,9 @@
                             <asp:TextBox class="form-control form-control-sm rounded"  style="max-width: 500px;" placeholder="Cellphone" ID="TextBox4" runat="server"></asp:TextBox><br />                          
                             <asp:Label class="text-dark" ID="Label5" Text="AirportDeparture" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="TextBox5" placeholder="Gender" runat="server" MaxLength="1"></asp:TextBox><br />                          
-                       </div>
-                         </div>
-                                
-
-
-                 </center> 
-                 </div>
+                       </div> --%> 
+                
+              
             </asp:Panel>
              
           
