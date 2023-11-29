@@ -127,7 +127,7 @@ namespace CabWeb
 
         protected void btnProfile_Click(object sender, EventArgs e)
         {
-      
+            infoPass.Text = "";
             panelprofile.CssClass = "";
             panelBookings.CssClass = "hidden";
             panelRequestBooking.CssClass = "hidden";
@@ -211,6 +211,7 @@ namespace CabWeb
             aux.Address = txtAdress.Text;
             aux.Cellphone = txtCel.Text;
             aux.Gender = Convert.ToChar(txtGender.Text);
+
             Session["ClientLogged"] = aux;
             pBusiness.editPerson(aux);
 
@@ -507,8 +508,49 @@ namespace CabWeb
             }
         }
 
+        protected void btnConfirmNewPass_Click(object sender, EventArgs e)
+        {
+            infoPass.Text = "";
+            string CurrentPassword = txtCurrentPass.Text;
+            string NewPassword = txtNewPass.Text;
+            string ConfirmPassword = txtConfirmNewPass.Text;
+            if (CurrentPassword != "" && NewPassword != "" && ConfirmPassword != "")
+            {
+                if (NewPassword == ConfirmPassword)
+                {
+                    CredentialBusiness cdBusiness = new CredentialBusiness();
 
+                    if (cdBusiness.VerificarCredenciales(CurrentClient.credentials.Email, CurrentPassword))
+                    {
+                        cdBusiness.editCredentialPass(CurrentClient, ConfirmPassword, CurrentClient.IdPerson);
+                        infoPass.Text = "*The password has changed correctly";
+                        infoPass.ForeColor = System.Drawing.Color.Green;
+                    }
+                    else
+                    {
+                        infoPass.Text = "*The current password is wrong,Try again.";
+                        infoPass.ForeColor = System.Drawing.Color.Red;
+                        return;
+                    }
+                }
 
-        
+                else if(NewPassword != ConfirmPassword)
+                {
+                    infoPass.Text = "*The new password and his confirmation are not equal,Try again.";
+                    infoPass.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+            }
+            else
+            {
+                infoPass.Text = "*Incomplete";
+                infoPass.ForeColor = System.Drawing.Color.Red;
+                return;
+
+            }
+            
+        }
+
+       
     }
 }

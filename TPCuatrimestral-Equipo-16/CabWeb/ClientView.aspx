@@ -117,10 +117,16 @@
                             <asp:Label class="text-secondary" ID="lblLastName" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtLastName" runat="server" ></asp:TextBox><br />
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtEmail" runat="server" ReadOnly="true"></asp:TextBox><br />
-                            <asp:Label class="text-secondary" ID="lblPassword" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="New Password" ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox><br />
+                      
                             <asp:Label class="text-secondary" ID="lblRepetPassword" runat="server"></asp:Label>
-                            <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Repeat Password" ID="RepetPassword" runat="server" TextMode="Password"></asp:TextBox><br />
+                                <div style="display:flex;">
+                                <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Repeat Password" ID="RepetPassword" runat="server" TextMode="Password"></asp:TextBox>
+                                <asp:LinkButton ID="btnOpenModal" runat="server" CssClass="btn btn-danger" OnClientClick="return openModal();" >
+                                    <i class="bi bi-pencil-fill"></i>
+                                    </asp:LinkButton>
+                                    </div>
+                                <asp:Label class="text-secondary" ID="infoPass" runat="server" ></asp:Label>
+                            <br />
                             <asp:Label class="text-secondary" ID="lblCel" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded"  style="max-width: 500px;" ID="txtCel" runat="server"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblAdress" runat="server"></asp:Label>
@@ -430,19 +436,54 @@
                                     </div>
                                     <div class="modal-body">
 
-                                        <asp:FileUpload ID="fileUpload1" runat="server" enctype="multipart/form-data"/>
+                                        <asp:FileUpload ID="fileUpload1" runat="server" enctype="multipart/form-data" />
 
                                     </div>
                                     <div class="modal-footer">
-                                         <asp:LinkButton ID = "ChangePhotoClient" class="btn btn-primary" runat="server" Text="Change photo" OnClick="ChangePhotoClient_Click"/>
+                                        <asp:LinkButton ID="ChangePhotoClient" class="btn btn-primary" runat="server" Text="Change photo" OnClick="ChangePhotoClient_Click" />
 
 
-                                  
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                                 </div>
-                            </div>
+                 </div>
+
+
+    <div id="myModal" class="modal" style="width :30%; margin-left:39%;margin-top:10%; " >
+        <div class="modal-content"  >
+            <span class="close" onclick="closeModal();">&times;</span>
+            <h2>Confirm Change Password</h2>
+            <asp:Label class="text-secondary" ID="Label1" runat="server" Text="Enter your current password"></asp:Label>
+            <asp:TextBox class="form-control form-control-sm rounded" Style="max-width: 500px;" placeholder="Password" ID="txtCurrentPass" runat="server" TextMode="Password"></asp:TextBox><br />
+            <asp:Label class="text-secondary" ID="Label6" runat="server" Text="Enter your new password"></asp:Label>
+            <asp:TextBox class="form-control form-control-sm rounded" Style="max-width: 500px;" placeholder="Password" ID="txtNewPass" runat="server" TextMode="Password"></asp:TextBox><br />
+            <asp:Label class="text-secondary" ID="Label7" runat="server" Text="Confirm your new password"></asp:Label>
+            <asp:TextBox class="form-control form-control-sm rounded" Style="max-width: 500px;" placeholder="Password" ID="txtConfirmNewPass" runat="server" TextMode="Password"></asp:TextBox><br />
+            <asp:LinkButton ID="btnConfirmNewPass" runat="server" Text="Confirm" OnClientClick="return confirmDelete();" OnClick="btnConfirmNewPass_Click" CssClass="btn btn-danger" />
+            <asp:LinkButton ID="btnCancelNewPass" runat="server" Text="Cancel" OnClientClick="return cancelDelete();" CssClass="btn" />
+        </div>
+    </div>
+    <script type="text/javascript">
+        function openModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'block';
+            return false; // Evita el postback del LinkButton
+        }
+        function closeModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+        function confirmDelete() {
+            closeModal();
+            return true;
+        }
+        function cancelDelete() {
+            closeModal();
+            return false;
+        }
+    </script>
 
 
 </asp:Content>

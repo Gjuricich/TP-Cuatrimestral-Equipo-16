@@ -120,7 +120,7 @@ namespace CabBusiness
                 dataManager.closeConection();
             }
         }
-        public void addCredential(Client client, string password, int idPerson,string photo)
+        public void addCredential(Client client, string password, int idPerson, string photo)
         {
             DataManager dataManager = new DataManager();
             client.credentials.GenerateHashAndSalt(password);
@@ -151,6 +151,8 @@ namespace CabBusiness
             }
         }
 
+
+
         public void editCredential(Client client)
         {
             DataManager dataManager = new DataManager();
@@ -172,6 +174,34 @@ namespace CabBusiness
             {
                 dataManager.closeConection();
             }
+        }
+
+        public void editCredentialPass(Client client, string password, int idPerson)
+        {
+            DataManager dataManager = new DataManager();
+            client.credentials.GenerateHashAndSalt(password);
+
+            try
+            {
+                dataManager.ClearCommand();
+                dataManager.setQuery("UPDATE Credentials SET HashContraseña = @HashContraseña, Sal = @Sal WHERE IdPerson = @IDPERSON");
+                dataManager.setParameter("@IDPERSON", idPerson);
+                dataManager.setParameter("@HashContraseña", client.credentials.gethashPass());
+                dataManager.setParameter("@Sal", client.credentials.getsaltPass());
+                dataManager.executeRead();
+                dataManager.closeConection();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+
         }
 
 
