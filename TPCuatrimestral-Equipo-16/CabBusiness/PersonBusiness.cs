@@ -192,19 +192,19 @@ namespace CabBusiness
             }
         }
 
-        public void editPerson(Client client)
+        public void editPerson(Person person)
         {
             DataManager dataManager = new DataManager();
 
             try
             {
                 dataManager.setQuery("UPDATE Persons SET Domicilio = @Domicilio, Celular = @Celular, Nombre = @Nombre, Apellido =@Apellido, Sexo = @Sexo WHERE IdPerson = @IDPERSON");
-                dataManager.setParameter("@IDPERSON",client.IdPerson);
-                dataManager.setParameter("@Celular", client.Cellphone);
-                dataManager.setParameter("@Domicilio", client.Address);
-                dataManager.setParameter("@Nombre", client.Name);
-                dataManager.setParameter("@Apellido", client.Surname);
-                dataManager.setParameter("@Sexo", client.Gender);
+                dataManager.setParameter("@IDPERSON", person.IdPerson);
+                dataManager.setParameter("@Celular", person.Cellphone);
+                dataManager.setParameter("@Domicilio", person.Address);
+                dataManager.setParameter("@Nombre", person.Name);
+                dataManager.setParameter("@Apellido", person.Surname);
+                dataManager.setParameter("@Sexo", person.Gender);
                 dataManager.executeRead();              
 
             }
@@ -219,33 +219,7 @@ namespace CabBusiness
             }
         }
 
-        public void editPerson(Employee employee)
-        {
-            DataManager dataManager = new DataManager();
-
-            try
-            {
-                dataManager.setQuery("UPDATE Persons SET Domicilio = @Domicilio, Celular = @Celular, Nombre = @Nombre, Apellido =@Apellido, Sexo = @Sexo WHERE DNI = @DNI");
-                dataManager.setParameter("@DNI", employee.Dni);
-                dataManager.setParameter("@Celular", employee.Cellphone);
-                dataManager.setParameter("@Domicilio", employee.Address);
-                dataManager.setParameter("@Nombre", employee.Name);
-                dataManager.setParameter("@Apellido", employee.Surname);
-                dataManager.setParameter("@Sexo", employee.Gender);
-                dataManager.executeRead();
-
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                dataManager.closeConection();
-            }
-        }
-
+       
         public void deletePerson(string DNI)
         {
             DataManager data = new DataManager();
