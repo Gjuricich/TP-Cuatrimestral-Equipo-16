@@ -117,26 +117,24 @@
                             <asp:Label class="text-secondary" ID="lblLastName" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtLastName" runat="server" ></asp:TextBox><br />
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtEmail" runat="server" ReadOnly="true"></asp:TextBox><br />
-                      
-                            <asp:Label class="text-secondary" ID="lblRepetPassword" runat="server"></asp:Label>
-                                <div style="display:flex;">
-                                <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Repeat Password" ID="RepetPassword" runat="server" TextMode="Password"></asp:TextBox>
-                                <asp:LinkButton ID="btnOpenModal" runat="server" CssClass="btn btn-danger" OnClientClick="return openModal();" >
-                                    <i class="bi bi-pencil-fill"></i>
-                                    </asp:LinkButton>
-                                    </div>
-                                <asp:Label class="text-secondary" ID="infoPass" runat="server" ></asp:Label>
-                            <br />
                             <asp:Label class="text-secondary" ID="lblCel" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded"  style="max-width: 500px;" ID="txtCel" runat="server"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblAdress" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded"  style="max-width: 500px;"  ID="txtAdress" runat="server"></asp:TextBox><br />
                             <asp:Label class="text-secondary" ID="lblGender" runat="server"></asp:Label>
                             <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" ID="txtGender" runat="server" MaxLength="1"></asp:TextBox><br />                         
-                                                  
+                           <%--<asp:Label class="text-secondary" ID="lblRepetPassword" runat="server"></asp:Label>--%>
+                                 <%-- <div style="display:flex;">--%>
+                               <%-- <asp:TextBox class="form-control form-control-sm rounded" style="max-width: 500px;" placeholder="Repeat Password" ID="RepetPassword" runat="server" TextMode="Password"></asp:TextBox>--%>
+                            <asp:Label class="text-secondary" ID="infoPass" runat="server" ></asp:Label>
+                                <asp:LinkButton ID="btnOpenModal" runat="server" CssClass="btn btn-secondary" OnClientClick="return openModal();" ToolTip="New Password" >
+                                    <i class="bi bi-pencil-fill"></i>
+                                    </asp:LinkButton>
+                                   <%-- </div>--%>
+                                
                            <asp:LinkButton ID="btnSaveChanges" class="btn btn-primary" runat="server" Text="Save changes" Onclick="btnSaveChanges_Click" OnClientClick="return confirm('Are you sure do you want to save your changes ?')"/>
 
-                            <asp:LinkButton ID="btnDeleteClient" runat="server"  class="btn btn-danger" OnClick="btnDeleteClient_Click" OnClientClick="return confirm('¿Are you sure that do you want delete your account ?')" >
+                            <asp:LinkButton ID="btnDeleteClient" runat="server" Tooltip="Delete account" class="btn btn-danger" OnClick="btnDeleteClient_Click" OnClientClick="return confirm('¿Are you sure that do you want delete your account ?')" >
                                 <i class="bi bi-trash"></i> 
                             </asp:LinkButton>         
                             </div>
@@ -451,14 +449,68 @@
                  </div>
 
 
-    <div id="myModal" class="modal" style="width :30%; margin-left:39%;margin-top:10%; " >
-        <div class="modal-content"  >
+         <%-----------------------------------------------------     MODAL PASSWORD     ----------------------------------------------%>
+    <div class="modal fade" id="passwordChanged" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 10px;">
+                    <img src="/images/ShowMessage/sucessfully.png" alt="" style="width: 50px; height: 50px;">
+                </div >
+                <p style="text-align: center;">The password has changed correctly</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="modal fade" id="wrongPassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 10px;">
+                    <img src="/images/ShowMessage/Yellow-Warning.png" alt="Advertencia" style="width: 50px; height: 50px;">
+                </div >
+                <p style="text-align: center;">The current password is wrong,Try again.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+           <div class="modal fade" id="notEqualPassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 10px;">
+                    <img src="/images/ShowMessage/Yellow-Warning.png" alt="Advertencia" style="width: 50px; height: 50px;">
+                </div >
+                <p style="text-align: center;">The new password and his confirmation are not equal,Try again.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+               <div class="modal fade" id="incompletePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 10px;">
+                    <img src="/images/ShowMessage/Yellow-Warning.png" alt="Advertencia" style="width: 50px; height: 50px;">
+                </div >
+                <p style="text-align: center;">Incomplete</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div id="myModal" class="modal" style="width :30%; margin-left:39%;margin-top:10%;" >
+        <div class="modal-content" style="padding:5%;" >
             <span class="close" onclick="closeModal();">&times;</span>
             <h2>Confirm Change Password</h2>
             <asp:Label class="text-secondary" ID="Label1" runat="server" Text="Enter your current password"></asp:Label>
             <asp:TextBox class="form-control form-control-sm rounded" Style="max-width: 500px;" placeholder="Password" ID="txtCurrentPass" runat="server" TextMode="Password"></asp:TextBox><br />
             <asp:Label class="text-secondary" ID="Label6" runat="server" Text="Enter your new password"></asp:Label>
-            <asp:TextBox class="form-control form-control-sm rounded" Style="max-width: 500px;" placeholder="Password" ID="txtNewPass" runat="server" TextMode="Password"></asp:TextBox><br />
+            <asp:TextBox class="form-control form-control-sm rounded" Style="max-width: 500px; " placeholder="Password" ID="txtNewPass" runat="server" TextMode="Password"></asp:TextBox><br />
             <asp:Label class="text-secondary" ID="Label7" runat="server" Text="Confirm your new password"></asp:Label>
             <asp:TextBox class="form-control form-control-sm rounded" Style="max-width: 500px;" placeholder="Password" ID="txtConfirmNewPass" runat="server" TextMode="Password"></asp:TextBox><br />
             <asp:LinkButton ID="btnConfirmNewPass" runat="server" Text="Confirm" OnClientClick="return confirmDelete();" OnClick="btnConfirmNewPass_Click" CssClass="btn btn-danger" />

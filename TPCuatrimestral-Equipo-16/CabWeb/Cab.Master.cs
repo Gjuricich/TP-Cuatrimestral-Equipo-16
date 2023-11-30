@@ -44,6 +44,16 @@ namespace CabWeb
             Response.Redirect("~/Default.aspx");
         }
 
-        
+        protected void redirectProfile_Click(object sender, EventArgs e)
+        {
+            if ((Client)Session["ClientLogged"] != null)
+            {
+                Response.Redirect("~/ClientView.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/EmployeeView.aspx");
+            }
+        }
     }
 }

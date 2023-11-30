@@ -91,8 +91,8 @@
             <span class="visually-hidden">User</span>
         </a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="ClientView.aspx" style="color:white;"><i class="bi bi-person-lines-fill"></i> Profile</a>
-            <a class="dropdown-item" href="SettingUser.aspx" style="color:white;"> <i class="bi bi-gear"></i> Setting</a>
+              <asp:LinkButton ID="redirectProfile" runat="server" Onclick="redirectProfile_Click" CssClass="dropdown-item" style="color:white;" ><i class="bi bi-person-lines-fill"></i> Profile</asp:LinkButton>
+         <%--   <a class="dropdown-item" href="SettingUser.aspx" style="color:white;"> <i class="bi bi-gear"></i> Setting</a>--%>
             <div class="dropdown-divider"></div>
             <asp:LinkButton ID="Logout" runat="server" OnClick="Logout_Click" CssClass="dropdown-item" style="color:white;" OnClientClick="return confirm('¿Are you sure that do you want log out?')"><i class="bi bi-box-arrow-left"></i> Log out</asp:LinkButton>
         </div>
@@ -102,12 +102,8 @@
 
 
                  <li class="nav-item position-relative">
-              <a href="Message.aspx" class="nav-link">
+                  <a class="text-secondary text-decoration-none" style="font-size: 160%; margin-left:5px; margin-right:20px; top: 15px; position: absolute; position: relative; top: 10px;" href="mailto:airplaneproyect@gmail.com"><i class="bi bi-envelope" style="color:white;"></i></a>
 
-               <p style="font-size: 160%; color:white; margin-left:5px; margin-right:20px;"><i class="bi bi-envelope"></i></p>
-                 <asp:Label Text="" ID="Label1" runat="server" CssClass="badge rounded-pill bg-secondary position-absolute start-100 translate-middle" style="top: 15px; margin-left:-20px;" />
-                  <span class="visually-hidden">Items</span>
-              </a>
                </li>
               
             </ul>

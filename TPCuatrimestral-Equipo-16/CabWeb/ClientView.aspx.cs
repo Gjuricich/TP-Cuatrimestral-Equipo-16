@@ -523,28 +523,87 @@ namespace CabWeb
                     if (cdBusiness.VerificarCredenciales(CurrentClient.credentials.Email, CurrentPassword))
                     {
                         cdBusiness.editCredentialPass(CurrentClient, ConfirmPassword, CurrentClient.IdPerson);
-                        infoPass.Text = "*The password has changed correctly";
-                        infoPass.ForeColor = System.Drawing.Color.Green;
+                        //infoPass.Text = "*The password has changed correctly";
+                        //infoPass.ForeColor = System.Drawing.Color.Green;
+
+                        string script = @"
+                            <script type='text/javascript'>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    var myModal = new bootstrap.Modal(document.getElementById('passwordChanged'));
+                                    myModal.show();
+                        
+                                    setTimeout(function () {
+                                                    myModal.hide();
+                                                }, 4000);
+
+                                });
+                            </script>";
+                        ClientScript.RegisterStartupScript(this.GetType(), "showModal", script, false);
+
+
+
                     }
                     else
                     {
-                        infoPass.Text = "*The current password is wrong,Try again.";
-                        infoPass.ForeColor = System.Drawing.Color.Red;
+                        //infoPass.Text = "*The current password is wrong,Try again.";
+                        //infoPass.ForeColor = System.Drawing.Color.Red;
+
+                        string script = @"
+                            <script type='text/javascript'>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    var myModal = new bootstrap.Modal(document.getElementById('wrongPassword'));
+                                    myModal.show();
+                        
+                                    setTimeout(function () {
+                                                    myModal.hide();
+                                                }, 4000);
+
+                                });
+                            </script>";
+                        ClientScript.RegisterStartupScript(this.GetType(), "showModal", script, false);
                         return;
                     }
                 }
 
                 else if(NewPassword != ConfirmPassword)
                 {
-                    infoPass.Text = "*The new password and his confirmation are not equal,Try again.";
-                    infoPass.ForeColor = System.Drawing.Color.Red;
+                    //infoPass.Text = "*The new password and his confirmation are not equal,Try again.";
+                    //infoPass.ForeColor = System.Drawing.Color.Red;
+
+                    string script = @"
+                            <script type='text/javascript'>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    var myModal = new bootstrap.Modal(document.getElementById('notEqualPassword'));
+                                    myModal.show();
+                        
+                                    setTimeout(function () {
+                                                    myModal.hide();
+                                                }, 4000);
+
+                                });
+                            </script>";
+                    ClientScript.RegisterStartupScript(this.GetType(), "showModal", script, false);
                     return;
                 }
             }
             else
             {
-                infoPass.Text = "*Incomplete";
-                infoPass.ForeColor = System.Drawing.Color.Red;
+                //infoPass.Text = "*Incomplete";
+                //infoPass.ForeColor = System.Drawing.Color.Red;
+
+                string script = @"
+                            <script type='text/javascript'>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    var myModal = new bootstrap.Modal(document.getElementById('incompletePassword'));
+                                    myModal.show();
+                        
+                                    setTimeout(function () {
+                                                    myModal.hide();
+                                                }, 1000);
+
+                                });
+                            </script>";
+                ClientScript.RegisterStartupScript(this.GetType(), "showModal", script, false);
                 return;
 
             }
