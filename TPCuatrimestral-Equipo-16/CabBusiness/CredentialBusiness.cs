@@ -204,6 +204,34 @@ namespace CabBusiness
 
         }
 
+        public void editCredentialPass(Employee employee, string password, int idPerson)
+        {
+            DataManager dataManager = new DataManager();
+            employee.credentials.GenerateHashAndSalt(password);
+
+            try
+            {//No modifica password en bd, no trae idPerson 
+                dataManager.ClearCommand();
+                dataManager.setQuery("UPDATE Credentials SET HashContraseña = @HashContraseña, Sal = @Sal WHERE IdPerson = @IDPERSON");
+                dataManager.setParameter("@IDPERSON", idPerson);
+                dataManager.setParameter("@HashContraseña", employee.credentials.gethashPass());
+                dataManager.setParameter("@Sal", employee.credentials.getsaltPass());
+                dataManager.executeRead();
+                dataManager.closeConection();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dataManager.closeConection();
+            }
+
+        }
+
 
         public void deleteCredential(int idPerson)
         {

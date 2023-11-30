@@ -599,7 +599,7 @@ namespace CabWeb
                         
                                     setTimeout(function () {
                                                     myModal.hide();
-                                                }, 1000);
+                                                }, 2000);
 
                                 });
                             </script>";
