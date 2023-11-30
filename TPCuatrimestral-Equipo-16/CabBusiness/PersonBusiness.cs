@@ -198,8 +198,9 @@ namespace CabBusiness
 
             try
             {
-                dataManager.setQuery("UPDATE Persons SET Domicilio = @Domicilio, Celular = @Celular, Nombre = @Nombre, Apellido =@Apellido, Sexo = @Sexo WHERE IdPerson = @IDPERSON");
+                dataManager.setQuery("UPDATE Persons SET Domicilio = @Domicilio, Celular = @Celular, Nombre = @Nombre, Apellido =@Apellido, Sexo = @Sexo WHERE DNI = @DNI or IdPerson = @IDPERSON");
                 dataManager.setParameter("@IDPERSON", person.IdPerson);
+                dataManager.setParameter("@DNI", person.Dni);
                 dataManager.setParameter("@Celular", person.Cellphone);
                 dataManager.setParameter("@Domicilio", person.Address);
                 dataManager.setParameter("@Nombre", person.Name);
@@ -219,7 +220,6 @@ namespace CabBusiness
             }
         }
 
-       
         public void deletePerson(string DNI)
         {
             DataManager data = new DataManager();
